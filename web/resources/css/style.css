@@ -1,0 +1,252 @@
+/* Sonia Template */
+
+body {
+    margin: 0 auto;
+    padding: 0;
+    font: 9pt Arial, Verdana, Sans-Serif;
+    background: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #2489DB;
+}
+
+a:hover {
+    color: #808080;
+}
+
+a img {
+    border: 0;
+}
+
+h3 {
+    font-size: 1.3em;
+    margin: 0 0 5px 0;
+    padding: 2px 0px 0px 0px;
+}
+
+#bg {
+    width: 100%;
+    vertical-align: middle;
+    margin: 0 auto;
+    /*padding: 5px 10px 10px 10px;*/
+
+}
+
+#sadrzaj {
+    padding-top: 9px;
+    color: #303030;
+    width: 80%;
+    margin: auto;
+    vertical-align: middle;
+    padding-left: 2px;
+
+}
+
+#toplinks {
+    background: #303030;
+
+    text-align: center;
+}
+
+#toplinks a {
+    font-size: 8pt;
+    display: inline;
+    padding-left: 8px;
+    padding-right: 5px;
+    background: url(../images/strelica.gif) left no-repeat;
+    padding-bottom: 3px;
+    margin-right: 5px;
+    color: #fff;
+}
+
+#toplinks a:hover {
+    border-bottom: 2px solid #fff;
+}
+
+#header {
+    clear: both;
+    margin: 0px 0 5px 0;
+    height: 230px;
+    background: url(../images/header.png) repeat-x;
+}
+
+#title {
+    float: left;
+    font-size: 14pt;
+    font-weight: bold;
+    padding-top: 25px;
+    padding-left: 5px;
+}
+
+#title_info {
+    float: right;
+    height: auto;
+    padding: 8px;
+    width: 310px;
+    margin: 10px 5px 0 0;
+    /*border: 2px solid #fff;*/
+    /*background: #FFF5D9;*/
+    color: #808080;
+}
+
+#title_info p {
+    margin: 0;
+}
+
+#navigacija {
+    clear: left;
+    float: left;
+    width: 150px;
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-size: 0.9em;
+}
+
+#navigacija ul {
+    list-style: none;
+    width: 150px;
+    margin: 0 0 3px 0;
+    padding: 0;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+#navigacija li {
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+#navigacija li a, #navigacija li a:visited {
+
+    height: 20px;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 6px 8px 0 10px;
+    background: #2489DB;
+    text-align: left;
+}
+
+#navigacija li a:hover {
+    background: #A9CAEB;
+    color: #286ea0;
+}
+
+.lijevo {
+    margin: 2px 0 10px 0;
+    padding: 3px 10px 5px 10px;
+    width: 130px;
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    color: #6B6B6B;
+    background: #eee url(../images/lijevo.gif) repeat-x;
+}
+
+.lijevo a, .lijevo a:visited {
+    text-decoration: underline;
+}
+
+#desna_rubrika {
+    float: right;
+    width: 223px;
+    margin: 0 0 10px 0;
+    padding: 5px 13px 20px 10px;
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    background: #eee url(../images/lijevo.gif) repeat-x;
+    color: #5D5D5D;
+    line-height: 1.5em;
+}
+
+#desna_rubrika p {
+    margin: 0px;
+    font-size: 90%;
+}
+
+#desna_rubrika h3 {
+    font-size: 9pt;
+}
+
+#desna_rubrika a {
+    display: block;
+    height: 12px;
+    padding-bottom: 4px;
+    margin-bottom: 2px;
+    border-bottom: 1px solid #ccc;
+}
+
+#podaci {
+    margin: 15px 0 0 0;
+    border: 2px solid #fff;
+    background: #E5EFF9 url(../images/plavo.gif);
+    padding: 3px 3px 3px 6px;
+    color: #70C256;
+}
+
+#podaci a, #podaci a:visited {
+    display: inline;
+    border: none;
+}
+
+#mainContainer {
+    text-align: center;
+    margin: 2px auto;
+    padding: 0px;
+    width: 100%;
+    line-height: 1.4em;
+    float: right;
+    background: url(../images/clanak.gif) repeat-x bottom left;
+}
+
+#mainContainer h2 {
+    margin: 0px;
+    padding: 4px 0 4px 0;
+    font-size: 12pt;
+}
+
+#mainContainer p {
+    margin: 0;
+}
+
+.datum {
+    padding-top: 2px;
+    height: 30px;
+    margin: 5px 0 6px 0;
+    border-top: 1px solid #eee;
+    font-size: 80%;
+    text-transform: uppercase;
+    color: #808080;
+}
+
+#lijeva_rubrika {
+    margin: 0 250px 20px 155px;
+    border-top: 1px solid #AFCEED;
+    border-bottom: 1px solid #AFCEED;
+    background: #E5EFF9 url(../images/plavo.gif) repeat-x;
+    padding: 5px 6px 5px 6px;
+    line-height: 1.6em;
+    text-align: left;
+    color: #5D5D5D;
+}
+
+#lijeva_rubrika a, #lijeva_rubrika a:visited {
+    text-decoration: underline;
+}
+
+#lijeva_rubrika h2 {
+    font-size: 1.5em;
+    margin: 0 0 0.5em 0;
+    color: #808080;
+    padding-top: 3px;
+}
+
+#lijeva_rubrika p {
+    padding: 0;
+    margin: 0;
+}
+
+#cleaner {
+    clear: both;
+}

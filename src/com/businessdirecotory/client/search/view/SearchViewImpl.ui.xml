@@ -1,0 +1,20 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'
+             xmlns:cellview="urn:import:com.google.gwt.user.cellview.client">
+<ui:style src="searchStyle.css"/>
+  <g:HTMLPanel addStyleNames="{style.searchMainContainer}">
+
+    <b:TextBox ui:field="searchTexBox" searchQuery="true" width="400px" placeholder="какво търсите ?"/>
+    <b:Button ui:field="search" type="SUCCESS" text="Search" width="100px"/>
+    <div class="{style.searchResultContainer}">
+      <g:Image ui:field="loadingImage"/>
+      <g:ScrollPanel>
+        <cellview:CellList ui:field="companiesList"/>
+      </g:ScrollPanel>
+    </div>
+
+
+
+  </g:HTMLPanel>
+</ui:UiBinder>

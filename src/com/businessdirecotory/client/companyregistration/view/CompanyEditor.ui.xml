@@ -1,0 +1,29 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'
+             xmlns:base="urn:import:com.github.gwtbootstrap.client.ui.base">
+  <b:Fieldset >
+
+    <g:VerticalPanel>
+
+      <b:TextBox placeholder="Фирма" ui:field="name"/>
+
+      <b:TextBox placeholder="дейност" ui:field="activity"/>
+
+      <b:TextBox placeholder="Град" ui:field="location" title="Град"/>
+
+      <b:TextBox placeholder="Адрес" ui:field="address"/>
+
+      <b:TextBox placeholder="лице за контакт" ui:field="contactFace"/>
+
+      <b:TextBox placeholder="e-mail" ui:field="email"/>
+
+      <b:TextBox placeholder="Телефон за връзка" ui:field="phoneNumber"/>
+
+      <b:TextArea placeholder="кратоко описание" ui:field="description"/>
+
+    </g:VerticalPanel>
+
+  </b:Fieldset>
+
+</ui:UiBinder>

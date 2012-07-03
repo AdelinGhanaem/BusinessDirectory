@@ -1,0 +1,15 @@
+.searchResultContainer {
+    width: 100%;
+    border: 2px red;
+
+    padding: 2px;
+    margin: 2px;
+
+}
+
+.searchMainContainer {
+    text-align: center;
+    margin: auto;
+    vertical-align: middle;
+
+}
