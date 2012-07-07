@@ -6,7 +6,10 @@
 
     <g:VerticalPanel>
 
+
       <b:TextBox placeholder="Фирма" ui:field="name"/>
+
+      <b:TextBox placeholder="парола за достъп" ui:field="password"/>
 
       <b:TextBox placeholder="дейност" ui:field="activity"/>
 

@@ -37,12 +37,15 @@ public class CompanyEditor extends Composite implements Editor<Company> {
   TextBox phoneNumber;
   @UiField
   TextBox contactFace;
+  @UiField
+  TextBox address;
+  @UiField
+  TextBox password;
 
 
   public CompanyEditor() {
 
     Fieldset rootElement = ourUiBinder.createAndBindUi(this);
     initWidget(rootElement);
-//    location.add()
   }
 }

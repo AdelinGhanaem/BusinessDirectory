@@ -6,9 +6,11 @@ import com.businessdirecotory.client.comunication.GotResponse;
 import com.businessdirecotory.shared.entites.Company;
 import com.businessdirecotory.shared.entites.actions.CompanyRegistrationAction;
 import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
+import sun.plugin2.os.windows.Windows;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
@@ -30,10 +32,10 @@ public class CompanyRegistrationPresenterImpl extends AbstractActivity implement
     service.dispatch(new CompanyRegistrationAction(company), new GotResponse<CompanyRegistrationResponse>() {
       @Override
       public void gotResponse(CompanyRegistrationResponse result) {
-        if (result.getErrors().size() == 0) {
-          handlers.fireEvent(new CompanyRegisteredEvent());
-        } else {
+        if (result.getErrors().size() != 0) {
           view.showErrors(result.getErrors());
+        } else {
+          view.notifyOfAccountCreated();
         }
       }
     });

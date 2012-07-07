@@ -13,18 +13,8 @@ import com.google.gwt.core.client.GWT;
  */
 @RemoteServiceRelativePath("ActionDispatcherService")
 public interface ActionDispatcherService extends RemoteService {
+
   <T extends Response> T dispatch(Action<T> action) ;
 
-/**
-   * Utility/Convenience class.
-   * Use ActionDispatcherService.App.getInstance() to access static instance of ActionDispatcherServiceAsync
-   */
-//  public static class App {
-//    private static final ActionDispatcherServiceAsync ourInstance = (ActionDispatcherServiceAsync) GWT.register(ActionDispatcherService.class);
-//
-//    public static ActionDispatcherServiceAsync getInstance() {
-//      return ourInstance;
-//    }
-//
-//  }
+
 }

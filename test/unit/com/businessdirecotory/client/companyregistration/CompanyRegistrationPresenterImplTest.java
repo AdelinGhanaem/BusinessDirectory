@@ -42,7 +42,7 @@ public class CompanyRegistrationPresenterImplTest {
   }
 
   @Test
-  public void registersAccountAndFiresAccountCreatedEvent() {
+  public void registersAccountAndNotifiesUserWhenAccountIsCreated() {
 
     CompanyRegistrationResponse response = new CompanyRegistrationResponse(new ArrayList<String>());
 
@@ -53,8 +53,7 @@ public class CompanyRegistrationPresenterImplTest {
     companyRegistrationPresenterImpl.register(account);
 
     verify(service).dispatch(isA(CompanyRegistrationAction.class), isA(GotResponse.class));
-
-    verify(handlers).fireEvent(isA(CompanyRegisteredEvent.class));
+    verify(view).notifyOfAccountCreated();
   }
 
 
@@ -75,7 +74,7 @@ public class CompanyRegistrationPresenterImplTest {
 
     verify(service).dispatch(isA(CompanyRegistrationAction.class), isA(GotResponse.class));
 
-    verify(handlers, never()).fireEvent(isA(CompanyRegisteredEvent.class));
+    verify(view).showErrors(errors);
   }
 
 }

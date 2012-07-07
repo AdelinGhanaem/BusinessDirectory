@@ -1,6 +1,7 @@
 package com.businessdirecotory.client.comunication;
 
 import com.evo.gad.shared.Response;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
@@ -9,7 +10,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 public abstract class GotResponse<T extends Response> implements AsyncCallback<T> {
   @Override
   public void onFailure(Throwable caught) {
-
+    GWT.log(caught.getMessage());
   }
 
   @Override

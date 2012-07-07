@@ -14,4 +14,6 @@ public interface CompanyRegistrationView {
   void setPresenter(CompanyRegistrationPresenter presenter);
 
   void show();
+
+  void notifyOfAccountCreated();
 }

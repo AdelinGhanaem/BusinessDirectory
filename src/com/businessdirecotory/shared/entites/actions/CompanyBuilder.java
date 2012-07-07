@@ -19,17 +19,19 @@ public class CompanyBuilder {
   private String phoneNumber;
   private String contactFace;
   private CompaniesRepository repository;
+  private String password;
 
 
   public CompanyBuilder() {
     name = "company";
     location = "location";
     address = "address";
-    email = "email";
+    email = "mail@mail.com";
     activity = "activity";
     description = "description";
-    phoneNumber = "phoneNumber";
+    phoneNumber = "08888888";
     contactFace = "contactFace";
+    password="123123";
   }
 
 
@@ -73,9 +75,15 @@ public class CompanyBuilder {
     return this;
   }
 
+  public CompanyBuilder withPassword(String password) {
+
+    this.password = password;
+    return this;
+  }
+
 
   public Company build() {
-    return new Company(name, location, address, email, activity, description, phoneNumber, contactFace);
+    return new Company(name, location, address, email, activity, description, phoneNumber, contactFace, password);
   }
 
 

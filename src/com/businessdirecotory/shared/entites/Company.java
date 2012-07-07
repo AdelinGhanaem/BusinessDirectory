@@ -1,7 +1,6 @@
 package com.businessdirecotory.shared.entites;
 
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -9,33 +8,28 @@ import java.io.Serializable;
  */
 public class Company implements Serializable {
 
-  @NotNull
   private String name;
-  @NotNull
+
   private String location;
-  @NotNull
+
   private String address;
-  @NotNull
+
   private String email;
-  @NotNull
+
   private String activity;
-  @NotNull
+
   private String description;
-  @NotNull
+
   private String phoneNumber;
-  @NotNull
+
   private String contactFace;
 
+  private String password;
 
   public Company() {
   }
 
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Company(String name, String location, String address, String email, String activity, String description, String phoneNumber, String contactFace) {
+  public Company(String name, String location, String address, String email, String activity, String description, String phoneNumber, String contactFace, String password) {
     this.name = name;
     this.location = location;
     this.address = address;
@@ -44,6 +38,16 @@ public class Company implements Serializable {
     this.description = description;
     this.phoneNumber = phoneNumber;
     this.contactFace = contactFace;
+    this.password = password;
+  }
+
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Company(String name, String location, String address, String email, String activity, String description, String phoneNumber, String contactFace) {
+
   }
 
   public void setLocation(String location) {
@@ -82,6 +86,7 @@ public class Company implements Serializable {
     return email;
   }
 
+
   public String getActivity() {
     return activity;
   }
@@ -105,5 +110,13 @@ public class Company implements Serializable {
 
   public void setAddress(String address) {
     this.address = address;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 }

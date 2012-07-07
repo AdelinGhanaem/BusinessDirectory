@@ -8,7 +8,11 @@
     }
 
     .info {
-            padding: 10px;
+      padding: 10px;
+    }
+
+    .successRegistration {
+      color: green;
     }
 
   </ui:style>
@@ -16,14 +20,19 @@
 
     <edito:CompanyEditor ui:field="companyEditor"/>
 
-      <g:HTMLPanel addStyleNames="{style.info}">
-        <p style="{style.paragraph}">След успешна регистрация,при въвеждане на основната нужна информация,ще можете да редактирате и добаяте нова информация за вашета фирма в контрол панела.
-        </p>
-      </g:HTMLPanel>
+    <g:HTMLPanel addStyleNames="{style.info}" ui:field="info">
+      <p style="{style.paragraph}">След успешна регистрация,при въвеждане на основната нужна информация,ще можете да
+        редактирате и добаяте нова информация за вашета фирма в контрол панела.
+      </p>
+    </g:HTMLPanel>
+    <g:HTMLPanel addStyleNames="{style.successRegistration}" ui:field="success">
+      <p>Поздравления ! вие успешно направихте регистрация.</p>
+    </g:HTMLPanel>
 
 
     <b:ModalFooter>
       <b:Button type="SUCCESS" ui:field="register" text="Регистрирай"/>
+      <b:Button type="SUCCESS" ui:field="close" text="Затвори"/>
     </b:ModalFooter>
 
 

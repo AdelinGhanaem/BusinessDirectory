@@ -39,6 +39,7 @@ public class SearchPresenterTest {
   @Test
   public void showsReturnedSearchResult() {
     ArrayList<Company> companies = new ArrayList<Company>();
+    companies.add(new Company());
     SearchResponse searchResponse = new SearchResponse(companies);
     doOnSuccess(searchResponse).when(service).dispatch(isA(SearchAction.class), isA(GotResponse.class));
     searchPresenter.search("keyword");

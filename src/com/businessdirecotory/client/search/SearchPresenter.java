@@ -29,11 +29,13 @@ public class SearchPresenter extends AbstractActivity {
     service.dispatch(new SearchAction<SearchResponse>(keyword), new GotResponse<SearchResponse>() {
       @Override
       public void gotResponse(SearchResponse result) {
-        view.showSearchResults(result.getCompanies());
+        view.hideLoadingIcon();
         if (result.getCompanies().size() == 0) {
           view.notifyOfEmptyResult();
+        } else {
+          view.showSearchResults(result.getCompanies());
+
         }
-        view.hideLoadingIcon();
       }
     });
   }

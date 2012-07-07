@@ -14,6 +14,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.ui.impl.PopupImpl;
 import com.google.inject.Inject;
@@ -54,6 +55,12 @@ public class CompanyRegistrationViewImpl extends PopupImpl implements CompanyReg
 
   @UiField
   Button register;
+  @UiField
+  HTMLPanel info;
+  @UiField
+  HTMLPanel success;
+  @UiField
+  Button close;
 
   @Inject
   InjectablePlaceController placeController;
@@ -65,9 +72,14 @@ public class CompanyRegistrationViewImpl extends PopupImpl implements CompanyReg
 
     Company company = new Company();
 
+    success.setVisible(false);
+
+    close.setVisible(false);
+
     driver.initialize(companyEditor);
 
     driver.edit(company);
+
 
     dialogBox.addHiddenHandler(new HiddenHandler() {
       @Override
@@ -75,8 +87,6 @@ public class CompanyRegistrationViewImpl extends PopupImpl implements CompanyReg
         placeController.goTo(new SearchPlace());
       }
     });
-
-
   }
 
 
@@ -88,15 +98,29 @@ public class CompanyRegistrationViewImpl extends PopupImpl implements CompanyReg
     dialogBox.show();
   }
 
+  @Override
+  public void notifyOfAccountCreated() {
+    info.setVisible(false);
+    companyEditor.setVisible(false);
+    register.setVisible(false);
+    success.setVisible(true);
+    close.setVisible(true);
+  }
+
   public void setPresenter(CompanyRegistrationPresenter presenter) {
     this.presenter = presenter;
   }
 
 
   @UiHandler("register")
-  public void onClick(ClickEvent event) {
+  public void onRegisterClick(ClickEvent event) {
     Company company = driver.flush();
     presenter.register(company);
+  }
+
+  @UiHandler("close")
+  public void onCloseClick(ClickEvent event) {
+    dialogBox.hide();
   }
 
 

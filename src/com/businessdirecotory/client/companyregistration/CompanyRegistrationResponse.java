@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
  */
 public class CompanyRegistrationResponse implements Response {
+
   private ArrayList<String> errors;
 
   public CompanyRegistrationResponse(ArrayList<String> errors) {
