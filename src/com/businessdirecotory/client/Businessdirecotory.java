@@ -1,20 +1,16 @@
 package com.businessdirecotory.client;
 
-import com.businessdirecotory.client.companyregistration.CompanyRegistrationPresenter;
-import com.businessdirecotory.client.companyregistration.CompanyRegistrationPresenterImpl;
-import com.businessdirecotory.client.companyregistration.view.CompanyRegistrationViewImpl;
-import com.businessdirecotory.client.comunication.ActionDispatcherService;
-import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
+import com.businessdirecotory.client.authorization.UserAuthorizedEvent;
+import com.businessdirecotory.client.authorization.UserAuthorizedEventHandlerImpl;
 import com.businessdirecotory.client.navigation.InjectableActivityManager;
 import com.businessdirecotory.client.navigation.InjectablePlaceController;
-import com.businessdirecotory.client.navigation.NavigationBar;
+import com.businessdirecotory.client.navigation.NavigationBarPresenter;
+import com.businessdirecotory.client.navigation.NavigationBarView;
+import com.businessdirecotory.client.navigation.NavigationBarViewImpl;
 import com.businessdirecotory.client.navigation.places.SearchPlace;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.*;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.web.bindery.event.shared.EventBus;
 
 /**
@@ -34,6 +30,8 @@ public class Businessdirecotory implements EntryPoint {
 
     EventBus eventBus = injector.eventBus();
 
+    eventBus.addHandler(UserAuthorizedEvent.TYPE,
+            new UserAuthorizedEventHandlerImpl(injector.tokenProvider(), injector.navigationBar(), injector.widgetsContainer()));
     InjectablePlaceController placeController = injector.placeController();
 
     SimplePanel widgets = new SimplePanel();
@@ -43,11 +41,16 @@ public class Businessdirecotory implements EntryPoint {
     activityManager.setDisplay(widgets);
 
 
-    NavigationBar navigationBar = injector.navigationBar();
+    NavigationBarViewImpl navigationBar = (NavigationBarViewImpl) injector.navigationBar();
+
+    NavigationBarPresenter navigationBarPresenter = injector.navigationBarPresenter();
+
+    navigationBar.setPresenter(navigationBarPresenter);
 
     RootPanel.get("navigation").add(navigationBar);
 
     RootPanel.get("mainContainer").add(widgets);
+
     placeController.goTo(new SearchPlace());
 
   }

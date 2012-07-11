@@ -7,11 +7,23 @@
 
   <g:FlowPanel addStyleNames="{style.navigation}">
     <b:Navbar>
+
       <b:Nav alignment="LEFT">
+
         <b:NavLink text="За нас" ui:field="aboutUs"/>
-        <b:NavLink text="Вход" ui:field="login"/>
+        <b:NavLink text="Вход" ui:field="login" />
         <b:NavLink text="Регистрация" ui:field="registration"/>
+
       </b:Nav>
+
+      <b:Nav alignment="RIGHT">
+        <g:HorizontalPanel>
+          <g:Label ui:field="usernameBrand" addStyleNames="{style.brand}"/>
+          <b:Button type="DANGER" text="Изход" ui:field="logoutButton"/>
+        </g:HorizontalPanel>
+
+      </b:Nav>
+
     </b:Navbar>
   </g:FlowPanel>
 </ui:UiBinder>

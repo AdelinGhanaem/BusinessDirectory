@@ -10,7 +10,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
-import sun.plugin2.os.windows.Windows;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>

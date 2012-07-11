@@ -1,0 +1,19 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'>
+
+  <b:Modal title="Вход" ui:field="loginModal" animation="true">
+    <g:VerticalPanel>
+      <b:TextBox ui:field="username" placeholder="e-mail"/>
+      <b:PasswordTextBox ui:field="password" placeholder="паропла" />
+      <b:Label ui:field="messagesLabel" text="" />
+
+    </g:VerticalPanel>
+
+    <b:ModalFooter>
+      <b:Button text="Вход" ui:field="login" type="SUCCESS"/>
+    </b:ModalFooter>
+
+  </b:Modal>
+
+</ui:UiBinder>

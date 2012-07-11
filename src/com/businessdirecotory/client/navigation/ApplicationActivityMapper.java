@@ -1,7 +1,5 @@
 package com.businessdirecotory.client.navigation;
 
-import com.businessdirecotory.client.companyregistration.view.CompanyRegistrationViewImpl;
-import com.businessdirecotory.client.navigation.activites.CompanyRegistrationActivity;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;

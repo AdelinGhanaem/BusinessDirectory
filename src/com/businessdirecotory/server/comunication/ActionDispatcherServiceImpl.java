@@ -35,8 +35,11 @@ public class ActionDispatcherServiceImpl extends RemoteServiceServlet implements
 
   @Override
   public <T extends Response> T dispatch(Action<T> action) throws ActionHandlerNotBoundException {
+
     ActionHandler handler = repository.getActionHandler(action.getClass());
+
     Response response = null;
+
     if (handler != null) {
       response = handler.handle(action);
     }

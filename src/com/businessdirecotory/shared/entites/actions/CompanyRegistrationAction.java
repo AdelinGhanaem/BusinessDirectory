@@ -23,7 +23,6 @@ public class CompanyRegistrationAction implements Action<CompanyRegistrationResp
   public Company getCompany() {
     return account;
   }
-
 }
 
 

@@ -1,5 +1,6 @@
 package com.businessdirecotory.server.companyregistration;
 
+import com.businessdirecotory.client.authorization.Account;
 import com.businessdirecotory.shared.entites.Company;
 
 /**
@@ -11,4 +12,6 @@ public interface CompaniesRepository {
    * @param company:the company to be saved;
    */
   void save(Company company);
+
+  boolean isRegistered(Account account);
 }

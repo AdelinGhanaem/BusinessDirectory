@@ -1,4 +1,4 @@
-package server.companyregistration;
+package com.businessdirecotory;
 
 import com.google.appengine.tools.development.testing.LocalServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;

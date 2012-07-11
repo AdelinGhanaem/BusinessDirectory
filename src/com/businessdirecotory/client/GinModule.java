@@ -1,12 +1,19 @@
 package com.businessdirecotory.client;
 
-import com.businessdirecotory.client.companyregistration.CompanyRegistrationPresenter;
+import com.businessdirecotory.client.authorization.SecurityTokenProvider;
+import com.businessdirecotory.client.authorization.SecurityTokenProviderImpl;
+import com.businessdirecotory.client.authorization.UserAuthorizedEventHandler;
+import com.businessdirecotory.client.authorization.UserAuthorizedEventHandlerImpl;
+import com.businessdirecotory.client.authorization.view.AuthorizationView;
+import com.businessdirecotory.client.authorization.view.AuthorizationViewImpl;
 import com.businessdirecotory.client.companyregistration.view.CompanyRegistrationView;
 import com.businessdirecotory.client.companyregistration.view.CompanyRegistrationViewImpl;
 import com.businessdirecotory.client.comunication.ActionDispatcherService;
 import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
 import com.businessdirecotory.client.navigation.ApplicationActivityMapper;
-import com.businessdirecotory.client.navigation.InjectableActivityManager;
+import com.businessdirecotory.client.navigation.NavigationBarView;
+import com.businessdirecotory.client.navigation.NavigationBarViewImpl;
+import com.businessdirecotory.client.navigation.WidgetsContainer;
 import com.businessdirecotory.client.search.SearchView;
 import com.businessdirecotory.client.search.view.SearchViewImpl;
 import com.google.gwt.activity.shared.Activity;
@@ -14,7 +21,6 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.place.shared.Place;
-import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
@@ -22,7 +28,6 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
@@ -43,6 +48,18 @@ public class GinModule extends AbstractGinModule {
     bind(ActivityMapper.class).to(ApplicationActivityMapper.class);
 
     bind(SearchView.class).to(SearchViewImpl.class);
+
+    bind(AuthorizationView.class).to(AuthorizationViewImpl.class).in(Singleton.class);
+
+    bind(SecurityTokenProvider.class).to(SecurityTokenProviderImpl.class);
+
+    bind(NavigationBarView.class).to(NavigationBarViewImpl.class).in(Singleton.class);
+
+    //Binding handlers and HandlersImpl
+    bind(UserAuthorizedEventHandler.class).to(UserAuthorizedEventHandlerImpl.class);
+
+    bind(WidgetsContainer.class).to(WidgetsContainerImpl.class);
+
   }
 
   @Provides

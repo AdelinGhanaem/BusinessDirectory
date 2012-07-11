@@ -53,6 +53,7 @@ public class CompanyRegistrationPresenterImplTest {
     companyRegistrationPresenterImpl.register(account);
 
     verify(service).dispatch(isA(CompanyRegistrationAction.class), isA(GotResponse.class));
+
     verify(view).notifyOfAccountCreated();
   }
 
@@ -76,5 +77,4 @@ public class CompanyRegistrationPresenterImplTest {
 
     verify(view).showErrors(errors);
   }
-
 }
