@@ -18,11 +18,14 @@ public class CompanyBuilder {
   private String description;
   private String phoneNumber;
   private String contactFace;
-  private CompaniesRepository repository;
   private String password;
 
 
   public CompanyBuilder() {
+    setToDefault();
+  }
+
+  private void setToDefault() {
     name = "company";
     location = "location";
     address = "address";
@@ -31,7 +34,7 @@ public class CompanyBuilder {
     description = "description";
     phoneNumber = "08888888";
     contactFace = "contactFace";
-    password="123123";
+    password = "123123";
   }
 
 
@@ -83,7 +86,9 @@ public class CompanyBuilder {
 
 
   public Company build() {
-    return new Company(name, location, address, email, activity, description, phoneNumber, contactFace, password);
+    Company company = new Company(name, location, address, email, activity, description, phoneNumber, contactFace, password);
+    setToDefault();
+    return company;
   }
 
 

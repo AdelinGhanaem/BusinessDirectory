@@ -14,6 +14,8 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.Is.is;
@@ -89,7 +91,7 @@ public class CompaniesRepositoryImplTest extends com.businessdirecotory.AppEngin
     entity.setProperty(CompanyEntity.PASSWORD, password);
     service.put(entity);
     Boolean isRegistered = repository.isRegistered(new Account(email, password));
-    assertThat(isRegistered,is(equalTo(true)));
+    assertThat(isRegistered, is(equalTo(true)));
   }
 
   @Test
@@ -101,6 +103,49 @@ public class CompaniesRepositoryImplTest extends com.businessdirecotory.AppEngin
     entity.setProperty(CompanyEntity.PASSWORD, password);
     service.put(entity);
     Boolean isRegistered = repository.isRegistered(new Account(email, password));
-    assertThat(isRegistered,is(equalTo(true)));
+    assertThat(isRegistered, is(equalTo(true)));
+  }
+
+  @Test
+  public void shouldReturnsCompanyWhenCompanyMatchesSearchKeyWord() {
+    Company company = companyBuilder.build();
+    company.setActivity(" Software development ");
+    repository.save(company);
+    List<Company> companies = repository.getByKeyWord("Software");
+    assertThat(companies, is(notNullValue()));
+    assertThat(companies.size(), is(equalTo(1)));
+    assertThat(companies.get(0).getActivity(), is(equalTo(" Software development ")));
+  }
+
+  @Test
+  public void returnsEmptyListWhenSearchDoesNotMatchAnyCompanyProperties() {
+    Company company = companyBuilder.build();
+    repository.save(company);
+    List<Company> companies = repository.getByKeyWord("Hula Bula");
+    assertThat(companies, is(notNullValue()));
+    assertThat(companies.size(), is(0));
+  }
+
+  @Test
+  public void returnsCompaniesIfKeywordMatchesCompaniesProperties() {
+
+    Company company = companyBuilder.withName("Adio OOD").withLocation("NewYork").build();
+
+    Company company2 = companyBuilder.withActivity("Software development").build();
+
+    Company company3 = companyBuilder.build();
+
+    repository.save(company);
+
+    repository.save(company2);
+
+    repository.save(company3);
+
+    List<Company> companyList = repository.getByKeyWord(" Adio  development");
+
+    assertThat(companyList, is(notNullValue()));
+
+    assertThat(companyList.size(), is(equalTo(2)));
+
   }
 }

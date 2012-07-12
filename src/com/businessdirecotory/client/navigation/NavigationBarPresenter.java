@@ -56,9 +56,10 @@ public class NavigationBarPresenter implements UserAuthorizedEventHandler {
 
     view.setUsernameBrand(event.getToken().getUser());
 
-    view.hideLoginMenuItem();
+//    view.hideLoginMenuItem();
+//
+//    view.showLogoutButton();
 
-    view.showLogoutButton();
-
+    view.showAuthorizedMenuBar();
   }
 }
