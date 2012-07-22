@@ -20,7 +20,7 @@ public class LogoutActionHandlerTest {
 
 
   @Mock
-  AuthorizedAccountsTokensRepository tokensRepository;
+  AuthorizedTokensRepository tokensRepository;
 
   LogoutActionHandler handler;
 

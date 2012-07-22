@@ -32,16 +32,16 @@ public class CompanyValidatorImpl implements CompanyValidator {
       errors.add(errorMessages.invalidEmailForm());
     }
 
-    if (!isFieldValid(company.getContactFace(), "[а-яА-ЯA-Za-z]{4,}")) {
-      errors.add(errorMessages.invalidContactFace());
-    }
-    if (!isFieldValid(company.getPhoneNumber(), "[0-9]{4,}")) {
-      errors.add(errorMessages.invalidPhoneNumber());
-    }
-    if (company.getPassword().length() < 6) {
-      errors.add(errorMessages.invalidPassword());
-
-    }
+//    if (!isFieldValid(company.getContactFace(), "[а-яА-ЯA-Za-z]{4,}")) {
+//      errors.add(errorMessages.invalidContactFace());
+//    }
+//    if (!isFieldValid(company.getPhoneNumber(), "[0-9]{4,}")) {
+//      errors.add(errorMessages.invalidPhoneNumber());
+//    }
+//    if (company.getPassword().length() < 6) {
+//      errors.add(errorMessages.invalidPassword());
+//
+//    }
     return errors;
   }
 

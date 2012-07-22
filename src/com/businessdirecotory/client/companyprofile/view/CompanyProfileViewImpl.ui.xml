@@ -1,0 +1,133 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'
+             xmlns:edito='urn:import:com.businessdirecotory.client.companyprofile.view'
+        >
+
+  <ui:with field="res" type="com.businessdirecotory.client.resources.ImagesResource"/>
+  <ui:style>
+    .tabPanel {
+      border: 1px solid black;
+    }
+
+    .container {
+      border: 1px solid black;
+      width: 100%;
+      /*background: red;*/
+    }
+
+    .button {
+      text-align: left;
+      margin: 5px 0px 5px 0px;
+    }
+
+    .title {
+      color: black;
+      font-size: 20px;
+      font-stretch: bold;
+    }
+
+    .titleContainer {
+      margin: 10px 0px 10px 0px;
+      text-align: left;
+    }
+
+  </ui:style>
+
+  <ui:with field="img" type="com.businessdirecotory.client.resources.ImagesResource"/>
+  <g:HTMLPanel addStyleNames="{style.container}">
+
+    <g:HTMLPanel addStyleNames="{style.titleContainer}">
+      <g:Label text="Моят профил" addStyleNames="{style.title}"/>
+    </g:HTMLPanel>
+
+    <b:TabPanel tabPosition="left" ui:field="tabPanel" addStyleNames="{style.tabPanel}">
+
+      <b:TabPane heading="Основна информация" active="true">
+        <!--<b:Tab heading="Основна информация" active="true">-->
+        <!--<b:customTab>-->
+        <!--<g:Image resource="{res.contactFace}"/>-->
+        <!--</b:customTab>-->
+        <edito:CompanyEditor ui:field="editor"/>
+        <g:HTMLPanel addStyleNames="{style.button}">
+          <g:Image resource="{res.loadingImage}" ui:field="loadingImage" visible="false"/>
+          <b:Button ui:field="edit" text="запази" type="SUCCESS"/>
+        </g:HTMLPanel>
+
+        <!--</b:Tab>-->
+      </b:TabPane>
+
+      <b:Tab heading="Лого" ui:field="logoTab">
+        <!--<b:Tab heading="Лого" active="true">-->
+        <!--<b:customTab>-->
+        <!--<g:Image resource="{res.contactFace}"/>-->
+        <!--&lt;!&ndash;</b:customTab>&ndash;&gt;
+                     encoding="multipart/form-data"-->
+
+        <g:FormPanel ui:field="uploadFormPanel">
+          <g:VerticalPanel>
+            <b:FileUpload ui:field="fileUpload" name="logoImage"/>
+            <b:TextBox ui:field="username" visible="false" name="username"/>
+            <b:Button type="SUCCESS" ui:field="submit" text="submit"/>
+          </g:VerticalPanel>
+        </g:FormPanel>
+
+
+        <!--</b:Tab>-->
+      </b:Tab>
+
+
+      <!--<b:TabPane heading="Лого">-->
+      <!--<g:TabBar>-->
+
+      <!--</g:TabBar>-->
+      <!--</b:TabPane>-->
+      <!--<b:TabLink ui:field="lazyLoadTab">-->
+      <!--&lt;!&ndash;<g:Image addStyleNames="{style.icon}" resource="{res.logo}"/>&ndash;&gt;-->
+      <!--<g:HTMLPanel tag="span"><b:Strong>Custom tab</b:Strong>?-->
+      <!--</g:HTMLPanel>-->
+      <!--</b:TabLink>-->
+      <!--<b:TabLink text="manually" icon="GITHUB" dataTarget="testTab" createTabPane="false">-->
+      <!--&lt;!&ndash;<g:Image addStyleNames="{style.icon}" resource="{res.logo}"/>&ndash;&gt;-->
+      <!--</b:TabLink>-->
+      <!--<b:TabPane href="testTab" createTabLink="false">-->
+      <!--<g:Label>Huhu</g:Label>-->
+      <!--</b:TabPane>-->
+    </b:TabPanel>
+
+
+  </g:HTMLPanel>
+
+  <!--<b:TabPanel tabPosition="LEFT" ui:field="tabPanel">-->
+
+
+  <!--<b:TabPane>-->
+  <!--<b:Tab icon="GOOGLE_PLUS" heading="Typically" active="true">-->
+  <!--<b:customTab>-->
+
+  <!--</b:customTab>-->
+  <!--<b:Heading size="3">Typically Tab</b:Heading>-->
+  <!--<b:Paragraph>-->
+
+  <!--</b:Paragraph>-->
+  <!--</b:Tab>-->
+  <!--</b:TabPane>-->
+  <!--<b:TabPane>-->
+
+  <!--</b:TabPane>-->
+  <!--<b:TabPane>-->
+  <!--<b:Tab icon="GOOGLE_PLUS" heading="Typically" active="true">-->
+  <!--<b:customTab>-->
+  <!--</b:customTab>-->
+  <!--<b:Heading size="3">Typically Tab</b:Heading>-->
+  <!--<b:Paragraph>-->
+  <!--huhuhu hahha-->
+  <!--</b:Paragraph>-->
+  <!--</b:Tab>-->
+  <!--<b:Tab icon="GOOGLE_PLUS" heading="Typically" active="true">-->
+  <!--</b:Tab>-->
+  <!--</b:TabPane>-->
+  <!--</b:TabPanel>-->
+
+
+</ui:UiBinder>

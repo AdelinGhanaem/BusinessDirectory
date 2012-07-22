@@ -13,10 +13,10 @@ import java.util.ArrayList;
 public class LogoutActionHandler implements ActionHandler<LogoutAction, LogoutResponse> {
 
 
-  private AuthorizedAccountsTokensRepository tokensRepository;
+  private AuthorizedTokensRepository tokensRepository;
 
   @Inject
-  public LogoutActionHandler(AuthorizedAccountsTokensRepository tokensRepository) {
+  public LogoutActionHandler(AuthorizedTokensRepository tokensRepository) {
     this.tokensRepository = tokensRepository;
   }
 

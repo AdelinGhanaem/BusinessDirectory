@@ -5,9 +5,8 @@ import com.businessdirecotory.client.authorization.UserAuthorizedEventHandlerImp
 import com.businessdirecotory.client.navigation.InjectableActivityManager;
 import com.businessdirecotory.client.navigation.InjectablePlaceController;
 import com.businessdirecotory.client.navigation.NavigationBarPresenter;
-import com.businessdirecotory.client.navigation.NavigationBarView;
 import com.businessdirecotory.client.navigation.NavigationBarViewImpl;
-import com.businessdirecotory.client.navigation.places.SearchPlace;
+import com.businessdirecotory.client.navigation.places.CompanyProfilePlace;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.*;
@@ -51,7 +50,7 @@ public class Businessdirecotory implements EntryPoint {
 
     RootPanel.get("mainContainer").add(widgets);
 
-    placeController.goTo(new SearchPlace());
+    placeController.goTo(new CompanyProfilePlace());
 
   }
 

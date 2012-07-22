@@ -33,7 +33,7 @@ public class UserAuthorizedEventHandlerImpl implements UserAuthorizedEventHandle
 
     navigationBar.hideLoginMenuItem();
 
-    navigationBar.showLogoutButton();
+    navigationBar.showAuthorizedMenuBar();
 
     container.addToMenu(navigationBar);
 

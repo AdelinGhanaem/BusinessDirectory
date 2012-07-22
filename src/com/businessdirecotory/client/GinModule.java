@@ -1,13 +1,17 @@
 package com.businessdirecotory.client;
 
+import com.businessdirecotory.client.authorization.SecuredActionBuilder;
+import com.businessdirecotory.client.authorization.SecuredActionBuilderImpl;
 import com.businessdirecotory.client.authorization.SecurityTokenProvider;
 import com.businessdirecotory.client.authorization.SecurityTokenProviderImpl;
 import com.businessdirecotory.client.authorization.UserAuthorizedEventHandler;
 import com.businessdirecotory.client.authorization.UserAuthorizedEventHandlerImpl;
 import com.businessdirecotory.client.authorization.view.AuthorizationView;
 import com.businessdirecotory.client.authorization.view.AuthorizationViewImpl;
-import com.businessdirecotory.client.companyregistration.view.CompanyRegistrationView;
-import com.businessdirecotory.client.companyregistration.view.CompanyRegistrationViewImpl;
+import com.businessdirecotory.client.companyprofile.view.CompanyProfileView;
+import com.businessdirecotory.client.companyprofile.view.CompanyProfileViewImpl;
+import com.businessdirecotory.client.registration.view.UserRegistrationView;
+import com.businessdirecotory.client.registration.view.UserRegistrationViewImpl;
 import com.businessdirecotory.client.comunication.ActionDispatcherService;
 import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
 import com.businessdirecotory.client.navigation.ApplicationActivityMapper;
@@ -43,7 +47,7 @@ public class GinModule extends AbstractGinModule {
     }).toProvider(ActivityPlacesMapProvider.class).in(Singleton.class);
 
     //Binding view and presenters
-    bind(CompanyRegistrationView.class).to(CompanyRegistrationViewImpl.class);
+    bind(UserRegistrationView.class).to(UserRegistrationViewImpl.class);
 
     bind(ActivityMapper.class).to(ApplicationActivityMapper.class);
 
@@ -55,8 +59,11 @@ public class GinModule extends AbstractGinModule {
 
     bind(NavigationBarView.class).to(NavigationBarViewImpl.class).in(Singleton.class);
 
+    bind(CompanyProfileView.class).to(CompanyProfileViewImpl.class);
     //Binding handlers and HandlersImpl
     bind(UserAuthorizedEventHandler.class).to(UserAuthorizedEventHandlerImpl.class);
+
+    bind(SecuredActionBuilder.class).to(SecuredActionBuilderImpl.class);
 
     bind(WidgetsContainer.class).to(WidgetsContainerImpl.class);
 

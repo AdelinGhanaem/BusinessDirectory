@@ -10,5 +10,5 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  */
 public interface ActionDispatcherServiceAsync {
 
-  <T extends Response> void dispatch(Action<T> action, AsyncCallback<T> async);
+  <T extends Response> void dispatch(Action<? extends Response> action, AsyncCallback<T> async);
 }

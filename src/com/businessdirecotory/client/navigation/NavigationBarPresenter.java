@@ -36,14 +36,16 @@ public class NavigationBarPresenter implements UserAuthorizedEventHandler {
 
   public void onAuthorization() {
     view.gotToAuthorization();
-
   }
+
+
+
 
   public void logout() {
     service.dispatch(new LogoutAction(securityTokenProvider.getToken()), new GotResponse<LogoutResponse>() {
       @Override
       public void gotResponse(LogoutResponse result) {
-        view.setStandardMenu();
+        view.showStandardMenu();
       }
     });
   }
@@ -55,10 +57,6 @@ public class NavigationBarPresenter implements UserAuthorizedEventHandler {
     securityTokenProvider.setToken(event.getToken());
 
     view.setUsernameBrand(event.getToken().getUser());
-
-//    view.hideLoginMenuItem();
-//
-//    view.showLogoutButton();
 
     view.showAuthorizedMenuBar();
   }

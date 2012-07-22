@@ -7,15 +7,19 @@ import com.businessdirecotory.shared.entites.actions.AuthorizationAction;
 import com.businessdirecotory.shared.entites.reponses.AuthorizationResponse;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Matchers;
 import org.mockito.Mock;
+import sun.plugin2.liveconnect.ArgumentHelper;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -34,7 +38,7 @@ public class AuthorizationActionHandlerTest {
   private AuthorizationActionHandler handler;
 
   @Mock
-  private AuthorizedAccountsTokensRepository authorizedAccountTokensRepository;
+  private AuthorizedTokensRepository authorizedAccountTokensRepository;
 
   @Mock
   private SessionExpireTimeProvider expireTimeProvider;
@@ -76,18 +80,21 @@ public class AuthorizationActionHandlerTest {
 
     calendar.add(Calendar.DAY_OF_MONTH, 20);
 
-    Token token = new Token("user", calendar.getTime());
-
     when(repository.isRegistered(account)).thenReturn(true);
 
-    when(expireTimeProvider.getSessionExpireTime()).thenReturn(calendar.getTime());
+    Date date = calendar.getTime();
+
+    when(expireTimeProvider.getSessionExpireTime()).thenReturn(date);
+
+    ArgumentCaptor<Date> dateArgumentCaptor = ArgumentCaptor.forClass(Date.class);
 
     handler.handle(action);
 
     verify(expireTimeProvider).getSessionExpireTime();
 
-    verify(authorizedAccountTokensRepository).add(Matchers.isA(Token.class));
+    verify(authorizedAccountTokensRepository).add(Matchers.isA(Token.class), dateArgumentCaptor.capture());
 
+    assertThat(dateArgumentCaptor.getValue(), is(equalTo(date)));
   }
 
 

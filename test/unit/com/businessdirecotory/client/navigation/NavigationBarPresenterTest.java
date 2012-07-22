@@ -102,7 +102,7 @@ public class NavigationBarPresenterTest {
 
     verify(securityTokenProvider).getToken();
 
-    verify(view).setStandardMenu();
+    verify(view).showStandardMenu();
   }
 
 }

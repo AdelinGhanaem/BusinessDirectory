@@ -1,0 +1,47 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'
+             xmlns:edito='urn:import:com.businessdirecotory.client.companyregistration.view'>
+  <ui:style>
+    .paragraph {
+      text-align: center;
+    }
+
+    .info {
+      padding: 10px;
+    }
+
+    .successRegistration {
+      color: green;
+    }
+
+  </ui:style>
+  <b:Modal title="Нова Регистрация" ui:field="dialogBox" animation="true">
+
+    <g:VerticalPanel>
+      <b:TextBox placeholder="e-mail" ui:field="email"/>
+      <b:PasswordTextBox placeholder="парола за достъп" ui:field="password"/>
+    </g:VerticalPanel>
+
+
+    <!--<edito:CompanyEditor ui:field="companyEditor"/>-->
+
+
+    <g:HTMLPanel addStyleNames="{style.info}" ui:field="info">
+      <p style="{style.paragraph}">След успешна регистрация,при въвеждане на основната нужна информация,ще можете да
+        редактирате и добаяте нова информация за вашета фирма в контрол панела.
+      </p>
+    </g:HTMLPanel>
+    <g:HTMLPanel addStyleNames="{style.successRegistration}" ui:field="success">
+      <p>Поздравления ! вие успешно направихте регистрация.</p>
+    </g:HTMLPanel>
+
+
+    <b:ModalFooter>
+      <b:Button type="SUCCESS" ui:field="register" text="Регистрирай"/>
+      <b:Button type="SUCCESS" ui:field="close" text="Затвори"/>
+    </b:ModalFooter>
+
+
+  </b:Modal>
+</ui:UiBinder>

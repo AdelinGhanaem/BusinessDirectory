@@ -1,8 +1,10 @@
 package com.businessdirecotory.client;
 
 import com.businessdirecotory.client.authorization.AuthorizationPresenter;
-import com.businessdirecotory.client.companyregistration.CompanyRegistrationPresenterImpl;
+import com.businessdirecotory.client.companyprofile.CompanyProfilePresenter;
+import com.businessdirecotory.client.registration.UserRegistrationPresenterImpl;
 import com.businessdirecotory.client.navigation.places.AuthorizationPlace;
+import com.businessdirecotory.client.navigation.places.CompanyProfilePlace;
 import com.businessdirecotory.client.navigation.places.CompanyRegistrationPlace;
 import com.businessdirecotory.client.navigation.places.SearchPlace;
 import com.businessdirecotory.client.search.SearchPresenter;
@@ -18,12 +20,15 @@ import java.util.HashMap;
  */
 public class ActivityPlacesMapProvider implements Provider<HashMap<Class<? extends Place>, Activity>> {
   @Inject
-  CompanyRegistrationPresenterImpl companyRegistrationActivity;
+  UserRegistrationPresenterImpl companyRegistrationActivity;
   @Inject
   SearchPresenter searchPresenter;
 
   @Inject
   AuthorizationPresenter authorizationPresenter;
+
+  @Inject
+  CompanyProfilePresenter companyProfilePresenter;
 
   @Override
   public HashMap<Class<? extends Place>, Activity> get() {
@@ -31,6 +36,7 @@ public class ActivityPlacesMapProvider implements Provider<HashMap<Class<? exten
     hashMap.put(CompanyRegistrationPlace.class, companyRegistrationActivity);
     hashMap.put(SearchPlace.class, searchPresenter);
     hashMap.put(AuthorizationPlace.class, authorizationPresenter);
+    hashMap.put(CompanyProfilePlace.class, companyProfilePresenter);
     return hashMap;
   }
 }

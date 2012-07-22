@@ -1,6 +1,6 @@
 package com.businessdirecotory.server.companyregistration;
 
-import com.businessdirecotory.client.companyregistration.CompanyRegistrationResponse;
+import com.businessdirecotory.shared.entites.reponses.UserRegistrationResponse;
 import com.businessdirecotory.shared.entites.Company;
 import com.businessdirecotory.shared.entites.actions.CompanyBuilder;
 import com.businessdirecotory.shared.entites.actions.CompanyRegistrationAction;
@@ -45,7 +45,7 @@ public class CompanyRegistrationActionHandlerTest {
 
     Company company = new Company();
 
-    handler = new CompanyRegistrationActionHandler(repository,validator);
+    handler = new CompanyRegistrationActionHandler(repository, validator);
 
   }
 
@@ -55,7 +55,7 @@ public class CompanyRegistrationActionHandlerTest {
     Company company = new CompanyBuilder().build();
     ArrayList<String> errorsList = new ArrayList<String>();
 
-    CompanyRegistrationResponse response = handler.handle(new CompanyRegistrationAction(company));
+    UserRegistrationResponse response = handler.handle(new CompanyRegistrationAction(company));
     assertThat(response, is(notNullValue()));
     assertThat(response.getErrors(), is(notNullValue()));
     assertThat(response.getErrors().size(), is(equalTo(0)));
@@ -69,7 +69,7 @@ public class CompanyRegistrationActionHandlerTest {
     when(validator.validate(withNoName)).thenReturn(new ArrayList<String>() {{
       add("Error");
     }});
-    CompanyRegistrationResponse response = handler.handle(new CompanyRegistrationAction(withNoName));
+    UserRegistrationResponse response = handler.handle(new CompanyRegistrationAction(withNoName));
     assertThat(response, is(notNullValue()));
     assertThat(response.getErrors(), is(notNullValue()));
     assertThat(response.getErrors().size(), is(equalTo(1)));
@@ -80,6 +80,20 @@ public class CompanyRegistrationActionHandlerTest {
 
   }
 
+
+  @Test
+  public void companyWithReservedEmailIsNotSaved() {
+    String mail = "mail";
+    Company company = companyBuilder.withEmail(mail).build();
+    CompanyRegistrationAction action = new CompanyRegistrationAction(company);
+    when(repository.getByEmail(mail)).thenReturn(company);
+    UserRegistrationResponse response = handler.handle(action);
+    assertThat(response, is(notNullValue()));
+    assertThat(response.getErrors(), is(notNullValue()));
+    assertThat(response.getErrors().size(), is(equalTo(1)));
+    verify(repository, never()).save(company);
+
+  }
 
 
 }

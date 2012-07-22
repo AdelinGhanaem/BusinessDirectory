@@ -1,3 +1,37 @@
 /** Add css rules here for your application. */
 
 /**/
+
+.companyDivCell {
+    padding: 5px 0px 5px 0px;
+    margin: 5px 0 5px 0;
+    background: #f9f9f9;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #a8a8a8;
+    border-radius: 10px;
+}
+
+.companyTable {
+    width: 100%;
+    text-align: left;
+}
+
+.nameCell {
+    font-size: x-large;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.companyTable tr td {
+    height: 20px;
+    font-weight: bold;
+}
+
+.companyTable tr {
+    font-weight: bold;
+}
+
+
+
+

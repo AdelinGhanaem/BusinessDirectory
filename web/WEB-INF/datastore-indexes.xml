@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<datastore-indexes autoGenerate="true">
+  <datastore-index kind="Company" ancestor="false">
+    <property name="name" direction="asc"/>
+    <property name="activity" direction="desc"/>
+    <property name="address" direction="desc"/>
+    <property name="location" direction="desc"/>
+    <property name="email" direction="desc"/>
+  </datastore-index>
+</datastore-indexes>

@@ -10,8 +10,9 @@
   <inherits name="com.google.gwt.inject.Inject"/>
   <!-- Specify the app entry point class.                   -->
   <entry-point class='com.businessdirecotory.client.Businessdirecotory'/>
+  <servlet path="/UserImageService" class="com.businessdirecotory.server.comunication.UserImageServiceImpl"/>
 
- <!--<servlet path="/businessdirecotory/ActionDispatcherService" class="com.businessdirecotory.server.comunication.ActionDispatcherServiceImpl"/>-->
+  <!--<servlet path="/businessdirecotory/ActionDispatcherService" class="com.businessdirecotory.server.comunication.ActionDispatcherServiceImpl"/>-->
   <source path="client"/>
   <source path="shared"/>
 

@@ -8,6 +8,18 @@ import java.io.Serializable;
  */
 public class Company implements Serializable {
 
+
+
+  private Long id;
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
   private String name;
 
   private String location;
@@ -29,7 +41,9 @@ public class Company implements Serializable {
   public Company() {
   }
 
-  public Company(String name, String location, String address, String email, String activity, String description, String phoneNumber, String contactFace, String password) {
+  public Company(Long id,String name, String location, String address, String email, String activity,
+                 String description, String phoneNumber, String contactFace, String password) {
+    this.id = id;
     this.name = name;
     this.location = location;
     this.address = address;

@@ -1,6 +1,7 @@
 package com.businessdirecotory.client;
 
 import com.businessdirecotory.client.authorization.SecurityTokenProvider;
+import com.businessdirecotory.client.companyprofile.CompanyProfilePresenter;
 import com.businessdirecotory.client.navigation.InjectableActivityManager;
 import com.businessdirecotory.client.navigation.InjectablePlaceController;
 import com.businessdirecotory.client.navigation.NavigationBarPresenter;
@@ -30,4 +31,6 @@ public interface GinInjector extends Ginjector {
   WidgetsContainer widgetsContainer();
 
   NavigationBarPresenter navigationBarPresenter();
+
+  CompanyProfilePresenter companyProfilePresenter();
 }

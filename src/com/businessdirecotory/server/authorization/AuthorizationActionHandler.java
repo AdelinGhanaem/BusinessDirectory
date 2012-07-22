@@ -7,6 +7,8 @@ import com.businessdirecotory.shared.entites.reponses.AuthorizationResponse;
 import com.evo.gad.dispatch.ActionHandler;
 import com.google.inject.Inject;
 
+import java.util.Date;
+
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
  */
@@ -14,12 +16,12 @@ public class AuthorizationActionHandler implements ActionHandler<AuthorizationAc
 
 
   private CompaniesRepository repository;
-  private AuthorizedAccountsTokensRepository authorizedAccountTokensRepository;
+  private AuthorizedTokensRepository authorizedAccountTokensRepository;
   private SessionExpireTimeProvider expireTimeProvider;
 
   @Inject
   public AuthorizationActionHandler(CompaniesRepository repository,
-                                    AuthorizedAccountsTokensRepository authorizedAccountTokensRepository,
+                                    AuthorizedTokensRepository authorizedAccountTokensRepository,
                                     SessionExpireTimeProvider expireTimeProvider) {
     this.repository = repository;
     this.authorizedAccountTokensRepository = authorizedAccountTokensRepository;
@@ -29,9 +31,10 @@ public class AuthorizationActionHandler implements ActionHandler<AuthorizationAc
   @Override
   public AuthorizationResponse handle(AuthorizationAction action) {
     Token token = null;
+    Date expiredTime = expireTimeProvider.getSessionExpireTime();
     if (repository.isRegistered(action.getAccount())) {
-      token = new Token(action.getAccount().getUsername(), expireTimeProvider.getSessionExpireTime());
-      authorizedAccountTokensRepository.add(token);
+      token = new Token(action.getAccount().getUsername(), expiredTime);
+      authorizedAccountTokensRepository.add(token, expiredTime);
     }
     return new AuthorizationResponse(token);
   }

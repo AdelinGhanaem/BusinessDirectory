@@ -16,7 +16,7 @@ public interface NavigationBarView extends IsWidget{
 
   public void hideLoginMenuItem();
 
-  void setStandardMenu();
+  void showStandardMenu();
 
   void goToNewRegistration();
 

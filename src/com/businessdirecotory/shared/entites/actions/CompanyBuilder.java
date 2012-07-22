@@ -19,6 +19,7 @@ public class CompanyBuilder {
   private String phoneNumber;
   private String contactFace;
   private String password;
+  private Long id;
 
 
   public CompanyBuilder() {
@@ -26,6 +27,7 @@ public class CompanyBuilder {
   }
 
   private void setToDefault() {
+    id = 0l;
     name = "company";
     location = "location";
     address = "address";
@@ -84,9 +86,14 @@ public class CompanyBuilder {
     return this;
   }
 
+  public CompanyBuilder withId(Long id) {
+    this.id = id;
+    return this;
+  }
+
 
   public Company build() {
-    Company company = new Company(name, location, address, email, activity, description, phoneNumber, contactFace, password);
+    Company company = new Company(id,name, location, address, email, activity, description, phoneNumber, contactFace, password);
     setToDefault();
     return company;
   }

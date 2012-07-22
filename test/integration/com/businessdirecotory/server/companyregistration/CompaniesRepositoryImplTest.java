@@ -1,9 +1,6 @@
 package com.businessdirecotory.server.companyregistration;
 
-import com.businessdirecotory.*;
 import com.businessdirecotory.client.authorization.Account;
-import com.businessdirecotory.server.companyregistration.CompaniesRepositoryImpl;
-import com.businessdirecotory.server.companyregistration.CompanyEntity;
 import com.businessdirecotory.shared.entites.Company;
 import com.businessdirecotory.shared.entites.actions.CompanyBuilder;
 import com.google.appengine.api.datastore.DatastoreService;
@@ -14,6 +11,7 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -35,8 +33,6 @@ public class CompaniesRepositoryImplTest extends com.businessdirecotory.AppEngin
   Key key;
 
 
-//  private Key key;
-
   public CompaniesRepositoryImplTest() {
     super(new LocalDatastoreServiceTestConfig());
     repository = new CompaniesRepositoryImpl(service);
@@ -44,8 +40,6 @@ public class CompaniesRepositoryImplTest extends com.businessdirecotory.AppEngin
 
   @Test
   public void saveCompanyEntity() throws Exception {
-    Entity parent = new Entity("Account");
-    key = parent.getKey();
     String companyName = "Clouway";
     String companyAddress = "BG25";
     String companyLocation = "Veliko Tarnovo";
@@ -148,4 +142,54 @@ public class CompaniesRepositoryImplTest extends com.businessdirecotory.AppEngin
     assertThat(companyList.size(), is(equalTo(2)));
 
   }
+
+  @Test
+  public void returnsCompanyByEmail() {
+    String mail = "mail";
+    Company company = companyBuilder.withEmail(mail).build();
+    repository.save(company);
+    Company returnedCompany = repository.getByEmail(mail);
+    assertThat(returnedCompany, is(notNullValue()));
+    assertThat(returnedCompany.getEmail(), is(equalTo(company.getEmail())));
+    assertThat(returnedCompany.getId(), is(notNullValue()));
+  }
+
+  @Test
+  public void addingCompanyWithExistingIdAltersCompanyInformation() {
+
+    Company company = companyBuilder.build();
+
+    company.setEmail("mail@mail.com");
+
+    repository.save(company);
+
+    Company returnedCompany = repository.getByEmail("mail@mail.com");
+
+    returnedCompany.setActivity("anotherActivity");
+    returnedCompany.setContactFace("Adelin");
+
+    repository.save(returnedCompany);
+
+    Query query = new Query(CompanyEntity.KIND);
+
+    query.setFilter(new Query.FilterPredicate(CompanyEntity.EMAIL, Query.FilterOperator.EQUAL, "mail@mail.com"));
+    Iterable<Entity> entities = service.prepare(query).asIterable();
+    assertThat(Arrays.asList(entities).size(), is(equalTo(1)));
+    assertThat((String) entities.iterator().next().getProperty(CompanyEntity.ACTIVITY), is(equalTo("anotherActivity")));
+    assertThat((String) entities.iterator().next().getProperty(CompanyEntity.CONTACT_FACE), is(equalTo("Adelin")));
+  }
+
+  @Test
+  public void returnsCompanyById() {
+    Company company = companyBuilder.build();
+    company.setEmail("mail@mail.com");
+    repository.save(company);
+    Company returnedCompany = repository.getByEmail("mail@mail.com");
+    Company returnedById = repository.getById(returnedCompany.getId());
+    assertThat(returnedById, is(notNullValue()));
+    assertThat(returnedById.getEmail(), is(equalTo("mail@mail.com")));
+
+  }
+
+
 }

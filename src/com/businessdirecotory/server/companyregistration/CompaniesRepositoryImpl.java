@@ -5,9 +5,11 @@ import com.businessdirecotory.shared.entites.Company;
 import com.businessdirecotory.shared.entites.actions.CompanyBuilder;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
 import com.google.inject.Inject;
-import com.google.web.bindery.requestfactory.shared.impl.EntityCodex;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,8 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
 
   private DatastoreService service;
 
+  CompanyBuilder builder = new CompanyBuilder();
+
   @Inject
   public CompaniesRepositoryImpl(DatastoreService service) {
     this.service = service;
@@ -30,8 +34,28 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
 
   @Override
   public void save(Company company) {
+    Entity companyEntity;
+    if (company.getId() == null || company.getId() == 0l) {
+      companyEntity = new Entity(CompanyEntity.KIND);
+    } else {
+      Key key = KeyFactory.createKey(CompanyEntity.KIND, company.getId());
+      try {
+        companyEntity = service.get(key);
+      } catch (EntityNotFoundException e) {
+        companyEntity = new Entity(CompanyEntity.KIND);
+      }
+    }
 
-    Entity companyEntity = new Entity(CompanyEntity.KIND);
+    companyEntity = setEntityProperties(company, companyEntity);
+
+    Set<String> keyword = getKeywords(company);
+
+    companyEntity.setProperty(CompanyEntity.INDEX, keyword);
+
+    service.put(companyEntity);
+  }
+
+  private Entity setEntityProperties(Company company, Entity companyEntity) {
     companyEntity.setProperty(CompanyEntity.NAME, company.getName());
     companyEntity.setProperty(CompanyEntity.ADDRESS, company.getAddress());
     companyEntity.setProperty(CompanyEntity.ACTIVITY, company.getActivity());
@@ -39,7 +63,13 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
     companyEntity.setProperty(CompanyEntity.EMAIL, company.getEmail());
     companyEntity.setProperty(CompanyEntity.PASSWORD, company.getPassword());
     companyEntity.setProperty(CompanyEntity.CONTACT_FACE, company.getContactFace());
+    companyEntity.setProperty(CompanyEntity.PHONE_NUMBER, company.getPhoneNumber());
+    companyEntity.setProperty(CompanyEntity.DESCRIPTION, company.getDescription());
 
+    return companyEntity;
+  }
+
+  private Set<String> getKeywords(Company company) {
     Set<String> keyword = new TreeSet<String>();
 
     putInKeywordsSet(keyword, getTextWords(company.getName()));
@@ -49,9 +79,7 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
     putInKeywordsSet(keyword, getTextWords(company.getDescription()));
     putInKeywordsSet(keyword, getTextWords(company.getEmail()));
     putInKeywordsSet(keyword, getTextWords(company.getContactFace()));
-    companyEntity.setProperty(CompanyEntity.INDEX, keyword);
-
-    service.put(companyEntity);
+    return keyword;
   }
 
   @Override
@@ -85,7 +113,7 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
       query.setFilter(new Query.FilterPredicate(CompanyEntity.INDEX, Query.FilterOperator.EQUAL, words.get(0)));
     } else {
       for (String string : words) {
-        filters.add(new Query.FilterPredicate("index", Query.FilterOperator.EQUAL, string));
+        filters.add(new Query.FilterPredicate(CompanyEntity.INDEX, Query.FilterOperator.EQUAL, string));
       }
       query.setFilter(Query.CompositeFilterOperator.or(filters));
 
@@ -94,28 +122,61 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
 
     Iterable<Entity> returnedEntities = service.prepare(query).asIterable();
 
-    CompanyBuilder builder = new CompanyBuilder();
 
     for (Entity entity : returnedEntities) {
-      companies.add(builder
-              .withName(String.valueOf(entity.getProperty(CompanyEntity.NAME)))
-              .withActivity(String.valueOf(entity.getProperty(CompanyEntity.ACTIVITY)))
-              .withLocation(String.valueOf(entity.getProperty(CompanyEntity.LOCATION)))
-              .withContactFace(String.valueOf(entity.getProperty(CompanyEntity.CONTACT_FACE)))
-              .withAddress(String.valueOf(entity.getProperty(CompanyEntity.ADDRESS)))
-              .withEmail(String.valueOf(entity.getProperty(CompanyEntity.EMAIL)))
-              .build());
-
+      companies.add(create(entity));
     }
     return companies;
   }
 
+  @Override
+  public Company getByEmail(String email) {
+
+    Query query = new Query(CompanyEntity.KIND);
+
+    query.setFilter(new Query.FilterPredicate(CompanyEntity.EMAIL, Query.FilterOperator.EQUAL, email));
+
+    Entity entity = service.prepare(query).asSingleEntity();
+
+    if (entity != null) {
+      return create(entity);
+
+    }
+    return null;
+  }
+
+  @Override
+  public Company getById(long id) {
+
+    Key key = KeyFactory.createKey(CompanyEntity.KIND, id);
+    try {
+      Entity entity = service.get(key);
+      return create(entity);
+    } catch (EntityNotFoundException e) {
+      return null;
+    }
+  }
+
+  private Company create(Entity entity) {
+    return builder.withId(entity.getKey().getId()).withName(String.valueOf(entity.getProperty(CompanyEntity.NAME)))
+            .withActivity(String.valueOf(entity.getProperty(CompanyEntity.ACTIVITY)))
+            .withLocation(String.valueOf(entity.getProperty(CompanyEntity.LOCATION)))
+            .withContactFace(String.valueOf(entity.getProperty(CompanyEntity.CONTACT_FACE)))
+            .withAddress(String.valueOf(entity.getProperty(CompanyEntity.ADDRESS)))
+            .withEmail(String.valueOf(entity.getProperty(CompanyEntity.EMAIL)))
+            .withPhoneNumber(String.valueOf(entity.getProperty(CompanyEntity.PHONE_NUMBER)))
+            .withDescription(String.valueOf(entity.getProperty(CompanyEntity.DESCRIPTION)))
+            .build();
+  }
+
   private List<String> getTextWords(String keyword) {
     List<String> words = new ArrayList<String>();
-    Pattern pattern = Pattern.compile("[а-яА-Яa-zA-Z_]+");
-    Matcher matcher = pattern.matcher(keyword);
-    while (matcher.find()) {
-      words.add(keyword.substring(matcher.start(), matcher.end()));
+    if (keyword != null) {
+      Pattern pattern = Pattern.compile("[а-яА-Яa-zA-Z_]+");
+      Matcher matcher = pattern.matcher(keyword);
+      while (matcher.find()) {
+        words.add(keyword.substring(matcher.start(), matcher.end()));
+      }
     }
     return words;
   }

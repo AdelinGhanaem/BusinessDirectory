@@ -1,8 +1,8 @@
 package com.businessdirecotory.client.navigation;
 
-import com.businessdirecotory.client.authorization.AuthorizationPresenter;
 import com.businessdirecotory.client.authorization.SecurityTokenProvider;
 import com.businessdirecotory.client.navigation.places.AuthorizationPlace;
+import com.businessdirecotory.client.navigation.places.CompanyProfilePlace;
 import com.businessdirecotory.client.navigation.places.CompanyRegistrationPlace;
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.NavLink;
@@ -13,6 +13,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
@@ -45,7 +46,7 @@ public class NavigationBarViewImpl extends Composite implements NavigationBarVie
   NavLink aboutUs;
 
   @UiField
-  com.google.gwt.user.client.ui.Label usernameBrand;
+  Label usernameBrand;
 
   @UiField
   Button logoutButton;
@@ -84,7 +85,7 @@ public class NavigationBarViewImpl extends Composite implements NavigationBarVie
   }
 
   @Override
-  public void setStandardMenu() {
+  public void showStandardMenu() {
     login.setVisible(true);
     logoutButton.setVisible(false);
     usernameBrand.setVisible(false);
@@ -102,7 +103,8 @@ public class NavigationBarViewImpl extends Composite implements NavigationBarVie
 
   @Override
   public void showAuthorizedMenuBar() {
-
+    login.setVisible(false);
+    logoutButton.setVisible(true);
   }
 
   @UiHandler("registration")
@@ -110,19 +112,22 @@ public class NavigationBarViewImpl extends Composite implements NavigationBarVie
     presenter.onNewRegistration();
   }
 
-  //
+
   @UiHandler("login")
   public void onLoginClick(ClickEvent event) {
     presenter.onAuthorization();
   }
 
-  //
   @UiHandler("logoutButton")
   public void onLogout(ClickEvent event) {
     if (logoutButton != null && presenter != null) {
       presenter.logout();
-
     }
+  }
+
+  @UiHandler("usernameBrand")
+  public void onEmailClick(ClickEvent event) {
+    placeController.goTo(new CompanyProfilePlace());
   }
 
 

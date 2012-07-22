@@ -34,7 +34,6 @@ public class SearchPresenter extends AbstractActivity {
           view.notifyOfEmptyResult();
         } else {
           view.showSearchResults(result.getCompanies());
-
         }
       }
     });

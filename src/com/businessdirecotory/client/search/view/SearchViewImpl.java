@@ -11,12 +11,15 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellList;
+import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
@@ -46,11 +49,20 @@ public class SearchViewImpl implements SearchView {
   private SearchPresenter presenter;
 
   public SearchViewImpl() {
+
+//    ImagesResource resource = GWT.create(ImagesResource.class);
+
+//    Map<String, String> map = new HashMap<String, String>();
+//    map.put("email", resource.email().getUrl());
+
     CompanyCell companyCell = new CompanyCell();
+
+
     companiesList = new CellList<Company>(companyCell);
+
     loadingImage = new Image("/resources/images/loading.gif");
+
     loadingImage.setVisible(false);
-//    ImagesResource imagesResource = GWT.register(ImagesResource.class);
 
     rootElement = ourUiBinder.createAndBindUi(this);
   }

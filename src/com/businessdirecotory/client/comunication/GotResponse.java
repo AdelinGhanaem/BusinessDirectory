@@ -1,5 +1,6 @@
 package com.businessdirecotory.client.comunication;
 
+import com.businessdirecotory.client.authorization.SecuredResponse;
 import com.evo.gad.shared.Response;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;

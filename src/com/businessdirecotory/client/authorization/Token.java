@@ -32,7 +32,7 @@ public class Token implements Serializable {
     this.user = user;
   }
 
-  public Date getExpireDate() {
+  public Date getDate() {
     return expireDate;
   }
 

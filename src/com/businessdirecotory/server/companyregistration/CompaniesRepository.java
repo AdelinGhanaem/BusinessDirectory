@@ -19,4 +19,8 @@ public interface CompaniesRepository {
   boolean isRegistered(Account account);
 
   List<Company> getByKeyWord(String keyword);
+
+  Company getByEmail(String email);
+
+  Company getById(long id);
 }
