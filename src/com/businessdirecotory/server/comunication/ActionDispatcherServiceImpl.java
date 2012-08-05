@@ -55,7 +55,7 @@ public class ActionDispatcherServiceImpl extends RemoteServiceServlet implements
 
   }
 
-  private <T extends Response> SecuredResponse<T> dispatchSecuredAction(SecuredAction<T> action) {
+  private <T extends Response> SecuredResponse dispatchSecuredAction(SecuredAction<T> action) {
     Token token = ((SecuredAction) action).getToken();
     if (!authorizedTokens.isAuthorized(token, new Date())) {
       return new SecuredResponse(null);

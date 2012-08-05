@@ -1,19 +1,38 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'
-             xmlns:cellview="urn:import:com.google.gwt.user.cellview.client">
-<ui:style src="searchStyle.css"/>
-  <g:HTMLPanel addStyleNames="{style.searchMainContainer}">
+             xmlns:c="urn:import:com.google.gwt.user.cellview.client"
+        >
+  <ui:style src="searchStyle.css"/>
+  <ui:with field="res" type="com.businessdirecotory.client.resources.ImagesResource"/>
 
-    <b:TextBox ui:field="searchTexBox" searchQuery="true" width="400px" placeholder="какво търсите ?"/>
-    <b:Button ui:field="search" type="SUCCESS" text="Search" width="100px"/>
+  <g:HTMLPanel>
+
+    <b:TextBox ui:field="searchTexBox" searchQuery="true" width="500px" placeholder="какво търсите ?" addStyleNames="{style.searchBar}" />
+
+    <b:Button ui:field="search" type="SUCCESS" text="Търси" width="130px" addStyleNames="{style.searchButton}"  />
+
+
+    <g:HTMLPanel>
+      <g:Image ui:field="loadingImage" addStyleNames="{style.loadingImage}" resource="{res.loadingImage}"/>
+    </g:HTMLPanel>
+
     <div class="{style.searchResultContainer}">
-      <g:Image ui:field="loadingImage"/>
-      <g:ScrollPanel>
-        <cellview:CellList ui:field="companiesList"/>
-      </g:ScrollPanel>
-    </div>
+      <g:HTMLPanel addStyleNames="{style.background}">
+        <g:HTMLPanel addStyleNames="{style.searchMainContainer}">
 
+          <g:ScrollPanel ui:field="scrollPanel">
+
+            <b:CellTable ui:field="companiesList" pageSize="10"/>
+
+          </g:ScrollPanel>
+
+          <g:HTMLPanel addStyleNames="{style.pagerContainer}">
+            <c:SimplePager  ui:field="pager" addStyleNames="{style.pager}"/>
+          </g:HTMLPanel>
+        </g:HTMLPanel>
+      </g:HTMLPanel>
+    </div>
 
 
   </g:HTMLPanel>

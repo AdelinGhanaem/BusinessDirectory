@@ -39,7 +39,7 @@ public class LazyActionHandlerRepository implements ActionHandlerRepository {
   }
 
   /**
-   * Gets {@link com.evo.gad.dispatch.ActionHandler} from the repository by providing the type of the
+   * Gets {@link com.evo.gad.dispatch.ActionHandler} from the companiesRepository by providing the type of the
    * action class.
    * <p/>
    * <p/>

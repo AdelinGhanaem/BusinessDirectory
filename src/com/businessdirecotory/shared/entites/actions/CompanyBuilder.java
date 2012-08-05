@@ -1,8 +1,6 @@
 package com.businessdirecotory.shared.entites.actions;
 
-import com.businessdirecotory.server.companyregistration.CompaniesRepository;
 import com.businessdirecotory.shared.entites.Company;
-import com.google.inject.Inject;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
@@ -10,16 +8,20 @@ import com.google.inject.Inject;
 public class CompanyBuilder {
 
 
-  private String name;
-  private String location;
-  private String address;
-  private String email;
-  private String activity;
-  private String description;
-  private String phoneNumber;
-  private String contactFace;
-  private String password;
+  private String name="";
+  private String location="";
+  private String address="";
+  private String email="";
+  private String activity="";
+  private String description="";
+  private String phoneNumber="";
+  private String contactFace="";
+  private String imageURL = "";
   private Long id;
+  private String facebookLink="";
+  private String googlePlusLink="";
+  private String twitterLink="";
+  private Long userId;
 
 
   public CompanyBuilder() {
@@ -36,7 +38,7 @@ public class CompanyBuilder {
     description = "description";
     phoneNumber = "08888888";
     contactFace = "contactFace";
-    password = "123123";
+    userId = 0l;
   }
 
 
@@ -80,11 +82,11 @@ public class CompanyBuilder {
     return this;
   }
 
-  public CompanyBuilder withPassword(String password) {
-
-    this.password = password;
+  public CompanyBuilder withImageURL(String imageURL) {
+    this.imageURL = imageURL;
     return this;
   }
+
 
   public CompanyBuilder withId(Long id) {
     this.id = id;
@@ -93,10 +95,30 @@ public class CompanyBuilder {
 
 
   public Company build() {
-    Company company = new Company(id,name, location, address, email, activity, description, phoneNumber, contactFace, password);
+    Company company = new Company(id, name, location, address, email, activity,
+            description, phoneNumber, contactFace, imageURL, facebookLink, googlePlusLink, twitterLink, userId);
     setToDefault();
     return company;
   }
 
 
+  public CompanyBuilder withFacebook(String facebookLink) {
+    this.facebookLink = facebookLink;
+    return this;
+  }
+
+  public CompanyBuilder withGooglePlus(String googlePlusLink) {
+    this.googlePlusLink = googlePlusLink;
+    return this;
+  }
+
+  public CompanyBuilder withTwitter(String twitterLink) {
+    this.twitterLink = twitterLink;
+    return this;
+  }
+
+  public CompanyBuilder withUserId(Long userId) {
+    this.userId = userId;
+    return this;
+  }
 }

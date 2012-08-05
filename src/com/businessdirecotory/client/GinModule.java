@@ -10,17 +10,20 @@ import com.businessdirecotory.client.authorization.view.AuthorizationView;
 import com.businessdirecotory.client.authorization.view.AuthorizationViewImpl;
 import com.businessdirecotory.client.companyprofile.view.CompanyProfileView;
 import com.businessdirecotory.client.companyprofile.view.CompanyProfileViewImpl;
-import com.businessdirecotory.client.registration.view.UserRegistrationView;
-import com.businessdirecotory.client.registration.view.UserRegistrationViewImpl;
 import com.businessdirecotory.client.comunication.ActionDispatcherService;
 import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
+import com.businessdirecotory.client.navigation.ActivityPlaceMeta;
 import com.businessdirecotory.client.navigation.ApplicationActivityMapper;
+import com.businessdirecotory.client.navigation.InjectablePlaceController;
 import com.businessdirecotory.client.navigation.NavigationBarView;
 import com.businessdirecotory.client.navigation.NavigationBarViewImpl;
 import com.businessdirecotory.client.navigation.WidgetsContainer;
+import com.businessdirecotory.client.registration.view.UserRegistrationView;
+import com.businessdirecotory.client.registration.view.UserRegistrationViewImpl;
+import com.businessdirecotory.client.search.CompanyFullInfoView;
 import com.businessdirecotory.client.search.SearchView;
+import com.businessdirecotory.client.search.companyProfileView.CompanyFullInfoViewImpl;
 import com.businessdirecotory.client.search.view.SearchViewImpl;
-import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.inject.client.AbstractGinModule;
@@ -43,7 +46,7 @@ public class GinModule extends AbstractGinModule {
 
     bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
 
-    bind(new TypeLiteral<HashMap<Class<? extends Place>, Activity>>() {
+    bind(new TypeLiteral<HashMap<Class<? extends Place>, ActivityPlaceMeta>>() {
     }).toProvider(ActivityPlacesMapProvider.class).in(Singleton.class);
 
     //Binding view and presenters
@@ -60,12 +63,16 @@ public class GinModule extends AbstractGinModule {
     bind(NavigationBarView.class).to(NavigationBarViewImpl.class).in(Singleton.class);
 
     bind(CompanyProfileView.class).to(CompanyProfileViewImpl.class);
-    //Binding handlers and HandlersImpl
+
     bind(UserAuthorizedEventHandler.class).to(UserAuthorizedEventHandlerImpl.class);
 
     bind(SecuredActionBuilder.class).to(SecuredActionBuilderImpl.class);
 
     bind(WidgetsContainer.class).to(WidgetsContainerImpl.class);
+
+    bind(CompanyFullInfoView.class).to(CompanyFullInfoViewImpl.class).in(Singleton.class);
+
+    bind(InjectablePlaceController.class).in(Singleton.class);
 
   }
 

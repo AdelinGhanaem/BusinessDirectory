@@ -1,5 +1,6 @@
 package com.businessdirecotory.client.resources;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.ImageResource;
 
@@ -9,17 +10,20 @@ import com.google.gwt.resources.client.ImageResource;
 
 public interface ImagesResource extends ClientBundle {
 
+  public static ImagesResource INSTANCE = GWT.create(ImagesResource.class);
+
+
   @Source("loading.gif")
-  ImageResource  loadingImage();
+  ImageResource loadingImage();
 
   @Source("email.png")
-  ImageResource  email();
+  ImageResource email();
 
   @Source("contactFace.png")
-  ImageResource  contactFace();
+  ImageResource contactFace();
 
   @Source("activity.png")
-  ImageResource  activity();
+  ImageResource activity();
 
   @Source("map.png")
   ImageResource map();
@@ -28,4 +32,21 @@ public interface ImagesResource extends ClientBundle {
   ImageResource buttonLoading();
 
 
+  @Source("mobile_phone.png")
+  ImageResource phoneNumber();
+
+
+  @Source("facebook.png")
+  ImageResource faceBook();
+
+
+  @Source("plus.png")
+  ImageResource plus();
+
+  @Source("twitter.png")
+  ImageResource twitter();
+
+
+  @Source("blog.png")
+  ImageResource description();
 }

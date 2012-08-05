@@ -39,13 +39,12 @@ public class NavigationBarPresenter implements UserAuthorizedEventHandler {
   }
 
 
-
-
   public void logout() {
     service.dispatch(new LogoutAction(securityTokenProvider.getToken()), new GotResponse<LogoutResponse>() {
       @Override
       public void gotResponse(LogoutResponse result) {
         view.showStandardMenu();
+        view.gotToMainPage();
       }
     });
   }

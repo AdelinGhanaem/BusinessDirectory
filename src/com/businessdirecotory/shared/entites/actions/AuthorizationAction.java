@@ -1,6 +1,6 @@
 package com.businessdirecotory.shared.entites.actions;
 
-import com.businessdirecotory.client.authorization.Account;
+import com.businessdirecotory.shared.entites.User;
 import com.businessdirecotory.shared.entites.reponses.AuthorizationResponse;
 import com.evo.gad.shared.Action;
 
@@ -9,18 +9,17 @@ import com.evo.gad.shared.Action;
  */
 public class AuthorizationAction implements Action<AuthorizationResponse> {
 
-  private Account account;
+  private User user;
 
-  public AuthorizationAction(Account account) {
+  public AuthorizationAction(User user) {
 
-    this.account = account;
+    this.user = user;
   }
 
   public AuthorizationAction() {
   }
 
-  public Account getAccount() {
-    return account;
+  public User getUser() {
+    return user;
   }
-
 }

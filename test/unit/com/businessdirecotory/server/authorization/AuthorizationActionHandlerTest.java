@@ -1,26 +1,21 @@
 package com.businessdirecotory.server.authorization;
 
-import com.businessdirecotory.client.authorization.Account;
-import com.businessdirecotory.client.authorization.Token;
-import com.businessdirecotory.server.companyregistration.CompaniesRepository;
+import com.businessdirecotory.server.registration.UserRepository;
+import com.businessdirecotory.server.registration.UserValidator;
+import com.businessdirecotory.shared.entites.User;
 import com.businessdirecotory.shared.entites.actions.AuthorizationAction;
 import com.businessdirecotory.shared.entites.reponses.AuthorizationResponse;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Matchers;
 import org.mockito.Mock;
-import sun.plugin2.liveconnect.ArgumentHelper;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.util.ArrayList;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
-import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -32,29 +27,36 @@ public class AuthorizationActionHandlerTest {
 
 
   @Mock
-  private CompaniesRepository repository;
+  private UserRepository userRepository;
+
 
   @Mock
   private AuthorizationActionHandler handler;
 
   @Mock
-  private AuthorizedTokensRepository authorizedAccountTokensRepository;
+  private AuthorizedTokensRepository authorizedTokensRepository;
 
   @Mock
-  private SessionExpireTimeProvider expireTimeProvider;
+  IdGenerator idGenerator;
+  @Mock
+  private UserValidator validator;
 
   @Before
   public void setUp() throws Exception {
     initMocks(this);
-    handler = new AuthorizationActionHandler(repository, authorizedAccountTokensRepository, expireTimeProvider);
+    handler = new AuthorizationActionHandler(userRepository,
+            authorizedTokensRepository,
+            idGenerator, validator);
   }
 
   @Test
   public void returnsResponseContainsTokenWhenUserIsRegistered() {
 
-    Account account = new Account("user", "password");
+    User account = new User("username", "password");
 
-    when(repository.isRegistered(account)).thenReturn(true);
+    when(userRepository.getUserId("username", "password")).thenReturn(1l);
+
+    when(idGenerator.generateId()).thenReturn(21l);
 
     AuthorizationResponse response = handler.handle(new AuthorizationAction(account));
 
@@ -62,50 +64,43 @@ public class AuthorizationActionHandlerTest {
 
     assertThat(response.getToken(), is(notNullValue()));
 
-    assertThat(response.getToken().getUser(), is(equalTo("user")));
+    assertThat(response.getToken().getUser(), is(equalTo("username")));
 
-    verify(repository).isRegistered(account);
+    assertThat(response.getToken().getTokenId(), is(equalTo(21l)));
 
+    assertThat(response.getToken().getExpireDate(), is(notNullValue()));
+
+    verify(idGenerator).generateId();
+
+    verify(userRepository).getUserId("username", "password");
   }
-
-
-  @Test
-  public void addsTokenToAuthorizedAccountRepository() {
-
-    Account account = new Account("username", "password");
-
-    AuthorizationAction action = new AuthorizationAction(account);
-
-    Calendar calendar = Calendar.getInstance();
-
-    calendar.add(Calendar.DAY_OF_MONTH, 20);
-
-    when(repository.isRegistered(account)).thenReturn(true);
-
-    Date date = calendar.getTime();
-
-    when(expireTimeProvider.getSessionExpireTime()).thenReturn(date);
-
-    ArgumentCaptor<Date> dateArgumentCaptor = ArgumentCaptor.forClass(Date.class);
-
-    handler.handle(action);
-
-    verify(expireTimeProvider).getSessionExpireTime();
-
-    verify(authorizedAccountTokensRepository).add(Matchers.isA(Token.class), dateArgumentCaptor.capture());
-
-    assertThat(dateArgumentCaptor.getValue(), is(equalTo(date)));
-  }
-
 
   @Test
   public void returnsResponseWithNullTokenValueWhenAccountIsNotRegistered() {
 
-    Account account = new Account();
+    User account = new User(0l, "username", "password");
 
-    when(repository.isRegistered(account)).thenReturn(false);
+    when(userRepository.getUserId(account.getUsername(), account.getPassword())).thenReturn(null);
 
     AuthorizationResponse response = handler.handle(new AuthorizationAction(account));
+
+    assertThat(response, is(notNullValue()));
+
+    assertThat(response.getToken(), is(equalTo(null)));
+
+  }
+
+  @Test
+  public void userValidation() {
+    User user = new User("mail@asd", "12");
+
+    when(validator.validate(user)).thenReturn(new ArrayList<String>() {{
+      add("validator");
+    }});
+
+    AuthorizationResponse response = handler.handle(new AuthorizationAction(user));
+
+    verify(userRepository, never()).getUser(user.getUsername(), user.getPassword());
 
     assertThat(response, is(notNullValue()));
 

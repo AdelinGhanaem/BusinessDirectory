@@ -3,7 +3,8 @@ package com.businessdirecotory.client.navigation;
 import com.businessdirecotory.client.authorization.SecurityTokenProvider;
 import com.businessdirecotory.client.navigation.places.AuthorizationPlace;
 import com.businessdirecotory.client.navigation.places.CompanyProfilePlace;
-import com.businessdirecotory.client.navigation.places.CompanyRegistrationPlace;
+import com.businessdirecotory.client.navigation.places.UserRegistrationPlace;
+import com.businessdirecotory.client.navigation.places.SearchPlace;
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.NavLink;
 import com.google.gwt.core.client.GWT;
@@ -51,6 +52,9 @@ public class NavigationBarViewImpl extends Composite implements NavigationBarVie
   @UiField
   Button logoutButton;
 
+  @UiField
+  NavLink home;
+
   @Inject
   SecurityTokenProvider provider;
 
@@ -93,7 +97,7 @@ public class NavigationBarViewImpl extends Composite implements NavigationBarVie
 
   @Override
   public void goToNewRegistration() {
-    placeController.goTo(new CompanyRegistrationPlace());
+    placeController.goTo(new UserRegistrationPlace());
   }
 
   @Override
@@ -130,9 +134,19 @@ public class NavigationBarViewImpl extends Composite implements NavigationBarVie
     placeController.goTo(new CompanyProfilePlace());
   }
 
+  @UiHandler("home")
+  public void onGoHome(ClickEvent event) {
+    placeController.goTo(new SearchPlace());
+  }
+
 
   public void setPresenter(NavigationBarPresenter presenter) {
     this.presenter = presenter;
+  }
+
+  @Override
+  public void gotToMainPage() {
+    placeController.goTo(new SearchPlace());
   }
 
 

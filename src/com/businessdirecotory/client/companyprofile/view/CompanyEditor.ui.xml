@@ -2,30 +2,128 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'
              xmlns:base="urn:import:com.github.gwtbootstrap.client.ui.base">
-  <b:Fieldset >
+  <ui:style>
+    .controlGroup {
+      margin: 5px;
+    }
 
-    <g:VerticalPanel>
+    .editorContainer {
+      float: left;
+    }
+
+    .controlLabel {
+      text-align: left;
+    }
+
+  </ui:style>
+
+  <ui:with field="res" type="com.businessdirecotory.client.resources.ImagesResource"/>
+
+  <b:Fieldset>
+
+    <!--<g:Image ui:field="logo" width="70px" height="70px"/>-->
+    <g:Image ui:field="logo"/>
+    <g:HTMLPanel addStyleNames="{style.editorContainer}">
+      <!--<b:ControlGroup type="ERROR">-->
+      <!--<b:ControlLabel for="name"/>-->
+      <!--<b:Controls >-->
+      <!--&lt;!&ndash; If you add id attribute to element,You should use b:id attribute. &ndash;&gt;-->
+      <!--<b:TextBox alternateSize="XLARGE" b:id="name"></b:TextBox>-->
+      <!--<b:HelpBlock>In addition to freeform text, any HTML5 text-based input appears like so.</b:HelpBlock>-->
+      <!--</b:Controls>-->
+      <!--</b:ControlGroup>-->
+      <g:Image ui:field="image" addStyleNames="{style.controlGroup}"/>
+
+      <b:ControlGroup type="NONE">
+        <b:ControlLabel for="name" addStyleNames="{style.controlLabel}">Име на организацията</b:ControlLabel>
+        <b:Controls>
+          <b:TextBox placeholder="Фирма" ui:field="name"/>
+        </b:Controls>
+      </b:ControlGroup>
+
+      <!--<b:TextBox placeholder="Фирма" ui:field="name"/>-->
+
+      <b:ControlGroup type="NONE">
+        <b:ControlLabel for="name" addStyleNames="{style.controlLabel}">Вид дейност</b:ControlLabel>
+        <b:Controls>
+          <b:TextBox placeholder="Фирма" ui:field="activity"/>
+        </b:Controls>
+      </b:ControlGroup>
+      <!--<b:TextBox placeholder="дейност" ui:field="activity"/>-->
 
 
-      <b:TextBox placeholder="Фирма" ui:field="name"/>
+      <b:ControlGroup type="NONE">
+        <b:ControlLabel for="name" addStyleNames="{style.controlLabel}">Град</b:ControlLabel>
+        <b:Controls>
+          <b:TextBox placeholder="Фирма" ui:field="location"/>
+        </b:Controls>
+      </b:ControlGroup>
+      <!--<b:TextBox placeholder="Град" ui:field="location" title="Град"/>-->
 
-      <!--<b:PasswordTextBox placeholder="парола за достъп" ui:field="password"/>-->
+      <b:ControlGroup type="NONE">
+        <b:ControlLabel for="name" addStyleNames="{style.controlLabel}">Адрес</b:ControlLabel>
+        <b:Controls>
+          <b:TextBox placeholder="Фирма" ui:field="address"/>
+        </b:Controls>
+      </b:ControlGroup>
 
-      <b:TextBox placeholder="дейност" ui:field="activity"/>
+      <!--<b:TextBox placeholder="Адрес" ui:field="address"/>-->
 
-      <b:TextBox placeholder="Град" ui:field="location" title="Град"/>
+      <b:ControlGroup type="NONE">
+        <b:ControlLabel for="name" addStyleNames="{style.controlLabel}">лице за контакт</b:ControlLabel>
+        <b:Controls>
+          <b:TextBox placeholder="Фирма" ui:field="contactFace"/>
+        </b:Controls>
+      </b:ControlGroup>
 
-      <b:TextBox placeholder="Адрес" ui:field="address"/>
+      <!--<b:TextBox placeholder="лице за контакт" ui:field="contactFace"/>-->
 
-      <b:TextBox placeholder="лице за контакт" ui:field="contactFace"/>
+      <b:ControlGroup type="NONE">
+        <b:ControlLabel for="name" addStyleNames="{style.controlLabel}">Телефон за връзка</b:ControlLabel>
+        <b:Controls>
+          <b:TextBox placeholder="Фирма" ui:field="phoneNumber"/>
+        </b:Controls>
+      </b:ControlGroup>
 
-      <!--<b:TextBox placeholder="e-mail" ui:field="email"/>-->
+      <!--<b:TextBox placeholder="Телефон за връзка" ui:field="phoneNumber"/>-->
 
-      <b:TextBox placeholder="Телефон за връзка" ui:field="phoneNumber"/>
+      <b:ControlGroup type="NONE">
+        <b:ControlLabel for="name" addStyleNames="{style.controlLabel}">Кратко описание</b:ControlLabel>
+        <b:Controls>
+          <b:TextArea placeholder="Фирма" ui:field="description" width="200px" height="100px"/>
+        </b:Controls>
+      </b:ControlGroup>
 
-      <b:TextArea placeholder="кратоко описание" ui:field="description" height="80px" />
+      <b:ControlGroup type="NONE">
+        <b:ControlLabel for="name" addStyleNames="{style.controlLabel}">
+          <g:Image resource="{res.faceBook}"/>
+        </b:ControlLabel>
+        <b:Controls>
+          <b:TextBox placeholder="Facebook" ui:field="facebook"/>
 
-    </g:VerticalPanel>
+        </b:Controls>
+      </b:ControlGroup>
+
+      <b:ControlGroup type="NONE">
+        <b:ControlLabel for="name" addStyleNames="{style.controlLabel}">
+          <g:Image resource="{res.plus}"/>
+        </b:ControlLabel >
+        <b:Controls>
+          <b:TextBox placeholder="Google+" ui:field="googlePlus"/>
+
+        </b:Controls>
+      </b:ControlGroup>
+
+      <b:ControlGroup type="NONE">
+        <b:ControlLabel for="name" addStyleNames="{style.controlLabel}">
+          <g:Image resource="{res.twitter}"/>
+        </b:ControlLabel>
+        <b:Controls>
+          <b:TextBox placeholder="Twitter+" ui:field="twitter"/>
+        </b:Controls>
+      </b:ControlGroup>
+
+    </g:HTMLPanel>
 
   </b:Fieldset>
 

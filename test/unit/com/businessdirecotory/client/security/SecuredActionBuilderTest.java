@@ -11,6 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.util.Date;
+
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -55,8 +57,7 @@ public class SecuredActionBuilderTest {
 
   @Test
   public void returnedActionContainsSecurityToke() {
-    Token token = new Token("Adelin");
-
+    Token token = new Token(2l, 2l, "Adelin", new Date());
     TestAction<TestResponse> testAction = new TestAction<TestResponse>();
     when(provider.getToken()).thenReturn(token);
     SecuredAction<SecuredResponse> action = securedActionBuilder.build(testAction);

@@ -5,15 +5,15 @@ import com.evo.gad.shared.Response;
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
  */
-public class FetchUrlResponse implements Response {
+public class FetchURLResponse implements Response {
   private String url;
 
-  public FetchUrlResponse(String url) {
+  public FetchURLResponse(String url) {
 
     this.url = url;
   }
 
-  public FetchUrlResponse() {
+  public FetchURLResponse() {
   }
 
   public String getUrl() {

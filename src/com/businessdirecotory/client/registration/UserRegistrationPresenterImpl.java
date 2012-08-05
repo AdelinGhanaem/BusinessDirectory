@@ -3,8 +3,8 @@ package com.businessdirecotory.client.registration;
 import com.businessdirecotory.client.registration.view.UserRegistrationView;
 import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
 import com.businessdirecotory.client.comunication.GotResponse;
-import com.businessdirecotory.shared.entites.Company;
-import com.businessdirecotory.shared.entites.actions.CompanyRegistrationAction;
+import com.businessdirecotory.shared.entites.User;
+import com.businessdirecotory.shared.entites.actions.UserRegistrationAction;
 import com.businessdirecotory.shared.entites.reponses.UserRegistrationResponse;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -27,8 +27,9 @@ public class UserRegistrationPresenterImpl extends AbstractActivity implements U
     this.view = view;
   }
 
-  public void register(Company company) {
-    service.dispatch(new CompanyRegistrationAction(company), new GotResponse<UserRegistrationResponse>() {
+  public void register(User user) {
+    view.disableRegistrationButton();
+    service.dispatch(new UserRegistrationAction(user), new GotResponse<UserRegistrationResponse>() {
       @Override
       public void gotResponse(UserRegistrationResponse result) {
         if (result.getErrors().size() != 0) {
@@ -36,6 +37,7 @@ public class UserRegistrationPresenterImpl extends AbstractActivity implements U
         } else {
           view.notifyOfAccountCreated();
         }
+        view.enableRegistrationButton();
       }
     });
   }

@@ -3,6 +3,7 @@ package com.businessdirecotory.client.companyprofile.view;
 import com.businessdirecotory.client.authorization.SecurityTokenProvider;
 import com.businessdirecotory.client.companyprofile.CompanyProfilePresenter;
 import com.businessdirecotory.shared.entites.Company;
+import com.businessdirecotory.shared.entites.CompanyInfo;
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.FileUpload;
 import com.github.gwtbootstrap.client.ui.Tab;
@@ -14,7 +15,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -58,14 +58,26 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
   TextBox username;
 
   @UiField
+  TextBox tokenId;
+
+  @UiField
+  TextBox userId;
+
+  @UiField
   Button submit;
 
   @UiField
   Button edit;
+
   @UiField
   Image loadingImage;
-//  @UiField
-//  VerticalPanel formContainer;
+
+  @UiField
+  Button createProfile;
+
+  @UiField
+  Image logo;
+
 
   @Inject
   private SecurityTokenProvider provider;
@@ -77,26 +89,16 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
 
     initWidget(rootElement);
 
-//    username = new TextBox();
-//
-//    fileUpload = new FileUpload();
-//
-//    uploadFormPanel = new FormPanel();
-
     driver.initialize(editor);
 
-//    uploadFormPanel.setWidget(formContainer);
-//
-//    formContainer.add(username);
-//
-//    formContainer.add(fileUpload);
     logoTab.add(uploadFormPanel);
 
 
     uploadFormPanel.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
       @Override
       public void onSubmitComplete(FormPanel.SubmitCompleteEvent event) {
-        GWT.log("Result: \n" + event.getResults());
+        presenter.fetchUploadURL();
+        presenter.fetchCompanyProfile();
       }
     });
 
@@ -105,6 +107,7 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
 
   @Override
   public void showCompanyProfile(Company company) {
+    tabPanel.setVisible(true);
     driver.edit(company);
 
   }
@@ -119,9 +122,9 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
     uploadFormPanel.setAction(url);
     uploadFormPanel.setEncoding(FormPanel.ENCODING_MULTIPART);
     uploadFormPanel.setMethod(FormPanel.METHOD_POST);
-    username.setText(provider.getToken().getUser());
-    username.setText(provider.getToken().getUser());
-    Window.alert(uploadFormPanel.getAction());
+    username.setText(String.valueOf(provider.getToken().getUser()));
+    tokenId.setText(String.valueOf(provider.getToken().getTokenId()));
+    userId.setText(String.valueOf(provider.getToken().getUserId()));
   }
 
   @Override
@@ -136,6 +139,21 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
     loadingImage.setVisible(false);
   }
 
+  @Override
+  public void showCreateProfileButton() {
+    createProfile.setVisible(true);
+    tabPanel.setVisible(false);
+  }
+
+  @Override
+  public void updateImageURL(String imageURL) {
+    logo.setUrl(imageURL);
+  }
+
+  @Override
+  public void showCompanyInfo(CompanyInfo info) {
+
+  }
 
   @UiHandler("logoTab")
   public void onClick(ClickEvent event) {
@@ -145,12 +163,20 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
 
   @UiHandler("submit")
   public void clickOnSubmit(ClickEvent event) {
-    Window.alert(username.getText());
+//    Window.alert("UserId:" + userId.getText() + "Username:" + username.getText() + "TokenID:" + tokenId.getText());
     uploadFormPanel.submit();
+  }
+
+  @UiHandler("createProfile")
+  public void onCreateProfile(ClickEvent event) {
+    createProfile.setVisible(false);
+    tabPanel.setVisible(true);
+    driver.edit(new Company());
   }
 
   @UiHandler("edit")
   public void onEdit(ClickEvent event) {
+
     Company company = driver.flush();
     presenter.updateCompany(company);
   }

@@ -11,6 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.util.Date;
+
 import static com.businessdirecotory.client.search.TestingAsyncCallbacksHelper.doOnSuccess;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.verify;
@@ -65,7 +67,7 @@ public class NavigationBarPresenterTest {
 
   @Test
   public void showAuthorizedUserMenuWhenUserIsAuthorized() {
-    Token token = new Token("user");
+    Token token = new Token(2l, 3l, "user", new Date());
     presenter.onUserAuthorized(new UserAuthorizedEvent(token));
     verify(securityTokenProvider).setToken(token);
     verify(view).setUsernameBrand("user");
@@ -76,9 +78,8 @@ public class NavigationBarPresenterTest {
   @Test
   public void setsSecurityToken() {
 
-    String user = "user";
+    Token token = new Token(2l, 12l, "user", new Date());
 
-    Token token = new Token(user);
 
     presenter.onUserAuthorized(new UserAuthorizedEvent(token));
 
@@ -88,7 +89,7 @@ public class NavigationBarPresenterTest {
   @Test
   public void firesUserLogoutEventWhenUserLogsOutSuccessfully() {
 
-    Token token = new Token("user");
+    Token token = new Token(2l, 5l, "user", new Date());
 
     LogoutResponse logoutResponse = new LogoutResponse();
 

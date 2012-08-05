@@ -8,36 +8,48 @@
     }
 
     .info {
-      padding: 10px;
+
     }
 
     .successRegistration {
       color: green;
     }
 
+    .footer {
+      wiidth: 100%;
+    }
+
+
   </ui:style>
-  <b:Modal title="Нова Регистрация" ui:field="dialogBox" animation="true">
+
+  <ui:with field="res" type="com.businessdirecotory.client.resources.ImagesResource"/>
+
+  <b:Modal title="Нова Регистрация" ui:field="dialogBox" animation="true" closeVisible="true" backdrop="NONE ">
+
 
     <g:VerticalPanel>
       <b:TextBox placeholder="e-mail" ui:field="email"/>
       <b:PasswordTextBox placeholder="парола за достъп" ui:field="password"/>
     </g:VerticalPanel>
 
-
-    <!--<edito:CompanyEditor ui:field="companyEditor"/>-->
-
-
     <g:HTMLPanel addStyleNames="{style.info}" ui:field="info">
       <p style="{style.paragraph}">След успешна регистрация,при въвеждане на основната нужна информация,ще можете да
         редактирате и добаяте нова информация за вашета фирма в контрол панела.
       </p>
     </g:HTMLPanel>
+
     <g:HTMLPanel addStyleNames="{style.successRegistration}" ui:field="success">
       <p>Поздравления ! вие успешно направихте регистрация.</p>
     </g:HTMLPanel>
 
+    <g:HTMLPanel>
+      <b:Label ui:field="errorsList" visible="false">
 
-    <b:ModalFooter>
+      </b:Label>
+    </g:HTMLPanel>
+
+    <b:ModalFooter addStyleNames="{style.footer}">
+      <g:Image resource="{res.buttonLoading}" visible="false" ui:field="loadingImage"/>
       <b:Button type="SUCCESS" ui:field="register" text="Регистрирай"/>
       <b:Button type="SUCCESS" ui:field="close" text="Затвори"/>
     </b:ModalFooter>

@@ -6,9 +6,11 @@ import com.github.gwtbootstrap.client.ui.TextArea;
 import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor;
+import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Image;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
@@ -26,9 +28,6 @@ public class CompanyEditor extends Composite implements Editor<Company> {
   @UiField
   TextBox location;
 
-//  @UiField
-//  TextBox email;
-
   @UiField
   TextBox activity;
 
@@ -44,10 +43,32 @@ public class CompanyEditor extends Composite implements Editor<Company> {
   @UiField
   TextBox address;
 
-//  @UiField
-//  TextBox password;
-
+  @Ignore
   Long id;
+
+  @UiField
+  Image image;
+
+  @UiField
+  TextBox facebook;
+
+  @UiField
+  TextBox googlePlus;
+
+  @UiField
+  TextBox twitter;
+
+  LeafValueEditor<String> logoURL = new LeafValueEditor<String>() {
+    @Override
+    public void setValue(String value) {
+      image.setUrl(value);
+    }
+
+    @Override
+    public String getValue() {
+      return image.getUrl();
+    }
+  };
 
 
   public CompanyEditor() {
@@ -55,11 +76,4 @@ public class CompanyEditor extends Composite implements Editor<Company> {
     initWidget(rootElement);
   }
 
-//  public void disableFields() {
-//
-//  }
-//
-//  public void enableFields() {
-//
-//  }
 }

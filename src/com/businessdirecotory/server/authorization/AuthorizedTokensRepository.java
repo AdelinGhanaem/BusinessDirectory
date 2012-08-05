@@ -1,6 +1,5 @@
 package com.businessdirecotory.server.authorization;
 
-import com.businessdirecotory.client.authorization.Account;
 import com.businessdirecotory.client.authorization.Token;
 
 import java.util.Date;
@@ -19,7 +18,7 @@ public interface AuthorizedTokensRepository {
   void add(Token token, Date expireDate);
 
   /**
-   * deletes a token from repository  in response to user logout action
+   * deletes a token from companiesRepository  in response to user logout action
    *
    * @param token
    */

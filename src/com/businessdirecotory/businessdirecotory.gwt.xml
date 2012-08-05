@@ -8,12 +8,20 @@
   <inherits name="com.google.gwt.activity.Activity"/>
   <inherits name="com.github.gwtbootstrap.Bootstrap"/>
   <inherits name="com.google.gwt.inject.Inject"/>
+  <inherits name="com.google.gwt.i18n.I18N"/>
+  <inherits name="com.google.gwt.maps.Maps"/>
+
+  <script src="http://maps.google.com/maps/api/js?sensor=false" />
+
+
+  <!--<script src="http://maps.google.com/maps?gwt=1;file=api;v=30;"></script>-->
   <!-- Specify the app entry point class.                   -->
   <entry-point class='com.businessdirecotory.client.Businessdirecotory'/>
-  <servlet path="/UserImageService" class="com.businessdirecotory.server.comunication.UserImageServiceImpl"/>
 
+  <servlet path="/UserImageService" class="com.businessdirecotory.server.comunication.UserImageServiceImpl"/>
   <!--<servlet path="/businessdirecotory/ActionDispatcherService" class="com.businessdirecotory.server.comunication.ActionDispatcherServiceImpl"/>-->
   <source path="client"/>
+
   <source path="shared"/>
 
 </module>

@@ -4,32 +4,35 @@
 
 .companyDivCell {
     padding: 5px 0px 5px 0px;
-    margin: 5px 0 5px 0;
-    background: #f9f9f9;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #a8a8a8;
-    border-radius: 10px;
+    width: 100%;
+    margin: 15px 0 15px 0;
+    background: #ffffff;
+    border-bottom: solid 1px;
+    border-color: #ebebeb;
+    /*background: url("resources/images/clanak.gif") repeat-x;*/
+    background-position: bottom center;
 }
 
 .companyTable {
-    width: 100%;
+    width: auto;
     text-align: left;
 }
 
 .nameCell {
+    margin: 5px 0 5px 0;
+    padding: 5px 0 5px 0;
     font-size: x-large;
     font-family: sans-serif;
-    font-weight: bold;
+    font-weight: 900;
 }
 
 .companyTable tr td {
-    height: 20px;
-    font-weight: bold;
+    font-family: tahoma, serif;
+    height: 12px;
 }
 
 .companyTable tr {
-    font-weight: bold;
+
 }
 
 

@@ -6,15 +6,13 @@
   <ui:style src="navigationStyle.css"/>
 
   <g:FlowPanel addStyleNames="{style.navigation}">
-    <b:Navbar>
+    <b:Navbar addStyleNames="{style.navigationBar}">
 
       <b:Nav alignment="LEFT">
-
-        <b:NavLink text="За нас" ui:field="aboutUs"/>
-        <b:NavLink text="Вход" ui:field="login" />
+        <b:NavLink text="Начало" ui:field="home"/>
+        <b:NavLink text="Вход" ui:field="login"/>
         <b:NavLink text="Регистрация" ui:field="registration"/>
-
-
+        <b:NavLink text="За нас" ui:field="aboutUs"/>
       </b:Nav>
 
       <b:Nav alignment="RIGHT">
@@ -22,7 +20,6 @@
           <g:Label ui:field="usernameBrand" addStyleNames="{style.brand}"/>
           <b:Button type="DANGER" text="Изход" ui:field="logoutButton"/>
         </g:HorizontalPanel>
-
       </b:Nav>
 
     </b:Navbar>

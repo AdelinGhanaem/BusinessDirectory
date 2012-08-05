@@ -8,35 +8,41 @@ import java.util.Date;
  */
 public class Token implements Serializable {
 
+
   private String user;
 
   private Date expireDate;
 
+  private Long tokenId;
+
+  private Long userId;
+
   public Token() {
   }
 
-  public Token(String user, Date expireDate) {
-    this.user = user;
+
+
+  public Token(Long tokenId, Long userId, String username,Date expireDate) {
+    this.tokenId = tokenId;
+    this.userId = userId;
+    user = username;
     this.expireDate = expireDate;
   }
 
-  public Token(String user) {
-    this.user = user;
+
+  public Date getExpireDate() {
+    return expireDate;
   }
 
   public String getUser() {
     return user;
   }
 
-  public void setUser(String user) {
-    this.user = user;
+  public Long getTokenId() {
+    return tokenId;
   }
 
-  public Date getDate() {
-    return expireDate;
-  }
-
-  public void setExpireDate(Date expireDate) {
-    this.expireDate = expireDate;
+  public Long getUserId() {
+    return userId;
   }
 }

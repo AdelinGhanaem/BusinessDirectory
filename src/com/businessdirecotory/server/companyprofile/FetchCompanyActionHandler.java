@@ -1,6 +1,7 @@
 package com.businessdirecotory.server.companyprofile;
 
-import com.businessdirecotory.server.companyregistration.CompaniesRepository;
+import com.businessdirecotory.server.registration.CompaniesRepository;
+import com.businessdirecotory.server.registration.UserRepository;
 import com.businessdirecotory.shared.entites.Company;
 import com.businessdirecotory.shared.entites.actions.FetchCompanyAction;
 import com.businessdirecotory.shared.entites.reponses.FetchCompanyResponse;
@@ -12,16 +13,23 @@ import com.google.inject.Inject;
  */
 public class FetchCompanyActionHandler implements ActionHandler<FetchCompanyAction, FetchCompanyResponse> {
 
-  private CompaniesRepository repository;
+  private final CompaniesRepository companiesRepository;
+  private final UserRepository userRepository;
 
   @Inject
-  public FetchCompanyActionHandler(CompaniesRepository repository) {
-    this.repository = repository;
+  public FetchCompanyActionHandler(CompaniesRepository companiesRepository, UserRepository userRepository) {
+    this.companiesRepository = companiesRepository;
+    this.userRepository = userRepository;
   }
 
   @Override
   public FetchCompanyResponse handle(FetchCompanyAction action) {
-    Company company = repository.getByEmail(action.getCompanyEmail());
+    Company company = null;
+    Long userId = action.getId();
+    company = companiesRepository.getByUserId(userId);
+    if (company == null) {
+      company = companiesRepository.getById(action.getId());
+    }
     return new FetchCompanyResponse(company);
   }
 }

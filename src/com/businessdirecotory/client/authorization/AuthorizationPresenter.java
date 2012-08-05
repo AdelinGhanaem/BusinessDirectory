@@ -3,13 +3,11 @@ package com.businessdirecotory.client.authorization;
 import com.businessdirecotory.client.authorization.view.AuthorizationView;
 import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
 import com.businessdirecotory.client.comunication.GotResponse;
+import com.businessdirecotory.shared.entites.User;
 import com.businessdirecotory.shared.entites.actions.AuthorizationAction;
-import com.businessdirecotory.shared.entites.actions.LogoutAction;
 import com.businessdirecotory.shared.entites.reponses.AuthorizationResponse;
-import com.businessdirecotory.shared.entites.reponses.LogoutResponse;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.event.shared.HasHandlers;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
@@ -30,7 +28,8 @@ public class AuthorizationPresenter extends AbstractActivity {
     this.view = view;
   }
 
-  public void authorize(Account account) {
+  public void authorize(User account) {
+    view.disableRegistrationButton();
     service.dispatch(new AuthorizationAction(account), new GotResponse<AuthorizationResponse>() {
       @Override
       public void gotResponse(AuthorizationResponse result) {
@@ -49,7 +48,6 @@ public class AuthorizationPresenter extends AbstractActivity {
     view.setPresenter(this);
     view.show();
   }
-
 
 
 }

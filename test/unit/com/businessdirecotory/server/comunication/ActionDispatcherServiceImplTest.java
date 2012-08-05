@@ -25,10 +25,8 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Matchers.isA;
-import static org.mockito.Matchers.notNull;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -141,7 +139,7 @@ public class ActionDispatcherServiceImplTest {
   @Test
   public void returnsSecurityResponseWithNullValueWhenTokenIsNotAuthorized() {
 
-    Token token = new Token("user");
+    Token token = new Token(2l, 4l, "username", new Date());
 
     Action action = new Action() {
     };
@@ -168,7 +166,7 @@ public class ActionDispatcherServiceImplTest {
   public void handlesSecuredActionWhenActionIsAuthorized() {
     TestAction action = new TestAction();
 
-    Token token = new Token("user");
+    Token token = new Token(2l, 3l, "username", new Date());
 
     SecuredAction<SecuredResponse<TestResponse>> securedAction =
             new SecuredAction<SecuredResponse<TestResponse>>(action, token);

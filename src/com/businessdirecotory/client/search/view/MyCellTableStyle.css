@@ -1,0 +1,23 @@
+.cellListEvenItem {
+    border: 1px solid;
+    zoom: 1;
+}
+
+.cellListOddItem {
+    border: 1px solid;
+
+}
+
+.cellListKeyboardSelectedItem {
+    border: 1px solid;
+    background: #ffffff;
+}
+
+.cellListSelectedItem {
+    border: 1px solid;
+    background-color: #e4e4e4;
+    color: white;
+    height: auto;
+    overflow-y: visible;
+    overflow-x: hidden;
+}

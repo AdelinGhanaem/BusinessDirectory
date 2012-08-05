@@ -1,8 +1,9 @@
-/* Sonia Template */
+
 
 body {
-    margin: 0 auto;
-    padding: 0;
+    overflow-x: hidden;
+    padding: 0px;
+    margin: 0px;
     font: 9pt Arial, Verdana, Sans-Serif;
     background: #fff;
 }
@@ -30,23 +31,22 @@ h3 {
     width: 100%;
     vertical-align: middle;
     margin: 0 auto;
-    /*padding: 5px 10px 10px 10px;*/
+}
 
+#body {
+    padding: 0;
 }
 
 #sadrzaj {
-    padding-top: 9px;
+    /*padding-top: 9px;*/
     color: #303030;
-    width: 80%;
+    width: 100%;
     margin: auto;
     vertical-align: middle;
-    padding-left: 2px;
-
 }
 
 #toplinks {
     background: #303030;
-
     text-align: center;
 }
 
@@ -68,8 +68,8 @@ h3 {
 #header {
     clear: both;
     margin: 0px 0 5px 0;
-    height: 230px;
-    background: url(../images/header.png) repeat-x;
+    height: 150px;
+    background: url(../images/header.png) left no-repeat;
 }
 
 #title {
@@ -197,7 +197,7 @@ h3 {
     width: 100%;
     line-height: 1.4em;
     float: right;
-    background: url(../images/clanak.gif) repeat-x bottom left;
+    /*background: url(../images/clanak.gif) repeat-x bottom left;*/
 }
 
 #mainContainer h2 {

@@ -1,15 +1,63 @@
 .searchResultContainer {
     width: 100%;
-    border: 2px red;
-
+    /*border: 2px red;*/
     padding: 2px;
     margin: 2px;
 
 }
 
 .searchMainContainer {
+    background: #ffffff;
     text-align: center;
     margin: auto;
+    width: 80%;
     vertical-align: middle;
+    border: solid #dddddd 1px;
+    padding: 10px;
+    border-radius: 5px;
 
 }
+
+.loadingImage {
+    position: absolute;
+    right: 50%;
+    top: 50%;
+
+}
+
+.background {
+    /*background: #ededed;*/
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+.pagerContainer {
+    text-align: center;
+    margin: auto;
+    width: 100%;
+}
+
+.pager {
+    widows: 100%;
+    text-align: center;
+    margin: auto;
+
+}
+
+.searchButton {
+    margin-bottom: 9px;
+    /*padding-bottom: 5px;*/
+    /*width: 100px;*/
+    /*border: 3px solid red;*/
+
+}
+
+.searchBar {
+    /*border: 3px solid red;*/
+    margin: 0px;
+    padding: 0px;
+}
+
+
+

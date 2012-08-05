@@ -16,4 +16,8 @@ public interface UserRegistrationView {
   void show();
 
   void notifyOfAccountCreated();
+
+  void disableRegistrationButton();
+
+  void enableRegistrationButton();
 }

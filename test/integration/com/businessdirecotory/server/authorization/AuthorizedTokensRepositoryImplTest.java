@@ -18,7 +18,6 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
@@ -41,7 +40,8 @@ public class AuthorizedTokensRepositoryImplTest extends AppEngineTestCase {
   @Test
   public void addTokenToRepository() {
     String user = "user";
-    Token token = new Token(user);
+    Token token = new Token(2l, 4l, "user", new Date());
+
     Calendar calendar = Calendar.getInstance();
     calendar.add(Calendar.DAY_OF_MONTH, 3);
     Date expireDate = calendar.getTime();
@@ -76,7 +76,7 @@ public class AuthorizedTokensRepositoryImplTest extends AppEngineTestCase {
 
   @Test
   public void deletesTokenFromRepository() {
-    Token token = new Token("user");
+    Token token = new Token(2l, 5l, "user", new Date());
     repository.add(token, new Date());
     repository.delete(token);
     Query query = new Query("Token");
@@ -88,13 +88,16 @@ public class AuthorizedTokensRepositoryImplTest extends AppEngineTestCase {
 
   @Test
   public void returnsTrueWhenTokenIsAvailableAndNotExpired() {
-    Token token = new Token();
+    Token token = new Token(1l, 5l, "username", new Date());
     Calendar calendar = Calendar.getInstance();
     Date currentDate = calendar.getTime();
     calendar.add(Calendar.DAY_OF_MONTH, 3);
     Date expiredDate = calendar.getTime();
+
     repository.add(token, expiredDate);
+
     Boolean isAuthorized = repository.isAuthorized(token, currentDate);
+
     assertThat(isAuthorized, is(true));
 
   }
@@ -120,15 +123,15 @@ public class AuthorizedTokensRepositoryImplTest extends AppEngineTestCase {
 
   @Test
   public void tokenIsAlteredWhenTokenWithSameUsernameExists() {
-    Token token = new Token("username");
+    Token token = new Token(2l, 4l, "username", new Date());
     Date date = new Date();
+    Token newToken = new Token(3l, 5l, "username", date);
     repository.add(token, date);
-    repository.add(new Token("username"), date);
-    Boolean isAuthorized = repository.isAuthorized(token, date);
+    repository.add(newToken, date);
+    Boolean isAuthorized = repository.isAuthorized(newToken, date);
     assertThat(isAuthorized, is(equalTo(true)));
+
   }
-
-
 
 
 }

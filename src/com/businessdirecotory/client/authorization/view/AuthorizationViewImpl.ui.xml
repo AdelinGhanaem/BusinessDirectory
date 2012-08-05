@@ -2,15 +2,23 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'>
 
+  <ui:with field="res" type="com.businessdirecotory.client.resources.ImagesResource"/>
+  <ui:style>
+    .footer {
+      /*width: 100%;*/
+    }
+
+  </ui:style>
   <b:Modal title="Вход" ui:field="loginModal" animation="true">
     <g:VerticalPanel>
       <b:TextBox ui:field="username" placeholder="e-mail"/>
-      <b:PasswordTextBox ui:field="password" placeholder="паропла" />
-      <b:Label ui:field="messagesLabel" text="" />
+      <b:PasswordTextBox ui:field="password" placeholder="паропла"/>
+      <b:Label ui:field="messagesLabel" text=""/>
 
     </g:VerticalPanel>
 
-    <b:ModalFooter>
+    <b:ModalFooter addStyleNames="{style.footer}">
+      <g:Image resource="{res.buttonLoading}" ui:field="loadingButton" visible="false"/>
       <b:Button text="Вход" ui:field="login" type="SUCCESS"/>
     </b:ModalFooter>
 

@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.util.Date;
+
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
@@ -34,7 +36,7 @@ public class LogoutActionHandlerTest {
   public void deleteTokenFromTokenRepositoryAndReturnsResponse() {
     String user = "user";
 
-    Token token = new Token(user);
+    Token token = new Token(2l, 4l, "user", new Date());
 
     LogoutResponse response = handler.handle(new LogoutAction(token));
 

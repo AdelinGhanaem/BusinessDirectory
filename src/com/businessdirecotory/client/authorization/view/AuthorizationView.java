@@ -14,4 +14,6 @@ public interface AuthorizationView {
   void setPresenter(AuthorizationPresenter authorizationPresenter);
 
   void show();
+
+  void disableRegistrationButton();
 }

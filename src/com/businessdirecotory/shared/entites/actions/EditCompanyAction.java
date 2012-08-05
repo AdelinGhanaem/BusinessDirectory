@@ -10,14 +10,23 @@ import com.evo.gad.shared.Action;
 public class EditCompanyAction implements Action<EditCompanyResponse> {
 
 
+  private Long userId;
+
   private Company company;
 
-  public EditCompanyAction(Company company) {
+  public EditCompanyAction(Long userId, Company company) {
+    this.userId = userId;
 
     this.company = company;
   }
 
+
+
   public EditCompanyAction() {
+  }
+
+  public Long getUserId() {
+    return userId;
   }
 
   public Company getCompany() {

@@ -32,15 +32,22 @@ public class ApplicationActivityMapperTest {
 
   private class TestPlace extends Place {
   }
-  private ApplicationActivityMapper mapper ;
+
+  private ApplicationActivityMapper mapper;
 
   @Before
   public void setUp() throws Exception {
-    HashMap<Class<? extends Place>, Activity> placesActivitiesMap = new HashMap<Class<? extends Place>, Activity>();
-    placesActivitiesMap.put(TestPlace.class, new TestActivity());
-                                            mapper= new ApplicationActivityMapper(placesActivitiesMap);
-  }
+    HashMap<Class<? extends Place>, ActivityPlaceMeta> placesActivitiesMap = new HashMap<Class<? extends Place>, ActivityPlaceMeta>();
 
+    placesActivitiesMap.put(TestPlace.class, new ActivityPlaceMeta() {
+      @Override
+      public Activity getActivity(Place place) {
+        return new TestActivity();
+      }
+    });
+
+    mapper = new ApplicationActivityMapper(placesActivitiesMap);
+  }
 
 
   @Test
@@ -48,6 +55,15 @@ public class ApplicationActivityMapperTest {
     Activity testActivity = mapper.getActivity(new TestPlace());
     assertThat(testActivity, is(notNullValue()));
     assertEquals(testActivity.getClass(), TestActivity.class);
+  }
+
+
+  @Test
+  public void returnsPageNotFoundActivityIfPlaceIsNotFound() {
+
+    Activity placeNotFoundActivity = mapper.getActivity(new Place() {
+    });
+    assertEquals(placeNotFoundActivity.getClass(), PlaceNotFoundActivity.class);
   }
 
 

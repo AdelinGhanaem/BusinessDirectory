@@ -10,12 +10,20 @@ public class FetchCompanyAction implements Action<FetchCompanyResponse> {
 
   private String companyEmail;
 
-  public FetchCompanyAction(String companyEmail) {
-    this.companyEmail = companyEmail;
+  private Long ownerId;
+
+  public FetchCompanyAction(Long ownerId) {
+    this.ownerId = ownerId;
+  }
+
+  public Long getId() {
+    return ownerId;
   }
 
   public FetchCompanyAction() {
   }
+
+
 
   public String getCompanyEmail() {
     return companyEmail;

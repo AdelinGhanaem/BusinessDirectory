@@ -12,17 +12,27 @@ import java.util.HashMap;
  */
 public class ApplicationActivityMapper implements ActivityMapper {
 
-  private HashMap<Class<? extends Place>, Activity> placesActivitiesMap;
+  private HashMap<Class<? extends Place>, ActivityPlaceMeta> placesActivitiesMap;
 
   @Inject
-  public ApplicationActivityMapper(HashMap<Class<? extends Place>, Activity> placesActivitiesMap) {
+  public ApplicationActivityMapper(HashMap<Class<? extends Place>, ActivityPlaceMeta> placesActivitiesMap) {
     this.placesActivitiesMap = placesActivitiesMap;
+    this.placesActivitiesMap.put(PlaceNotFoundPlace.class, new ActivityPlaceMeta() {
+      @Override
+      public Activity getActivity(Place place) {
+        return new PlaceNotFoundActivity();
+      }
+    });
   }
 
   @Override
   public Activity getActivity(Place place) {
-    Activity returnedActivity = placesActivitiesMap.get(place.getClass());
-    return returnedActivity;
+
+    ActivityPlaceMeta returnedActivity = placesActivitiesMap.get(place.getClass());
+    if (returnedActivity == null) {
+      return placesActivitiesMap.get(PlaceNotFoundPlace.class).getActivity(new PlaceNotFoundPlace());
+    }
+    return returnedActivity.getActivity(place);
   }
 
 }

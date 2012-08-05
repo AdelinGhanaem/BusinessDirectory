@@ -9,7 +9,6 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
 import com.google.inject.Inject;
 
-import javax.security.auth.kerberos.KerberosTicket;
 import java.util.Date;
 
 /**
@@ -36,6 +35,8 @@ public class AuthorizedTokensRepositoryImpl implements AuthorizedTokensRepositor
       try {
         Entity returnedEntity = service.get(key);
         returnedEntity.setProperty("expireDate", expireDate);
+        returnedEntity.setProperty("id", token.getTokenId());
+
         service.put(returnedEntity);
       } catch (EntityNotFoundException e) {
         e.printStackTrace();
@@ -44,6 +45,7 @@ public class AuthorizedTokensRepositoryImpl implements AuthorizedTokensRepositor
       Entity newEntity = new Entity("Token");
       newEntity.setProperty("expireDate", expireDate);
       newEntity.setProperty("username", token.getUser());
+      newEntity.setProperty("id", token.getTokenId());
       service.put(newEntity);
     }
 
@@ -61,7 +63,9 @@ public class AuthorizedTokensRepositoryImpl implements AuthorizedTokensRepositor
   public boolean isAuthorized(Token token, Date currentDate) {
 
     Query query = new Query("Token");
-    query.setFilter(new Query.FilterPredicate("username", Query.FilterOperator.EQUAL, token.getUser()));
+    query.setFilter(Query.CompositeFilterOperator.and(
+            new Query.FilterPredicate("username", Query.FilterOperator.EQUAL, token.getUser()),
+            new Query.FilterPredicate("id", Query.FilterOperator.EQUAL, token.getTokenId())));
     Entity tokenEntity = service.prepare(query).asSingleEntity();
     if (tokenEntity == null) {
       return false;

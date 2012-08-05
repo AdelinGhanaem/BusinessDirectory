@@ -1,6 +1,7 @@
 package com.businessdirecotory.server.companyprofile;
 
-import com.businessdirecotory.server.companyregistration.CompaniesRepository;
+import com.businessdirecotory.server.registration.CompaniesRepository;
+import com.businessdirecotory.server.registration.UserRepository;
 import com.businessdirecotory.shared.entites.Company;
 import com.businessdirecotory.shared.entites.actions.CompanyBuilder;
 import com.businessdirecotory.shared.entites.actions.FetchCompanyAction;
@@ -13,6 +14,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -24,7 +26,10 @@ public class FetchCompanyActionHandlerTest {
 
 
   @Mock
-  private CompaniesRepository repository;
+  private CompaniesRepository companiesRepository;
+
+  @Mock
+  private UserRepository userRepository;
 
   private FetchCompanyActionHandler handler;
 
@@ -33,7 +38,7 @@ public class FetchCompanyActionHandlerTest {
 
     initMocks(this);
 
-    handler = new FetchCompanyActionHandler(repository);
+    handler = new FetchCompanyActionHandler(companiesRepository, userRepository);
 
   }
 
@@ -41,15 +46,19 @@ public class FetchCompanyActionHandlerTest {
   @Test
   public void returnsResponseContainsCompany() {
 
-    String email = "email";
+    Long userId = 1l;
+
+    Long companyId = 2l;
 
     Company company = new CompanyBuilder().build();
 
-    when(repository.getByEmail(email)).thenReturn(company);
+    when(companiesRepository.getByUserId(userId)).thenReturn(company);
 
-    FetchCompanyResponse response = handler.handle(new FetchCompanyAction(email));
+    FetchCompanyResponse response = handler.handle(new FetchCompanyAction(userId));
 
-    verify(repository).getByEmail(email);
+    verify(companiesRepository).getByUserId(userId);
+
+    verify(companiesRepository, never()).getById(userId);
 
     assertThat(response, is(notNullValue()));
 
@@ -58,16 +67,41 @@ public class FetchCompanyActionHandlerTest {
   }
 
   @Test
-  public void returnsResponseWithNullCompanyWhenCompanyIsNotAvailable() {
-    String email = "email";
+  public void fetchCompanyByIdIfCompanyByUserIdIsNotAvailable() {
 
-    FetchCompanyResponse response = handler.handle(new FetchCompanyAction(email));
+    Long userId = 2l;
 
-    verify(repository).getByEmail(email);
+    when(companiesRepository.getByUserId(userId)).thenReturn(null);
+
+    when(companiesRepository.getById(userId)).thenReturn(new Company());
+
+    FetchCompanyResponse response = handler.handle(new FetchCompanyAction(userId));
+
+    verify(companiesRepository).getById(userId);
+
+    assertThat(response, is(notNullValue()));
+
+    assertThat(response.getCompany(), is(notNullValue()));
+
+  }
+
+  @Test
+  public void returnsNullIfCompanyIsNotFoundByIdOrByUserId() {
+
+    Long id = 1l;
+
+    when(userRepository.getById(id)).thenReturn(null);
+
+    when(companiesRepository.getById(id)).thenReturn(null);
+
+    FetchCompanyResponse response = handler.handle(new FetchCompanyAction(id));
+
+    verify(companiesRepository).getById(id);
 
     assertThat(response, is(notNullValue()));
 
     assertThat(response.getCompany(), is(nullValue()));
+
   }
 
 }

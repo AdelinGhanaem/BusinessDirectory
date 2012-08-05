@@ -13,7 +13,8 @@
     .container {
       border: 1px solid black;
       width: 100%;
-      /*background: red;*/
+      text-align: center;
+
     }
 
     .button {
@@ -22,8 +23,9 @@
     }
 
     .title {
+      font-style: tahoma;
       color: black;
-      font-size: 20px;
+      font-size: 18px;
       font-stretch: bold;
     }
 
@@ -38,10 +40,16 @@
   <g:HTMLPanel addStyleNames="{style.container}">
 
     <g:HTMLPanel addStyleNames="{style.titleContainer}">
+
       <g:Label text="Моят профил" addStyleNames="{style.title}"/>
+
     </g:HTMLPanel>
 
-    <b:TabPanel tabPosition="left" ui:field="tabPanel" addStyleNames="{style.tabPanel}">
+    <g:Image ui:field="logo" visible="false" />
+
+    <b:Button ui:field="createProfile" visible="false" text="Създай Фирмен Профил" type="SUCCESS"/>
+
+    <b:TabPanel tabPosition="left" ui:field="tabPanel" addStyleNames="{style.tabPanel}" visible="false">
 
       <b:TabPane heading="Основна информация" active="true">
         <!--<b:Tab heading="Основна информация" active="true">-->
@@ -67,7 +75,11 @@
         <g:FormPanel ui:field="uploadFormPanel">
           <g:VerticalPanel>
             <b:FileUpload ui:field="fileUpload" name="logoImage"/>
+
+            <b:TextBox ui:field="userId" visible="false" name="userId"/>
+            <b:TextBox ui:field="tokenId" visible="false" name="tokenId"/>
             <b:TextBox ui:field="username" visible="false" name="username"/>
+
             <b:Button type="SUCCESS" ui:field="submit" text="submit"/>
           </g:VerticalPanel>
         </g:FormPanel>
