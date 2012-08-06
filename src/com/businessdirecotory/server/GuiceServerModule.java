@@ -64,7 +64,7 @@ public class GuiceServerModule extends GuiceServletContextListener {
         metadatas.add(new ActionHandlerMetadata(FetchURLAction.class, FetchURLActionHandler.class));
         metadatas.add(new ActionHandlerMetadata(EditCompanyAction.class, EditCompanyActionHandler.class));
         metadatas.add(new ActionHandlerMetadata(FetchLogoAction.class, FetchLogoActionHandler.class));
-
+        metadatas.add(new ActionHandlerMetadata(CheckAuthorizationAction.class, CheckAuthorizationResponseActionHandler.class));
         return metadatas;
       }
 

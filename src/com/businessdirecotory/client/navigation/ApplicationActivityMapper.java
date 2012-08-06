@@ -1,5 +1,9 @@
 package com.businessdirecotory.client.navigation;
 
+import com.businessdirecotory.client.authorization.SecurityTokenProvider;
+import com.businessdirecotory.client.authorization.Token;
+import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
+import com.businessdirecotory.client.navigation.places.SearchPlace;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
@@ -12,11 +16,20 @@ import java.util.HashMap;
  */
 public class ApplicationActivityMapper implements ActivityMapper {
 
+  private ActionDispatcherServiceAsync service;
+
+  private SecurityTokenProvider provider;
   private HashMap<Class<? extends Place>, ActivityPlaceMeta> placesActivitiesMap;
 
   @Inject
-  public ApplicationActivityMapper(HashMap<Class<? extends Place>, ActivityPlaceMeta> placesActivitiesMap) {
+  public ApplicationActivityMapper(ActionDispatcherServiceAsync service, SecurityTokenProvider provider, HashMap<Class<? extends Place>, ActivityPlaceMeta> placesActivitiesMap) {
+
+    this.service = service;
+
+    this.provider = provider;
+
     this.placesActivitiesMap = placesActivitiesMap;
+
     this.placesActivitiesMap.put(PlaceNotFoundPlace.class, new ActivityPlaceMeta() {
       @Override
       public Activity getActivity(Place place) {
@@ -28,11 +41,28 @@ public class ApplicationActivityMapper implements ActivityMapper {
   @Override
   public Activity getActivity(Place place) {
 
+    if (place instanceof SecuredPlace) {
+      Token token = provider.getToken();
+      if (token == null) {
+        return placesActivitiesMap.get(SearchPlace.class).getActivity(new SearchPlace());
+      }
+//      Token token = provider.getToken();
+//      service.dispatch(new CheckAuthorizationAction(token), new GotResponse<CheckAuthorizationResponse>() {
+//        @Override
+//        public void gotResponse(CheckAuthorizationResponse result) {
+//          if (result.isAuthorized()) {
+//            //here comes tht problem .... !!!
+//            //how to return the place ???
+//          }
+//        }
+//      });
+    }
+
     ActivityPlaceMeta returnedActivity = placesActivitiesMap.get(place.getClass());
+
     if (returnedActivity == null) {
       return placesActivitiesMap.get(PlaceNotFoundPlace.class).getActivity(new PlaceNotFoundPlace());
     }
     return returnedActivity.getActivity(place);
   }
-
 }

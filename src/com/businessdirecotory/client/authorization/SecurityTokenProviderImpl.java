@@ -24,7 +24,6 @@ public class SecurityTokenProviderImpl implements SecurityTokenProvider {
     String userIdString = Cookies.getCookie("userId");
     Long tokenId = new Long(tokenIdString);
     Long userId = new Long(userIdString);
-
     //TODO:try to find some better way to accomplish this ... !
     Date date = new Date();
 
