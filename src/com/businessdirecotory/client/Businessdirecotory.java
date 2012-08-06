@@ -4,6 +4,7 @@ import com.businessdirecotory.client.authorization.SecurityTokenProvider;
 import com.businessdirecotory.client.authorization.Token;
 import com.businessdirecotory.client.authorization.UserAuthorizedEvent;
 import com.businessdirecotory.client.authorization.UserAuthorizedEventHandlerImpl;
+import com.businessdirecotory.client.comunication.ActionDispatcherService;
 import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
 import com.businessdirecotory.client.comunication.GotResponse;
 import com.businessdirecotory.client.navigation.ApplicationPlaceHistoryMapper;
@@ -33,7 +34,9 @@ public class Businessdirecotory implements EntryPoint {
   public void onModuleLoad() {
 
     GinInjector injector = GWT.create(GinInjector.class);
-    ActionDispatcherServiceAsync service = GWT.create(ActionDispatcherServiceAsync.class);
+
+    ActionDispatcherServiceAsync service = GWT.create(ActionDispatcherService.class);
+
     final SecurityTokenProvider provider = injector.tokenProvider();
 
     EventBus eventBus = injector.eventBus();
@@ -54,7 +57,8 @@ public class Businessdirecotory implements EntryPoint {
     NavigationBarPresenter navigationBarPresenter = injector.navigationBarPresenter();
 
     navigationBar.setPresenter(navigationBarPresenter);
-
+    navigationBar.showStandardMenu();
+    RootPanel.get("navigation").add(navigationBar);
 
     service.dispatch(new CheckAuthorizationAction(provider.getToken()), new GotResponse<CheckAuthorizationResponse>() {
       @Override
@@ -65,8 +69,12 @@ public class Businessdirecotory implements EntryPoint {
           navigationBar.setUsernameBrand(token.getUser());
           navigationBar.hideLoginMenuItem();
           navigationBar.showAuthorizedMenuBar();
+
+        } else {
+          navigationBar.showStandardMenu();
+          RootPanel.get("navigation").add(navigationBar);
         }
-        RootPanel.get("navigation").add(navigationBar);
+
       }
     });
 
