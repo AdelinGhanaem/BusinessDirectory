@@ -16,6 +16,9 @@ public class CheckAuthorizationAction implements Action<CheckAuthorizationRespon
     this.token = token;
   }
 
+  public CheckAuthorizationAction() {
+  }
+
   public Token getToken() {
     return token;
   }

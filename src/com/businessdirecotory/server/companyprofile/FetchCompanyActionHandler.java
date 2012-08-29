@@ -14,12 +14,10 @@ import com.google.inject.Inject;
 public class FetchCompanyActionHandler implements ActionHandler<FetchCompanyAction, FetchCompanyResponse> {
 
   private final CompaniesRepository companiesRepository;
-  private final UserRepository userRepository;
 
   @Inject
   public FetchCompanyActionHandler(CompaniesRepository companiesRepository, UserRepository userRepository) {
     this.companiesRepository = companiesRepository;
-    this.userRepository = userRepository;
   }
 
   @Override

@@ -11,8 +11,11 @@
     }
 
     .container {
-      border: 1px solid black;
-      width: 100%;
+      border: 1px solid #cccccc;
+      width: 90%;
+      border-radius: 10px;
+      margin: auto;
+      padding: 10px;
       text-align: center;
 
     }
@@ -37,75 +40,77 @@
   </ui:style>
 
   <ui:with field="img" type="com.businessdirecotory.client.resources.ImagesResource"/>
-  <g:HTMLPanel addStyleNames="{style.container}">
+  <g:HTMLPanel>
 
-    <g:HTMLPanel addStyleNames="{style.titleContainer}">
+    <g:HTMLPanel addStyleNames="{style.container}">
+      <g:HTMLPanel addStyleNames="{style.titleContainer}">
 
-      <g:Label text="Моят профил" addStyleNames="{style.title}"/>
+        <g:Label text="Моят профил" addStyleNames="{style.title}"/>
 
+      </g:HTMLPanel>
+
+      <g:Image ui:field="logo" visible="false"/>
+
+      <b:Button ui:field="createProfile" visible="false" text="Създай Фирмен Профил" type="SUCCESS"/>
+
+      <b:TabPanel tabPosition="left" ui:field="tabPanel" addStyleNames="{style.tabPanel}" visible="false">
+
+        <b:TabPane heading="Основна информация" active="true">
+          <!--<b:Tab heading="Основна информация" active="true">-->
+          <!--<b:customTab>-->
+          <!--<g:Image resource="{res.contactFace}"/>-->
+          <!--</b:customTab>-->
+          <edito:CompanyEditor ui:field="editor"/>
+          <g:HTMLPanel addStyleNames="{style.button}">
+            <g:Image resource="{res.loadingImage}" ui:field="loadingImage" visible="false"/>
+            <b:Button ui:field="edit" text="запази" type="SUCCESS"/>
+          </g:HTMLPanel>
+
+          <!--</b:Tab>-->
+        </b:TabPane>
+
+        <b:Tab heading="Лого" ui:field="logoTab">
+          <!--<b:Tab heading="Лого" active="true">-->
+          <!--<b:customTab>-->
+          <!--<g:Image resource="{res.contactFace}"/>-->
+          <!--&lt;!&ndash;</b:customTab>&ndash;&gt;
+          encoding="multipart/form-data"-->
+
+          <g:FormPanel ui:field="uploadFormPanel">
+            <g:VerticalPanel>
+              <b:FileUpload ui:field="fileUpload" name="logoImage"/>
+              <b:TextBox ui:field="userId" visible="false" name="userId"/>
+              <b:TextBox ui:field="tokenId" visible="false" name="tokenId"/>
+              <b:TextBox ui:field="username" visible="false" name="username"/>
+
+              <b:Button type="SUCCESS" ui:field="submit" text="submit" enabled="false"/>
+
+            </g:VerticalPanel>
+          </g:FormPanel>
+
+
+          <!--</b:Tab>-->
+        </b:Tab>
+
+
+        <!--<b:TabPane heading="Лого">-->
+        <!--<g:TabBar>-->
+
+        <!--</g:TabBar>-->
+        <!--</b:TabPane>-->
+        <!--<b:TabLink ui:field="lazyLoadTab">-->
+        <!--&lt;!&ndash;<g:Image addStyleNames="{style.icon}" resource="{res.logo}"/>&ndash;&gt;-->
+        <!--<g:HTMLPanel tag="span"><b:Strong>Custom tab</b:Strong>?-->
+        <!--</g:HTMLPanel>-->
+        <!--</b:TabLink>-->
+        <!--<b:TabLink text="manually" icon="GITHUB" dataTarget="testTab" createTabPane="false">-->
+        <!--&lt;!&ndash;<g:Image addStyleNames="{style.icon}" resource="{res.logo}"/>&ndash;&gt;-->
+        <!--</b:TabLink>-->
+        <!--<b:TabPane href="testTab" createTabLink="false">-->
+        <!--<g:Label>Huhu</g:Label>-->
+        <!--</b:TabPane>-->
+      </b:TabPanel>
     </g:HTMLPanel>
-
-    <g:Image ui:field="logo" visible="false" />
-
-    <b:Button ui:field="createProfile" visible="false" text="Създай Фирмен Профил" type="SUCCESS"/>
-
-    <b:TabPanel tabPosition="left" ui:field="tabPanel" addStyleNames="{style.tabPanel}" visible="false">
-
-      <b:TabPane heading="Основна информация" active="true">
-        <!--<b:Tab heading="Основна информация" active="true">-->
-        <!--<b:customTab>-->
-        <!--<g:Image resource="{res.contactFace}"/>-->
-        <!--</b:customTab>-->
-        <edito:CompanyEditor ui:field="editor"/>
-        <g:HTMLPanel addStyleNames="{style.button}">
-          <g:Image resource="{res.loadingImage}" ui:field="loadingImage" visible="false"/>
-          <b:Button ui:field="edit" text="запази" type="SUCCESS"/>
-        </g:HTMLPanel>
-
-        <!--</b:Tab>-->
-      </b:TabPane>
-
-      <b:Tab heading="Лого" ui:field="logoTab">
-        <!--<b:Tab heading="Лого" active="true">-->
-        <!--<b:customTab>-->
-        <!--<g:Image resource="{res.contactFace}"/>-->
-        <!--&lt;!&ndash;</b:customTab>&ndash;&gt;
-                     encoding="multipart/form-data"-->
-
-        <g:FormPanel ui:field="uploadFormPanel">
-          <g:VerticalPanel>
-            <b:FileUpload ui:field="fileUpload" name="logoImage"/>
-
-            <b:TextBox ui:field="userId" visible="false" name="userId"/>
-            <b:TextBox ui:field="tokenId" visible="false" name="tokenId"/>
-            <b:TextBox ui:field="username" visible="false" name="username"/>
-
-            <b:Button type="SUCCESS" ui:field="submit" text="submit"/>
-          </g:VerticalPanel>
-        </g:FormPanel>
-
-
-        <!--</b:Tab>-->
-      </b:Tab>
-
-
-      <!--<b:TabPane heading="Лого">-->
-      <!--<g:TabBar>-->
-
-      <!--</g:TabBar>-->
-      <!--</b:TabPane>-->
-      <!--<b:TabLink ui:field="lazyLoadTab">-->
-      <!--&lt;!&ndash;<g:Image addStyleNames="{style.icon}" resource="{res.logo}"/>&ndash;&gt;-->
-      <!--<g:HTMLPanel tag="span"><b:Strong>Custom tab</b:Strong>?-->
-      <!--</g:HTMLPanel>-->
-      <!--</b:TabLink>-->
-      <!--<b:TabLink text="manually" icon="GITHUB" dataTarget="testTab" createTabPane="false">-->
-      <!--&lt;!&ndash;<g:Image addStyleNames="{style.icon}" resource="{res.logo}"/>&ndash;&gt;-->
-      <!--</b:TabLink>-->
-      <!--<b:TabPane href="testTab" createTabLink="false">-->
-      <!--<g:Label>Huhu</g:Label>-->
-      <!--</b:TabPane>-->
-    </b:TabPanel>
 
 
   </g:HTMLPanel>

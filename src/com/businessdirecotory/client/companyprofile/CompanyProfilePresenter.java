@@ -78,7 +78,6 @@ public class CompanyProfilePresenter extends AbstractActivity {
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
     view.setPresenter(this);
     fetchCompanyProfile();
-//    fetchImage();
     panel.setWidget(view);
   }
 
@@ -102,7 +101,7 @@ public class CompanyProfilePresenter extends AbstractActivity {
     service.dispatch(action, new GotResponse<SecuredResponse<FetchLogoResponse>>() {
       @Override
       public void gotResponse(SecuredResponse<FetchLogoResponse> result) {
-        view.updateImageURL(result.getResponse().getImageURL());
+        view.setURL(result.getResponse().getImageURL());
       }
     });
 

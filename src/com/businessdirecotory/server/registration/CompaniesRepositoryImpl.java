@@ -71,7 +71,7 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
 
 
   @Override
-  public List<Company> getByKeyWord(String keyword) {
+  public List<Company> getByKeyWord(String search) {
 
     Query query = new Query(CompanyEntity.KIND);
 
@@ -80,7 +80,7 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
 
     List<Company> companies = new ArrayList<Company>();
 
-    List<String> words = getTextWords(keyword);
+      List<String> words = getTextWords(search);
     if (words.size() <= 1) {
       query.setFilter(new Query.FilterPredicate(CompanyEntity.INDEX, Query.FilterOperator.EQUAL, words.get(0)));
     } else {

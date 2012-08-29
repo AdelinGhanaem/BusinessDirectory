@@ -57,7 +57,9 @@ public class Businessdirecotory implements EntryPoint {
     NavigationBarPresenter navigationBarPresenter = injector.navigationBarPresenter();
 
     navigationBar.setPresenter(navigationBarPresenter);
+
     navigationBar.showStandardMenu();
+
     RootPanel.get("navigation").add(navigationBar);
 
     service.dispatch(new CheckAuthorizationAction(provider.getToken()), new GotResponse<CheckAuthorizationResponse>() {

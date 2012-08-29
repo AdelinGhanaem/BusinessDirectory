@@ -8,16 +8,23 @@
 
   <g:HTMLPanel>
 
-    <b:TextBox ui:field="searchTexBox" searchQuery="true" width="500px" placeholder="какво търсите ?" addStyleNames="{style.searchBar}" />
+    <b:TextBox ui:field="searchTexBox" searchQuery="true" width="500px" placeholder="какво търсите ?"
+               addStyleNames="{style.searchBar}"/>
 
-    <b:Button ui:field="search" type="SUCCESS" text="Търси" width="130px" addStyleNames="{style.searchButton}"  />
+    <b:Button ui:field="search" type="SUCCESS" text="Търси" width="130px" addStyleNames="{style.searchButton}"/>
 
 
     <g:HTMLPanel>
       <g:Image ui:field="loadingImage" addStyleNames="{style.loadingImage}" resource="{res.loadingImage}"/>
     </g:HTMLPanel>
+    <g:HTMLPanel addStyleNames="{style.noResults}" ui:field="noResultsPanel" visible="false">
+      <g:Image resource="{res.alert}"/>
+      <g:HTMLPanel>
+        <p>Съжаляваме, но няма намерени резултати</p>
+      </g:HTMLPanel>
+    </g:HTMLPanel>
+    <g:HTMLPanel addStyleNames="{style.searchResultContainer}" ui:field="searchResult" visible="false">
 
-    <div class="{style.searchResultContainer}">
       <g:HTMLPanel addStyleNames="{style.background}">
         <g:HTMLPanel addStyleNames="{style.searchMainContainer}">
 
@@ -28,11 +35,11 @@
           </g:ScrollPanel>
 
           <g:HTMLPanel addStyleNames="{style.pagerContainer}">
-            <c:SimplePager  ui:field="pager" addStyleNames="{style.pager}"/>
+            <c:SimplePager ui:field="pager" addStyleNames="{style.pager}"/>
           </g:HTMLPanel>
         </g:HTMLPanel>
       </g:HTMLPanel>
-    </div>
+    </g:HTMLPanel>
 
 
   </g:HTMLPanel>

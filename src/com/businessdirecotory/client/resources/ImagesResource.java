@@ -49,4 +49,7 @@ public interface ImagesResource extends ClientBundle {
 
   @Source("blog.png")
   ImageResource description();
+
+  @Source("Alert.png")
+  ImageResource alert();
 }

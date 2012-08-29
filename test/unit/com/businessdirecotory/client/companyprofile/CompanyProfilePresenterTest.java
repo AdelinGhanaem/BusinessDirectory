@@ -230,7 +230,7 @@ public class CompanyProfilePresenterTest {
 
     presenter.fetchImage();
 
-    verify(view).updateImageURL(imageURL);
+    verify(view).setURL(imageURL);
 
   }
 }

@@ -12,7 +12,9 @@ import org.mockito.Mock;
 import java.util.ArrayList;
 
 import static com.businessdirecotory.client.search.TestingAsyncCallbacksHelper.doOnSuccess;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.isA;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -33,7 +35,6 @@ public class SearchPresenterTest {
   public void setUp() throws Exception {
     initMocks(this);
     searchPresenter = new SearchPresenter(service, searchView);
-
   }
 
   @Test
@@ -48,10 +49,15 @@ public class SearchPresenterTest {
 
   @Test
   public void showNoResultNotificationWhenNoResult() {
+
     ArrayList<Company> companies = new ArrayList<Company>();
+
     SearchResponse searchResponse = new SearchResponse(companies);
+
     doOnSuccess(searchResponse).when(service).dispatch(isA(SearchAction.class), isA(GotResponse.class));
+
     searchPresenter.search("keyword");
+
     verify(searchView).notifyOfEmptyResult();
   }
 
@@ -62,14 +68,20 @@ public class SearchPresenterTest {
   }
 
   @Test
+  public void searchWithNoKeyWordsIsNotPerformed() throws Exception {
+    searchPresenter.search("");
+    verify(service,never()).dispatch(any(SearchAction.class), any(GotResponse.class));
+    verify(searchView).notifyOfEmptyResult();
+
+  }
+
+  @Test
   public void hidesLoadingIconWhenResponseIsReturned() {
     SearchResponse searchResponse = new SearchResponse(new ArrayList<Company>());
     doOnSuccess(searchResponse).when(service).dispatch(isA(SearchAction.class), isA(GotResponse.class));
     searchPresenter.search("keyword");
     verify(searchView).hideLoadingIcon();
   }
-
-
 
 
 }

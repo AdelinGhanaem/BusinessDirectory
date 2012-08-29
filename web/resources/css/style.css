@@ -221,10 +221,10 @@ h3 {
 }
 
 #lijeva_rubrika {
-    margin: 0 250px 20px 155px;
+    margin:auto;
     border-top: 1px solid #AFCEED;
     border-bottom: 1px solid #AFCEED;
-    background: #E5EFF9 url(../images/plavo.gif) repeat-x;
+    /*background: #E5EFF9 url(../images/plavo.gif) repeat-x;*/
     padding: 5px 6px 5px 6px;
     line-height: 1.6em;
     text-align: left;

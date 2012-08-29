@@ -12,14 +12,14 @@ import java.util.Date;
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
  */
-public class CheckAuthorizationResponseActionHandler implements
+public class CheckAuthorizationActionHandler implements
         ActionHandler<CheckAuthorizationAction, CheckAuthorizationResponse> {
 
   private AuthorizedTokensRepository repository;
   private IdGenerator idGenerator;
 
   @Inject
-  public CheckAuthorizationResponseActionHandler(AuthorizedTokensRepository repository, IdGenerator idGenerator) {
+  public CheckAuthorizationActionHandler(AuthorizedTokensRepository repository, IdGenerator idGenerator) {
 
     this.repository = repository;
     this.idGenerator = idGenerator;
@@ -27,14 +27,14 @@ public class CheckAuthorizationResponseActionHandler implements
 
   @Override
   public CheckAuthorizationResponse handle(CheckAuthorizationAction action) {
-
+    Token token = null;
     if (repository.isAuthorized(action.getToken(), new Date())) {
       Long id = idGenerator.generateId();
       Calendar calendar = Calendar.getInstance();
       calendar.add(Calendar.YEAR, 2);
-      Token newToken = new Token(id, action.getToken().getUserId(), action.getToken().getUser(), calendar.getTime());
-      return null;
+      token = new Token(id, action.getToken().getUserId(), action.getToken().getUser(), calendar.getTime());
+      repository.add(token, calendar.getTime());
     }
-    return null;
+    return new CheckAuthorizationResponse(token);
   }
 }

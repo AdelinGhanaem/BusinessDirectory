@@ -47,6 +47,7 @@ public class UserValidatorTestImpl {
 
   @Test
   public void passwordCanNotBeLessThanSixChars() {
+
     String valid = "adelin@mail.com";
     String password = "12345";
     List<String> list = userValidator.validate(new User(1l, valid, password));

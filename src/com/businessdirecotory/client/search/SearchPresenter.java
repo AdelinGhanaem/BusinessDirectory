@@ -25,6 +25,11 @@ public class SearchPresenter extends AbstractActivity {
   }
 
   public void search(String keyword) {
+
+    if ("".equals(keyword)) {
+      view.notifyOfEmptyResult();
+      return;
+    }
     view.showLoadingIcon();
     service.dispatch(new SearchAction<SearchResponse>(keyword), new GotResponse<SearchResponse>() {
       @Override

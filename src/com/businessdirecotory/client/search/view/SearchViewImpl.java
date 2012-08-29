@@ -35,6 +35,7 @@ public class SearchViewImpl implements SearchView {
 
 
   private EventBus eventBus;
+
   private InjectablePlaceController controller;
 
   interface SearchViewImplUiBinder extends UiBinder<HTMLPanel, SearchViewImpl> {
@@ -61,6 +62,10 @@ public class SearchViewImpl implements SearchView {
 
   @UiField(provided = true)
   SimplePager pager;
+  @UiField
+  HTMLPanel searchResult;
+  @UiField
+  HTMLPanel noResultsPanel;
 
   private SearchPresenter presenter;
 
@@ -90,12 +95,13 @@ public class SearchViewImpl implements SearchView {
     viewProfileButton.setFieldUpdater(new FieldUpdater<Company, String>() {
       @Override
       public void update(int index, Company object, String value) {
-       //TODO:Put split point here  ... !
+        //TODO:Put split point here  ... !
         controller.goTo(new FullInfoPlace(object.getId()));
       }
     });
 
     companiesList.addColumn(viewProfileButton);
+
     pager.setDisplay(companiesList);
 
     companyListDataProvider = new ListDataProvider<Company>();
@@ -110,12 +116,16 @@ public class SearchViewImpl implements SearchView {
 
   @Override
   public void showSearchResults(ArrayList<Company> companies) {
+    noResultsPanel.setVisible(false);
+    searchResult.setVisible(true);
     companyListDataProvider.setList(companies);
+
   }
 
   @Override
   public void notifyOfEmptyResult() {
-
+    searchResult.setVisible(false);
+    noResultsPanel.setVisible(true);
   }
 
   @Override

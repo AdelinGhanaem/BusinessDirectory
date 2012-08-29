@@ -3,7 +3,6 @@ package com.businessdirecotory.client.companyprofile.view;
 import com.businessdirecotory.client.authorization.SecurityTokenProvider;
 import com.businessdirecotory.client.companyprofile.CompanyProfilePresenter;
 import com.businessdirecotory.shared.entites.Company;
-import com.businessdirecotory.shared.entites.CompanyInfo;
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.FileUpload;
 import com.github.gwtbootstrap.client.ui.Tab;
@@ -101,15 +100,13 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
         presenter.fetchCompanyProfile();
       }
     });
-
-
   }
 
   @Override
   public void showCompanyProfile(Company company) {
     tabPanel.setVisible(true);
     driver.edit(company);
-
+    submit.setEnabled(true);
   }
 
   @Override
@@ -143,16 +140,12 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
   public void showCreateProfileButton() {
     createProfile.setVisible(true);
     tabPanel.setVisible(false);
+
   }
 
   @Override
-  public void updateImageURL(String imageURL) {
+  public void setURL(String imageURL) {
     logo.setUrl(imageURL);
-  }
-
-  @Override
-  public void showCompanyInfo(CompanyInfo info) {
-
   }
 
   @UiHandler("logoTab")

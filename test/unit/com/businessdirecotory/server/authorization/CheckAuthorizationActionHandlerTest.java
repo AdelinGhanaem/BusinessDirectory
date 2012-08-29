@@ -31,12 +31,12 @@ public class CheckAuthorizationActionHandlerTest {
   IdGenerator idGenerator;
 
 
-  CheckAuthorizationResponseActionHandler handler;
+  CheckAuthorizationActionHandler handler;
 
   @Before
   public void setUp() throws Exception {
     initMocks(this);
-    handler = new CheckAuthorizationResponseActionHandler(repository, idGenerator);
+    handler = new CheckAuthorizationActionHandler(repository, idGenerator);
   }
 
   @Test

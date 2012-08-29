@@ -2,7 +2,6 @@ package com.businessdirecotory.client.companyprofile.view;
 
 import com.businessdirecotory.client.companyprofile.CompanyProfilePresenter;
 import com.businessdirecotory.shared.entites.Company;
-import com.businessdirecotory.shared.entites.CompanyInfo;
 import com.google.gwt.user.client.ui.IsWidget;
 
 /**
@@ -22,8 +21,6 @@ public interface CompanyProfileView extends IsWidget {
 
   void showCreateProfileButton();
 
-  void updateImageURL(String imageURL);
-
-  void showCompanyInfo(CompanyInfo info);
+  void setURL(String imageURL);
 
 }

@@ -27,7 +27,7 @@ public class UserAuthorizedEventHandlerImplTest {
   @Before
   public void setUp() throws Exception {
     initMocks(this);
-    userAuthorizedEventHandler = new UserAuthorizedEventHandlerImpl(securityTokenProvider, navigationBarView, widgetsContainer);
+//    userAuthorizedEventHandler = new UserAuthorizedEventHandlerImpl(securityTokenProvider, navigationBarView, widgetsContainer);
   }
 
   @Test
