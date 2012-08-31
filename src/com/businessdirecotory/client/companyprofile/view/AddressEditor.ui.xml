@@ -1,0 +1,57 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'
+        >
+  <ui:style>
+    .controlLabel {
+
+    }
+  </ui:style>
+
+  <g:HTMLPanel>
+    <b:ControlGroup type="NONE">
+      <b:ControlLabel for="county" addStyleNames="{style.controlLabel}">Държава</b:ControlLabel>
+      <b:Controls>
+        <b:TextBox placeholder="Държава" ui:field="county"/>
+      </b:Controls>
+    </b:ControlGroup>
+
+    <b:ControlGroup type="NONE">
+      <b:ControlLabel for="city" addStyleNames="{style.controlLabel}">Град</b:ControlLabel>
+      <b:Controls>
+        <b:TextBox placeholder="Град" ui:field="city"/>
+      </b:Controls>
+    </b:ControlGroup>
+
+
+    <b:ControlGroup type="NONE">
+      <b:ControlLabel for="street" addStyleNames="{style.controlLabel}">Улица</b:ControlLabel>
+      <b:Controls>
+        <b:TextBox placeholder="Улица" ui:field="street"/>
+      </b:Controls>
+    </b:ControlGroup>
+
+
+    <b:ControlGroup type="NONE">
+      <b:ControlLabel for="description" addStyleNames="{style.controlLabel}">Допълнителна информация</b:ControlLabel>
+      <b:Controls>
+        <b:TextBox placeholder="Допълнителна информация" ui:field="description"/>
+      </b:Controls>
+    </b:ControlGroup>
+
+    <!--<b:ControlGroup type="NONE">-->
+    <!--<b:ControlLabel for="contactFace" addStyleNames="{style.controlLabel}">Име на организацията</b:ControlLabel>-->
+    <!--<b:Controls>-->
+    <!--<b:TextBox placeholder="Фирма" ui:field="name"/>-->
+    <!--</b:Controls>-->
+    <!--</b:ControlGroup>-->
+    <!--<b:ControlGroup type="NONE">-->
+    <!--<b:ControlLabel for="contactFace" addStyleNames="{style.controlLabel}">Име на организацията</b:ControlLabel>-->
+    <!--<b:Controls>-->
+    <!--<b:TextBox placeholder="Фирма" ui:field="name"/>-->
+    <!--</b:Controls>-->
+    <!--</b:ControlGroup>-->
+
+
+  </g:HTMLPanel>
+</ui:UiBinder>

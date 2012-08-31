@@ -2,8 +2,6 @@ package com.businessdirecotory.client.companyprofile.view;
 
 import com.businessdirecotory.shared.entites.Company;
 import com.github.gwtbootstrap.client.ui.Fieldset;
-import com.github.gwtbootstrap.client.ui.TextArea;
-import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.editor.client.LeafValueEditor;
@@ -22,26 +20,7 @@ public class CompanyEditor extends Composite implements Editor<Company> {
 
   private static CompanyEditorUiBinder ourUiBinder = GWT.create(CompanyEditorUiBinder.class);
 
-  @UiField
-  TextBox name;
 
-  @UiField
-  TextBox location;
-
-  @UiField
-  TextBox activity;
-
-  @UiField
-  TextArea description;
-
-  @UiField
-  TextBox phoneNumber;
-
-  @UiField
-  TextBox contactFace;
-
-  @UiField
-  TextBox address;
 
   @Ignore
   Long id;
@@ -50,13 +29,10 @@ public class CompanyEditor extends Composite implements Editor<Company> {
   Image image;
 
   @UiField
-  TextBox facebook;
+  AddressEditor info;
 
   @UiField
-  TextBox googlePlus;
-
-  @UiField
-  TextBox twitter;
+  CompanyInformationEditor address;
 
   LeafValueEditor<String> logoURL = new LeafValueEditor<String>() {
     @Override

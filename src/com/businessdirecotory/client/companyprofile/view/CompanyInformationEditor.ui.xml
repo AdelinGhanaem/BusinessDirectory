@@ -1,0 +1,51 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'>
+
+  <ui:style>
+    .controlLabel {
+
+  }
+
+  </ui:style>
+
+  <g:HTMLPanel>
+
+    <b:ControlGroup type="NONE">
+      <b:ControlLabel for="companyName" addStyleNames="{style.controlLabel}">Юридическо лице</b:ControlLabel>
+      <b:Controls>
+        <b:TextBox placeholder="Юридическо лице" ui:field="companyName"/>
+      </b:Controls>
+    </b:ControlGroup>
+
+    <b:ControlGroup type="NONE">
+      <b:ControlLabel for="contactFace" addStyleNames="{style.controlLabel}">Физическо лице за контакт</b:ControlLabel>
+      <b:Controls>
+        <b:TextBox placeholder="Физическо лице за контакт" ui:field="contactFace"/>
+      </b:Controls>
+    </b:ControlGroup>
+
+    <b:ControlGroup type="NONE">
+      <b:ControlLabel for="phoneNumber" addStyleNames="{style.controlLabel}">Телегон за връзка</b:ControlLabel>
+      <b:Controls>
+        <b:TextBox placeholder="Телегон за връзка" ui:field="phoneNumber"/>
+      </b:Controls>
+    </b:ControlGroup>
+
+    <b:ControlGroup type="NONE">
+      <b:ControlLabel for="email" addStyleNames="{style.controlLabel}">E-mail</b:ControlLabel>
+      <b:Controls>
+        <b:TextBox placeholder="E-mail" ui:field="email"/>
+      </b:Controls>
+    </b:ControlGroup>
+
+
+    <b:ControlGroup type="NONE">
+      <b:ControlLabel for="activity" addStyleNames="{style.controlLabel}">E-mail</b:ControlLabel>
+      <b:Controls>
+        <b:TextBox placeholder="E-mail" ui:field="activity"/>
+      </b:Controls>
+    </b:ControlGroup>
+
+  </g:HTMLPanel>
+</ui:UiBinder>

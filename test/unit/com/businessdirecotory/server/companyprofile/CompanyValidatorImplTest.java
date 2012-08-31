@@ -1,6 +1,5 @@
 package com.businessdirecotory.server.companyprofile;
 
-import com.businessdirecotory.shared.entites.Company;
 import com.businessdirecotory.shared.entites.actions.CompanyBuilder;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,12 +7,8 @@ import org.junit.Test;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.util.List;
 
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
@@ -34,22 +29,28 @@ public class CompanyValidatorImplTest {
 
   @Test
   public void returnsErrorIfCompanyNameIsEmpty() {
-    Company company = companyBuilder.build();
-    company.setName("");
-    List<String> errors = companyValidator.validate(company);
-    assertThat(errors, is(notNullValue()));
-    assertThat(errors.size(), is(1));
-    assertThat(errors.get(0), is(equalTo("Запишете името на команията")));
+//    Company company = companyBuilder.build();
+//    company.setName("");
+//    List<String> errors = companyValidator.validate(company);
+//    assertThat(errors, is(notNullValue()));
+//    assertThat(errors.size(), is(1));
+//    assertThat(errors.get(0), is(equalTo("Запишете името на команията")));
+    fail("Implement me ....");
+
   }
 
 
   @Test
   public void returnErrorsIfCompanyLocationIsEmpty() {
-    Company company = companyBuilder.build();
-    company.setLocation("");
-    List<String> errors = companyValidator.validate(company);
-    assertThat(errors, is(notNullValue()));
-    assertThat(errors.size(), is(1));
-    assertThat(errors.get(0), is(equalTo("Изберете Град")));
+
+//    Company company = companyBuilder.build();
+//    company.setLocation("");
+//    List<String> errors = companyValidator.validate(company);
+//    assertThat(errors, is(notNullValue()));
+//    assertThat(errors.size(), is(1));
+//    assertThat(errors.get(0), is(equalTo("Изберете Град")));
+//
+    fail("Implement me ....");
+
   }
 }

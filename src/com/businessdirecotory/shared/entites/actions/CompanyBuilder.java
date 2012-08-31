@@ -1,43 +1,44 @@
 package com.businessdirecotory.shared.entites.actions;
 
+import com.businessdirecotory.shared.entites.Address;
 import com.businessdirecotory.shared.entites.Company;
+import com.businessdirecotory.shared.entites.CompanyInformation;
+import com.businessdirecotory.shared.entites.LatLong;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
  */
 public class CompanyBuilder {
 
-
-  private String name="";
-  private String location="";
-  private String address="";
-  private String email="";
-  private String activity="";
-  private String description="";
-  private String phoneNumber="";
-  private String contactFace="";
+  private Address address;
+  private CompanyInformation companyInformation;
+  private String name = "";
   private String imageURL = "";
-  private Long id;
-  private String facebookLink="";
-  private String googlePlusLink="";
-  private String twitterLink="";
-  private Long userId;
+  private Long id = 0l;
+  private Long userId = 0l;
 
+  public void setCompanyInformation(CompanyInformation companyInformation) {
+    this.companyInformation = companyInformation;
+  }
+
+  public CompanyInformation getCompanyInformation() {
+    return companyInformation;
+  }
 
   public CompanyBuilder() {
     setToDefault();
   }
 
   private void setToDefault() {
-    id = 0l;
-    name = "company";
-    location = "location";
-    address = "address";
-    email = "mail@mail.com";
-    activity = "activity";
-    description = "description";
-    phoneNumber = "08888888";
-    contactFace = "contactFace";
+    address = new Address(new LatLong(0d, 0d), "County", "City", "Street", "Description");
+    companyInformation = new CompanyInformation("CompanyName",
+            "Contact Face",
+            "phoneNumber",
+            "email",
+            "activity","Description");
+    name = "CompanyName";
+    imageURL = "image";
+//    id = 0l;
     userId = 0l;
   }
 
@@ -47,40 +48,11 @@ public class CompanyBuilder {
     return this;
   }
 
-  public CompanyBuilder withLocation(String location) {
-    this.location = location;
-    return this;
-  }
-
-  public CompanyBuilder withAddress(String address) {
+  public CompanyBuilder withAddress(Address address) {
     this.address = address;
     return this;
   }
 
-  public CompanyBuilder withEmail(String email) {
-    this.email = email;
-    return this;
-  }
-
-  public CompanyBuilder withActivity(String activity) {
-    this.activity = activity;
-    return this;
-  }
-
-  public CompanyBuilder withDescription(String description) {
-    this.description = description;
-    return this;
-  }
-
-  public CompanyBuilder withPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
-    return this;
-  }
-
-  public CompanyBuilder withContactFace(String contactFace) {
-    this.contactFace = contactFace;
-    return this;
-  }
 
   public CompanyBuilder withImageURL(String imageURL) {
     this.imageURL = imageURL;
@@ -93,32 +65,15 @@ public class CompanyBuilder {
     return this;
   }
 
-
-  public Company build() {
-    Company company = new Company(id, name, location, address, email, activity,
-            description, phoneNumber, contactFace, imageURL, facebookLink, googlePlusLink, twitterLink, userId);
-    setToDefault();
-    return company;
-  }
-
-
-  public CompanyBuilder withFacebook(String facebookLink) {
-    this.facebookLink = facebookLink;
-    return this;
-  }
-
-  public CompanyBuilder withGooglePlus(String googlePlusLink) {
-    this.googlePlusLink = googlePlusLink;
-    return this;
-  }
-
-  public CompanyBuilder withTwitter(String twitterLink) {
-    this.twitterLink = twitterLink;
-    return this;
-  }
-
   public CompanyBuilder withUserId(Long userId) {
     this.userId = userId;
     return this;
   }
+
+  public Company build() {
+    Company company = new Company(id, address, companyInformation, imageURL, userId);
+    setToDefault();
+    return company;
+  }
+
 }

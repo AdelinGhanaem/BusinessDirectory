@@ -40,11 +40,11 @@ public class CompanyCell extends AbstractCell<Company> {
     sb.appendHtmlConstant(" <div class=\"companyDivCell\">\n" +
             "                <table class=\"companyTable\">\n" +
             "                    <tr><td rowspan=\"20\"><img src=\"" + value.getLogoURL() + "\"/></td></tr>\n" +
-            "                    <tr><td colspan=\"2\" class=\"nameCell\">" + value.getName() + "</td></tr>\n" +
-            "                    <tr><td colspan=\"2\">" + value.getDescription() + "</td></tr>\n" +
+            "                    <tr><td colspan=\"2\" class=\"nameCell\">" + value.getInfo().getCompanyName() + "</td></tr>\n" +
+            "                    <tr><td colspan=\"2\">" + value.getInfo().getActivity() + "</td></tr>\n" +
 //            "                    <tr><td>" + phoneNumber + " Телефон</td><td>" + value.getPhoneNumber() + "</td></tr>\n" +
 //            "                    <tr><td>" + address + " Град</td><td>" + value.getLocation() + "</td></tr>\n" +
-            "                    <tr><td>" + email + " e-mail</td><td>" + value.getEmail() + "</td></tr>\n" +
+            "                    <tr><td>" + email + " e-mail</td><td>" + value.getInfo().getEmail() + "</td></tr>\n" +
 //            "                    <tr><td>" + address + " Адрес:</td><td>" + value.getAddress() + "</td></tr>\n" +
 //            "                    <tr><td>" + contactFace + "лице за контакт:</td><td>" + value.getContactFace() + "</td></tr>\n" +
 //            "                    <tr><td>" + activity + " Дейност :</td><td>" + value.getActivity() + "</td></tr>\n" +

@@ -9,7 +9,6 @@ import com.businessdirecotory.client.companyprofile.view.CompanyProfileView;
 import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
 import com.businessdirecotory.client.comunication.GotResponse;
 import com.businessdirecotory.shared.entites.Company;
-import com.businessdirecotory.shared.entites.actions.EditCompanyAction;
 import com.businessdirecotory.shared.entites.actions.FetchCompanyAction;
 import com.businessdirecotory.shared.entites.actions.FetchLogoAction;
 import com.businessdirecotory.shared.entites.reponses.EditCompanyResponse;
@@ -29,6 +28,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -168,39 +168,40 @@ public class CompanyProfilePresenterTest {
   @Test
   public void editsCompanyInformation() {
     Long id = 1l;
-    Token token = new Token(2l, 5l, "username", new Date());
-    Company company = new Company();
-    company.setEmail("adelin@mail.com");
-    company.setId(id);
-
-    Company editedCompany = new Company();
-    editedCompany.setEmail("mail@mail.com");
-    editedCompany.setId(id);
-
-    EditCompanyAction editCompanyAction = new EditCompanyAction(1l, company);
-
-    SecuredAction<SecuredResponse<EditCompanyResponse>> securedAction =
-            new SecuredAction<SecuredResponse<EditCompanyResponse>>(editCompanyAction, token);
-
-    EditCompanyResponse editCompanyResponse = new EditCompanyResponse(editedCompany, null);
-
-    SecuredResponse<EditCompanyResponse> securedResponse = new SecuredResponse<EditCompanyResponse>(editCompanyResponse);
-
-    when(securedActionBuilder.build(isA(EditCompanyAction.class))).thenReturn(securedAction);
-    when(provider.getToken()).thenReturn(token);
-    doOnSuccess(securedResponse).when(service).dispatch(isA(SecuredAction.class), isA(GotResponse.class));
-
-    presenter.updateCompany(company);
-
-    verify(service).dispatch(securedActionArgumentCaptor.capture(), isA(GotResponse.class));
-
-    verify(view).showCompanyProfile(companyCaptor.capture());
-
-    verify(view).enableEditButton();
-
-    Company returnedCompany = companyCaptor.getValue();
-
-    assertThat(returnedCompany.getEmail(), is(equalTo("mail@mail.com")));
+//    Token token = new Token(2l, 5l, "username", new Date());
+//    Company company = new Company();
+//    company.setEmail("adelin@mail.com");
+//    company.setId(id);
+//
+//    Company editedCompany = new Company();
+//    editedCompany.setEmail("mail@mail.com");
+//    editedCompany.setId(id);
+//
+//    EditCompanyAction editCompanyAction = new EditCompanyAction(1l, company);
+//
+//    SecuredAction<SecuredResponse<EditCompanyResponse>> securedAction =
+//            new SecuredAction<SecuredResponse<EditCompanyResponse>>(editCompanyAction, token);
+//
+//    EditCompanyResponse editCompanyResponse = new EditCompanyResponse(editedCompany, null);
+//
+//    SecuredResponse<EditCompanyResponse> securedResponse = new SecuredResponse<EditCompanyResponse>(editCompanyResponse);
+//
+//    when(securedActionBuilder.build(isA(EditCompanyAction.class))).thenReturn(securedAction);
+//    when(provider.getToken()).thenReturn(token);
+//    doOnSuccess(securedResponse).when(service).dispatch(isA(SecuredAction.class), isA(GotResponse.class));
+//
+//    presenter.updateCompany(company);
+//
+//    verify(service).dispatch(securedActionArgumentCaptor.capture(), isA(GotResponse.class));
+//
+//    verify(view).showCompanyProfile(companyCaptor.capture());
+//
+//    verify(view).enableEditButton();
+//
+//    Company returnedCompany = companyCaptor.getValue();
+//
+//    assertThat(returnedCompany.getEmail(), is(equalTo("mail@mail.com")));
+    fail("Implement me ....");
 
   }
 
