@@ -1,12 +1,10 @@
 package com.businessdirecotory.client;
 
 import com.businessdirecotory.client.authorization.SecurityTokenProvider;
-import com.businessdirecotory.client.authorization.Token;
 import com.businessdirecotory.client.authorization.UserAuthorizedEvent;
 import com.businessdirecotory.client.authorization.UserAuthorizedEventHandlerImpl;
 import com.businessdirecotory.client.comunication.ActionDispatcherService;
 import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
-import com.businessdirecotory.client.comunication.GotResponse;
 import com.businessdirecotory.client.navigation.ApplicationPlaceHistoryMapper;
 import com.businessdirecotory.client.navigation.InjectableActivityManager;
 import com.businessdirecotory.client.navigation.InjectablePlaceController;
@@ -14,8 +12,6 @@ import com.businessdirecotory.client.navigation.NavigationBarPresenter;
 import com.businessdirecotory.client.navigation.NavigationBarViewImpl;
 import com.businessdirecotory.client.navigation.places.SearchPlace;
 import com.businessdirecotory.client.test.Tabs;
-import com.businessdirecotory.shared.entites.actions.CheckAuthorizationAction;
-import com.businessdirecotory.shared.entites.reponses.CheckAuthorizationResponse;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
@@ -63,23 +59,23 @@ public class Businessdirecotory implements EntryPoint {
 
     RootPanel.get("navigation").add(navigationBar);
 
-    service.dispatch(new CheckAuthorizationAction(provider.getToken()), new GotResponse<CheckAuthorizationResponse>() {
-      @Override
-      public void gotResponse(CheckAuthorizationResponse result) {
-        Token token = result.getToken();
-        if (token != null) {
-          provider.setToken(token);
-          navigationBar.setUsernameBrand(token.getUser());
-          navigationBar.hideLoginMenuItem();
-          navigationBar.showAuthorizedMenuBar();
-
-        } else {
-          navigationBar.showStandardMenu();
-          RootPanel.get("navigation").add(navigationBar);
-        }
-
-      }
-    });
+//    service.dispatch(new CheckAuthorizationAction(provider.getToken()), new GotResponse<CheckAuthorizationResponse>() {
+//      @Override
+//      public void gotResponse(CheckAuthorizationResponse result) {
+//        Token token = result.getToken();
+//        if (token != null) {
+//          provider.setToken(token);
+//          navigationBar.setUsernameBrand(token.getUser());
+//          navigationBar.hideLoginMenuItem();
+//          navigationBar.showAuthorizedMenuBar();
+//
+//        } else {
+//          navigationBar.showStandardMenu();
+//          RootPanel.get("navigation").add(navigationBar);
+//        }
+//
+//      }
+//    });
 
     ApplicationPlaceHistoryMapper historyMapper = GWT.create(ApplicationPlaceHistoryMapper.class);
 
