@@ -16,6 +16,14 @@
       text-align: left;
     }
 
+    .cleaner {
+      clear: both;
+    }
+
+    .image {
+      float: left;
+    }
+
   </ui:style>
 
   <ui:with field="res" type="com.businessdirecotory.client.resources.ImagesResource"/>
@@ -24,9 +32,13 @@
 
     <g:Image ui:field="logo"/>
     <g:HTMLPanel addStyleNames="{style.editorContainer}">
-      <g:Image ui:field="image" addStyleNames="{style.controlGroup}" url=""/>
+      <g:HTMLPanel addStyleNames="{style.image}">
+        <g:Image ui:field="image" addStyleNames="{style.controlGroup}" url=""/>
+
+      </g:HTMLPanel>
       <editors:CompanyInformationEditor ui:field="info"/>
       <editors:AddressEditor ui:field="address"/>
+      <div class="cleaner"></div>
     </g:HTMLPanel>
 
   </b:Fieldset>

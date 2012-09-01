@@ -5,11 +5,20 @@
   <ui:style>
     .controlLabel {
 
-  }
+    }
+
+    .wrapper {
+      text-align: left;
+      padding:10px;
+      margin: 10px;
+      border: 1px #cccccc solid;
+      border-radius: 10px;
+      float: left;
+    }
 
   </ui:style>
 
-  <g:HTMLPanel>
+  <g:HTMLPanel addStyleNames="{style.wrapper}">
 
     <b:ControlGroup type="NONE">
       <b:ControlLabel for="companyName" addStyleNames="{style.controlLabel}">Юридическо лице</b:ControlLabel>

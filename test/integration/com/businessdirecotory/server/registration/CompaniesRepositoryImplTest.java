@@ -85,13 +85,7 @@ public class CompaniesRepositoryImplTest extends com.businessdirecotory.AppEngin
   }
 
 
-//  @Test
-//  public void throwsExceptionWhenMoreThanOneCompanyIsReturned() {
-//    Company company = createCompany("word");
-//    repository.add(company);
-//    repository.add(company);
-//
-//  }
+
 
   @Test
   public void returnsEmptyListWhenSearchDoesNotMatchAnyCompanyProperties() {
@@ -108,19 +102,6 @@ public class CompaniesRepositoryImplTest extends com.businessdirecotory.AppEngin
 
   }
 
-
-//  @Test
-//  public void returnsCompanyByEmail() {
-//    String mail = "mail";
-//    Company company = companyBuilder.withEmail(mail).build();
-//    repository.add(company);
-//    Company returnedCompany = repository.getByEmail(mail);
-//    assertThat(returnedCompany, is(notNullValue()));
-//    assertThat(returnedCompany.getEmail(), is(equalTo(company.getEmail())));
-//    assertThat(returnedCompany.getId(), is(notNullValue()));
-//    fail("Implement me ....");
-//
-//  }
 
   @Test
   public void addingCompanyWithExistingIdAltersCompanyInformation() {

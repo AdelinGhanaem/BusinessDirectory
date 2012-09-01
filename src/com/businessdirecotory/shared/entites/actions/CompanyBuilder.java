@@ -78,7 +78,7 @@ public class CompanyBuilder {
     Company company = new Company();
     company.setAddress(address);
     company.setInfo(companyInformation);
-    company.setIndex(new TreeSet<String>());
+    company.setKeyWords(new TreeSet<String>());
     return company;
   }
 

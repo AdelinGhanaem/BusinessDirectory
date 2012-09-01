@@ -28,7 +28,7 @@ public class Company implements Serializable {
     return index;
   }
 
-  public void setIndex(Set<String> index) {
+  public void setKeyWords(Set<String> index) {
     this.index = index;
   }
 

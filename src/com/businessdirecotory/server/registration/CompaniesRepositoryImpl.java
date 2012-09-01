@@ -41,28 +41,8 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
   @Override
   public Long add(Company company) {
 
-    company.setIndex(getKeywords(company));
+    company.setKeyWords(getKeywords(company));
     Key key = datastore.store(company);
-//    Entity companyEntity;
-//    if (company.getId() == null || company.getId() == 0l) {
-//      companyEntity = new Entity(CompanyEntity.KIND);
-//    } else {
-//      Key key = KeyFactory.createKey(CompanyEntity.KIND, company.getId());
-//      try {
-//        companyEntity = service.get(key);
-//      } catch (EntityNotFoundException e) {
-//        companyEntity = new Entity(CompanyEntity.KIND);
-//      }
-//    }
-//
-//    companyEntity = companyEntityMapper.createEntity(company, companyEntity);
-//
-//    Set<String> keyword = getKeywords(company);
-//
-//    companyEntity.setProperty(CompanyEntity.INDEX, keyword);
-//
-//    service.put(companyEntity);
-//    return companyEntity.getKey().getId();
     return key.getId();
 
   }
@@ -85,35 +65,12 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
 
   @Override
   public List<Company> getByKeyWord(String search) {
-
-
     List<String> words = getTextWords(search.toLowerCase());
     FindCommand.RootFindCommand<Company> findCommand = datastore.find().type(Company.class);
     for (String word : words) {
       findCommand.addFilter("index", Query.FilterOperator.EQUAL, search);
     }
     return execute(findCommand);
-//    Query query = new Query(CompanyEntity.KIND);
-//
-//    List<Query.Filter> filters = new ArrayList<Query.Filter>();
-//
-//
-//    List<Company> companies = new ArrayList<Company>();
-//
-//    if (words.size() <= 1) {
-//      query.setFilter(new Query.FilterPredicate(CompanyEntity.INDEX, Query.FilterOperator.EQUAL, words.get(0)));
-//    } else {
-//      for (String string : words) {
-//        filters.add(new Query.FilterPredicate(CompanyEntity.INDEX, Query.FilterOperator.EQUAL, string));
-//      }
-//      query.setFilter(Query.CompositeFilterOperator.or(filters));
-//
-//    }
-//    Iterable<Entity> returnedEntities = service.prepare(query).asIterable();
-//
-//    for (Entity entity : returnedEntities) {
-//      companies.add(companyEntityMapper.create(entity));
-//    }
   }
 
   private List<Company> execute(FindCommand.RootFindCommand<Company> findCommand) {
@@ -126,21 +83,6 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
     }
     return result;
   }
-//
-//  @Override
-//  public Company getByEmail(String email) {
-//
-//    Query query = new Query(CompanyEntity.KIND);
-//
-//    query.setFilter(new Query.FilterPredicate(CompanyEntity.EMAIL, Query.FilterOperator.EQUAL, email));
-//
-//    Entity entity = service.prepare(query).asSingleEntity();
-//
-//    if (entity != null) {
-//      return companyEntityMapper.create(entity);
-//    }
-//    return null;
-//  }
 
   @Override
   public Company getById(long id) {
@@ -149,14 +91,7 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
 
   @Override
   public Company getByUserId(long userId) {
-    Company company = datastore.find().type(Company.class).addFilter("userId", Query.FilterOperator.EQUAL, userId).returnUnique().now();
-//    if (companies.getIndexList().size() > 1) {
-//      throw new RuntimeException("more than one company is retunred ... !");
-//    }
-//    if (companies.getIndexList().size() < 1) {
-//      return null;
-//    }
-    return company;
+    return datastore.find().type(Company.class).addFilter("userId", Query.FilterOperator.EQUAL, userId).returnUnique().now();
   }
 
   @Override
@@ -174,7 +109,6 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
       while (matcher.find()) {
         words.add(keyword.substring(matcher.start(), matcher.end()).toLowerCase());
       }
-
     }
     return words;
   }
