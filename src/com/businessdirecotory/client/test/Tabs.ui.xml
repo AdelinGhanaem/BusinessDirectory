@@ -1,0 +1,30 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'>
+  <g:HTMLPanel>
+    <b:TabPanel tabPosition="left" ui:field="tabPanel">
+      <b:Tab icon="GOOGLE_PLUS" heading="Typically" active="true">
+        <b:customTab>
+          <!--<g:Image addStyleNames="{style.icon}" resource="{res.logo}"/>-->
+        </b:customTab>
+        <b:Heading size="3">Typically Tab</b:Heading>
+        <b:Paragraph>
+          huhuhu hahha
+        </b:Paragraph>
+      </b:Tab>
+      <b:TabPane heading="prost">
+        <g:Label>Lalala</g:Label>
+      </b:TabPane>
+      <b:TabLink ui:field="lazyLoadTab">
+        <!--<g:Image addStyleNames="{style.icon}" resource="{res.logo}"/>-->
+        <g:HTMLPanel tag="span"><b:Strong>Custom tab</b:Strong>?</g:HTMLPanel>
+      </b:TabLink>
+      <b:TabLink text="manually" icon="GITHUB" dataTarget="testTab" createTabPane="false">
+        <!--<g:Image addStyleNames="{style.icon}" resource="{res.logo}"/>-->
+      </b:TabLink>
+      <b:TabPane href="testTab" createTabLink="false">
+        <g:Label>Huhu</g:Label>
+      </b:TabPane>
+    </b:TabPanel>
+  </g:HTMLPanel>
+</ui:UiBinder>

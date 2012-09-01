@@ -13,6 +13,7 @@ import com.businessdirecotory.client.navigation.InjectablePlaceController;
 import com.businessdirecotory.client.navigation.NavigationBarPresenter;
 import com.businessdirecotory.client.navigation.NavigationBarViewImpl;
 import com.businessdirecotory.client.navigation.places.SearchPlace;
+import com.businessdirecotory.client.test.Tabs;
 import com.businessdirecotory.shared.entites.actions.CheckAuthorizationAction;
 import com.businessdirecotory.shared.entites.reponses.CheckAuthorizationResponse;
 import com.google.gwt.core.client.EntryPoint;
@@ -86,8 +87,8 @@ public class Businessdirecotory implements EntryPoint {
 
     historyHandler.register(placeController, eventBus, new SearchPlace());
 
-
-    RootPanel.get("mainContainer").add(widgets);
+    Tabs tabs = new Tabs();
+    RootPanel.get("mainContainer").add(tabs);
 
     historyHandler.handleCurrentHistory();
 
