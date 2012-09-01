@@ -3,11 +3,17 @@ package com.businessdirecotory.client.companyprofile.view;
 import com.businessdirecotory.client.authorization.SecurityTokenProvider;
 import com.businessdirecotory.client.companyprofile.CompanyProfilePresenter;
 import com.businessdirecotory.shared.entites.Company;
+import com.businessdirecotory.shared.entites.actions.CompanyBuilder;
+import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.Tab;
+import com.github.gwtbootstrap.client.ui.TabPanel;
+import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -35,8 +41,9 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
   @UiField
   CompanyEditor editor;
 
-//  @UiField
-//  TabPanel tabPanel;
+  @UiField
+  TabPanel tabPanel;
+
 //
 //  @UiField
 //  FileUpload fileUpload;
@@ -44,29 +51,29 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
   @UiField
   FormPanel uploadFormPanel;
 
-//  @UiField
-//  Tab logoTab;
-//
-//  @UiField
-//  TextBox username;
-//
-//  @UiField
-//  TextBox tokenId;
-//
-//  @UiField
-//  TextBox userId;
-//
-//  @UiField
-//  Button submit;
-//
-//  @UiField
-//  Button edit;
-//
-//  @UiField
-//  Image loadingImage;
+  @UiField
+  Tab logoTab;
+  //
+  @UiField
+  TextBox username;
 
-//  @UiField
-//  Button createProfile;
+  @UiField
+  TextBox tokenId;
+
+  @UiField
+  TextBox userId;
+
+  @UiField
+  Button submit;
+
+  @UiField
+  Button edit;
+  //
+  @UiField
+  Image loadingImage;
+
+  @UiField
+  Button createProfile;
 
   @UiField
   Image logo;
@@ -84,8 +91,7 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
 
     driver.initialize(editor);
 
-//    logoTab.add(uploadFormPanel);
-
+    logoTab.add(uploadFormPanel);
 
     uploadFormPanel.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
       @Override
@@ -99,9 +105,9 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
 
   @Override
   public void showCompanyProfile(Company company) {
-//    tabPanel.setVisible(true);
+    tabPanel.setVisible(true);
     driver.edit(company);
-//    submit.setEnabled(true);
+    submit.setEnabled(true);
   }
 
   @Override
@@ -114,27 +120,27 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
     uploadFormPanel.setAction(url);
     uploadFormPanel.setEncoding(FormPanel.ENCODING_MULTIPART);
     uploadFormPanel.setMethod(FormPanel.METHOD_POST);
-//    username.setText(String.valueOf(provider.getToken().getUser()));
-//    tokenId.setText(String.valueOf(provider.getToken().getTokenId()));
-//    userId.setText(String.valueOf(provider.getToken().getUserId()));
+    username.setText(String.valueOf(provider.getToken().getUser()));
+    tokenId.setText(String.valueOf(provider.getToken().getTokenId()));
+    userId.setText(String.valueOf(provider.getToken().getUserId()));
   }
 
   @Override
   public void disableEditButton() {
-//    edit.setEnabled(false);
-//    loadingImage.setVisible(true);
+    edit.setEnabled(false);
+    loadingImage.setVisible(true);
   }
 
   @Override
   public void enableEditButton() {
-//    edit.setEnabled(true);
-//    loadingImage.setVisible(false);
+    edit.setEnabled(true);
+    loadingImage.setVisible(false);
   }
 
   @Override
   public void showCreateProfileButton() {
-//    createProfile.setVisible(true);
-//    tabPanel.setVisible(false);
+    createProfile.setVisible(true);
+    tabPanel.setVisible(false);
 
   }
 
@@ -143,28 +149,32 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
     logo.setUrl(imageURL);
   }
 
-//  @UiHandler("logoTab")
+  @UiHandler("logoTab")
   public void onClick(ClickEvent event) {
     presenter.fetchUploadURL();
   }
 
 
-//  @UiHandler("submit")
+  @UiHandler("submit")
   public void clickOnSubmit(ClickEvent event) {
 //    Window.alert("UserId:" + userId.getText() + "Username:" + username.getText() + "TokenID:" + tokenId.getText());
     uploadFormPanel.submit();
   }
 
-//  @UiHandler("createProfile")
+  @UiHandler("createProfile")
   public void onCreateProfile(ClickEvent event) {
-//    createProfile.setVisible(false);
-//    tabPanel.setVisible(true);
-//    driver.edit(new Company());
+
+    createProfile.setVisible(false);
+
+    tabPanel.setVisible(true);
+
+    Company company = new CompanyBuilder().buildEmpty();
+
+    driver.edit(company);
   }
 
-//  @UiHandler("edit")
+  @UiHandler("edit")
   public void onEdit(ClickEvent event) {
-
     Company company = driver.flush();
     presenter.updateCompany(company);
   }

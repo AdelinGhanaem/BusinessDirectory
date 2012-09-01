@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -44,43 +45,13 @@ public class CompaniesRepositoryImplTest extends com.businessdirecotory.AppEngin
   @Test
   public void saveCompanyEntity() throws Exception {
     Company company = new CompanyBuilder().build();
+
     Long id = repository.add(company);
+
     Company returned = repository.getById(id);
+
     assertThat(returned, is(notNullValue()));
 
-
-//    Company company = new CompanyBuilder().build();
-//    Long id = repository.add(company);
-//    Company returnedCompany = repository.getById(id);
-//    assertThat(returnedCompany, is(notNullValue()));
-//    assertThat(company.getId(), is(id));
-
-//    String companyName = "Clouway";
-//    String companyAddress = "BG25";
-//    String companyLocation = "Veliko Tarnovo";
-//    String companyEmail = "mail@mail.com";
-//    String companyActivity = "activity";
-//    String companyDescription = "Company Description";
-//    String companyPhoneNumber = "PhoneNumber";
-//    String companyContactFace = "Face";
-//    Company company = companyBuilder.withName(companyName).withAddress(companyAddress).withActivity(companyActivity)
-//            .withContactFace(companyContactFace).withDescription(companyDescription).withPhoneNumber(companyPhoneNumber)
-//            .withLocation(companyLocation).withEmail(companyEmail).build();
-//
-//    repository.add(company);
-//
-//    Query query = new Query(CompanyEntity.KIND);
-//
-//    query.setFilter(new Query.FilterPredicate(CompanyEntity.NAME, Query.FilterOperator.EQUAL, companyName));
-//    Entity entity = service.prepare(query).asSingleEntity();
-//    assertThat(entity, is(notNullValue()));
-//    assertThat(entity.getKind(), is(equalTo(CompanyEntity.KIND)));
-//    assertThat((String) entity.getProperty(CompanyEntity.NAME), is(equalTo(companyName)));
-//    assertThat((String) entity.getProperty(CompanyEntity.ADDRESS), is(equalTo(companyAddress)));
-//    assertThat((String) entity.getProperty(CompanyEntity.ACTIVITY), is(equalTo(companyActivity)));
-//    assertThat((String) entity.getProperty(CompanyEntity.LOCATION), is(equalTo(companyLocation)));
-//    assertThat((String) entity.getProperty(CompanyEntity.EMAIL), is(equalTo(companyEmail)));
-//    fail("Implement me ....");
   }
 
 
@@ -102,6 +73,25 @@ public class CompaniesRepositoryImplTest extends com.businessdirecotory.AppEngin
     company.setAddress(address);
     return company;
   }
+
+
+  @Test
+  public void returnsNullWhenNoCompanyForTheGivenId() {
+
+    Company company = repository.getById(1l);
+
+    assertThat(company, is(nullValue()));
+
+  }
+
+
+//  @Test
+//  public void throwsExceptionWhenMoreThanOneCompanyIsReturned() {
+//    Company company = createCompany("word");
+//    repository.add(company);
+//    repository.add(company);
+//
+//  }
 
   @Test
   public void returnsEmptyListWhenSearchDoesNotMatchAnyCompanyProperties() {
@@ -135,26 +125,34 @@ public class CompaniesRepositoryImplTest extends com.businessdirecotory.AppEngin
   @Test
   public void addingCompanyWithExistingIdAltersCompanyInformation() {
 
+    Company oldCompany = createCompanyWithEmail("mail@mail.com");
+
+    Company newCompany = createCompanyWithEmail("anotherMail@mail.com");
+
+    Long id = repository.add(oldCompany);
+
+    Company current = repository.getById(id);
+
+    newCompany.setId(current.getId());
+
+    repository.update(newCompany);
+
+    Company updatedCompany = repository.getById(id);
+
+    assertThat(updatedCompany.getInfo().getEmail(), is(equalTo("anotherMail@mail.com")));
+
+  }
+
+  private Company createCompanyWithEmail(String email) {
     Company company = companyBuilder.build();
 
     CompanyInformation information = new CompanyInformation();
 
     information.setActivity("BullShit");
 
-    information.setEmail("mail@mail.com");
-
+    information.setEmail(email);
     company.setInfo(information);
-
-    Long id = repository.add(company);
-
-    information.setActivity("Software");
-
-    repository.update(company);
-
-    Company updatedCompany = repository.getById(id);
-
-    assertThat(updatedCompany.getInfo().getActivity(), is(equalTo("Software")));
-
+    return company;
   }
 
 

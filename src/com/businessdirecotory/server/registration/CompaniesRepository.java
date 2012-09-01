@@ -17,12 +17,9 @@ public interface CompaniesRepository {
 
   List<Company> getByKeyWord(String keyword);
 
-//  Company getByEmail(String email);
-
   Company getById(long id);
-
 
   Company getByUserId(long userId);
 
-  void update( Company company);
+  void update(Company company);
 }

@@ -11,7 +11,6 @@ import com.businessdirecotory.client.navigation.InjectablePlaceController;
 import com.businessdirecotory.client.navigation.NavigationBarPresenter;
 import com.businessdirecotory.client.navigation.NavigationBarViewImpl;
 import com.businessdirecotory.client.navigation.places.SearchPlace;
-import com.businessdirecotory.client.test.Tabs;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
@@ -83,8 +82,8 @@ public class Businessdirecotory implements EntryPoint {
 
     historyHandler.register(placeController, eventBus, new SearchPlace());
 
-    Tabs tabs = new Tabs();
-    RootPanel.get("mainContainer").add(tabs);
+
+    RootPanel.get("mainContainer").add(widgets);
 
     historyHandler.handleCurrentHistory();
 

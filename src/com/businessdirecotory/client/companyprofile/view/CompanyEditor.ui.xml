@@ -24,9 +24,9 @@
 
     <g:Image ui:field="logo"/>
     <g:HTMLPanel addStyleNames="{style.editorContainer}">
-      <g:Image ui:field="image" addStyleNames="{style.controlGroup}"/>
-      <editors:CompanyInformationEditor ui:field="address"/>
-      <editors:AddressEditor ui:field="info"/>
+      <g:Image ui:field="image" addStyleNames="{style.controlGroup}" url=""/>
+      <editors:CompanyInformationEditor ui:field="info"/>
+      <editors:AddressEditor ui:field="address"/>
     </g:HTMLPanel>
 
   </b:Fieldset>

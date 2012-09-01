@@ -47,5 +47,12 @@
       </b:Controls>
     </b:ControlGroup>
 
+    <b:ControlGroup type="NONE">
+      <b:ControlLabel for="description" addStyleNames="{style.controlLabel}">Допълнителна информация</b:ControlLabel>
+      <b:Controls>
+        <b:TextBox placeholder="Допълнителна информация" ui:field="description"/>
+      </b:Controls>
+    </b:ControlGroup>
+
   </g:HTMLPanel>
 </ui:UiBinder>

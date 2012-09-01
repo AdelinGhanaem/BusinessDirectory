@@ -1,6 +1,8 @@
 package com.businessdirecotory.shared.entites;
 
 
+import com.google.code.twig.annotation.Id;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -9,13 +11,14 @@ import java.util.Set;
  */
 public class Company implements Serializable {
 
+  @Id
   private Long id;
 
   private Address address;
 
   private CompanyInformation info;
 
-  private String logoURL ;
+  private String logoURL;
 
   private Long userId;
 
@@ -83,5 +86,6 @@ public class Company implements Serializable {
   public void setUserId(Long userId) {
     this.userId = userId;
   }
+
 
 }

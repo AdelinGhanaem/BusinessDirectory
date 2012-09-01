@@ -49,8 +49,6 @@ public class ActionDispatcherServiceImpl extends RemoteServiceServlet implements
     if (handler == null) {
       throw new NoActionHandlerException();
     }
-
-
     return (T) handler.handle(action);
 
   }

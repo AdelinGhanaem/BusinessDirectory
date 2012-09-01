@@ -9,7 +9,6 @@ import com.evo.gad.dispatch.ActionHandler;
 import com.google.inject.Inject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
@@ -17,7 +16,9 @@ import java.util.List;
 public class EditCompanyActionHandler implements ActionHandler<EditCompanyAction, EditCompanyResponse> {
 
   private CompaniesRepository repository;
+
   private UserRepository userRepository;
+
   private CompanyValidator validator;
 
   @Inject
@@ -31,17 +32,13 @@ public class EditCompanyActionHandler implements ActionHandler<EditCompanyAction
 
   @Override
   public EditCompanyResponse handle(EditCompanyAction action) {
-    List<String> list = validator.validate(action.getCompany());
-    if (list.size() > 0) {
-      return new EditCompanyResponse(action.getCompany(), new ArrayList<String>(list));
+    Company current = repository.getByUserId(action.getUserId());
+    if (current == null) {
+      repository.add(action.getCompany());
     } else {
-      Company company = action.getCompany();
-      company.setUserId(action.getUserId());
-//      company.setEmail(action.get);
-      Long companyId = repository.add(company);
-      Company newCompany = repository.getById(companyId);
-      return new EditCompanyResponse(newCompany, null);
+      repository.update(action.getCompany());
+      current = repository.getByUserId(action.getUserId());
     }
-
+    return new EditCompanyResponse(current, new ArrayList<String>());
   }
 }

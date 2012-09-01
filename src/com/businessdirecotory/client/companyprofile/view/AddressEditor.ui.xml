@@ -9,7 +9,7 @@
     }
 
     .mapWrapper {
-               border: 1px solid black;
+
 
     }
   </ui:style>
@@ -45,7 +45,9 @@
       </b:Controls>
     </b:ControlGroup>
 
-    <g:HTMLPanel ui:field="mapWrapper" addStyleNames="{style.mapWrapper}"></g:HTMLPanel>
+    <g:SimplePanel ui:field="mapWrapper" addStyleNames="{style.mapWrapper}">
+
+    </g:SimplePanel>
 
     <!--<map:MapWidget ui:field="mapWidget" >-->
     <!---->

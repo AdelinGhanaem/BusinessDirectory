@@ -5,6 +5,8 @@ import com.businessdirecotory.shared.entites.Company;
 import com.businessdirecotory.shared.entites.CompanyInformation;
 import com.businessdirecotory.shared.entites.LatLong;
 
+import java.util.TreeSet;
+
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
  */
@@ -34,12 +36,11 @@ public class CompanyBuilder {
             "Contact Face",
             "phoneNumber",
             "email",
-            "activity","Description");
+            "activity", "Description");
     imageURL = "image";
 //    id = 0l;
     userId = 0l;
   }
-
 
 
   public CompanyBuilder withAddress(Address address) {
@@ -67,6 +68,17 @@ public class CompanyBuilder {
   public Company build() {
     Company company = new Company(id, address, companyInformation, imageURL, userId);
     setToDefault();
+    return company;
+  }
+
+  public Company buildEmpty() {
+    address = new Address();
+    address.setLatLong(new LatLong(25.38191796875003d, 42.60635104185243d));
+    CompanyInformation companyInformation = new CompanyInformation();
+    Company company = new Company();
+    company.setAddress(address);
+    company.setInfo(companyInformation);
+    company.setIndex(new TreeSet<String>());
     return company;
   }
 

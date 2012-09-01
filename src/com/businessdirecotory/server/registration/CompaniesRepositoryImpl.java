@@ -4,7 +4,6 @@ import com.businessdirecotory.shared.entites.Company;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.QueryResultIterator;
 import com.google.code.twig.FindCommand;
 import com.google.code.twig.ObjectDatastore;
 import com.google.inject.Inject;
@@ -150,13 +149,20 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
 
   @Override
   public Company getByUserId(long userId) {
-    QueryResultIterator<Company> companies = datastore.find().type(Company.class).addFilter("userId", Query.FilterOperator.EQUAL, userId).now();
-    return companies.next();
-
+    Company company = datastore.find().type(Company.class).addFilter("userId", Query.FilterOperator.EQUAL, userId).returnUnique().now();
+//    if (companies.getIndexList().size() > 1) {
+//      throw new RuntimeException("more than one company is retunred ... !");
+//    }
+//    if (companies.getIndexList().size() < 1) {
+//      return null;
+//    }
+    return company;
   }
 
   @Override
   public void update(Company company) {
+    datastore.associate(company);
+    datastore.update(company);
   }
 
   private List<String> getTextWords(String keyword) {

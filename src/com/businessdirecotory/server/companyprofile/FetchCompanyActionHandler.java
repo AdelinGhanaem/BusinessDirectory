@@ -25,9 +25,6 @@ public class FetchCompanyActionHandler implements ActionHandler<FetchCompanyActi
     Company company = null;
     Long userId = action.getId();
     company = companiesRepository.getByUserId(userId);
-    if (company == null) {
-      company = companiesRepository.getById(action.getId());
-    }
     return new FetchCompanyResponse(company);
   }
 }
