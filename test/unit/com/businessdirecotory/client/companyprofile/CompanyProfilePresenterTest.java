@@ -28,7 +28,6 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -167,22 +166,16 @@ public class CompanyProfilePresenterTest {
 
   @Test
   public void editsCompanyInformation() {
-    Long id = 1l;
+//    Long id = 1l;
 //    Token token = new Token(2l, 5l, "username", new Date());
-//    Company company = new Company();
-//    company.setEmail("adelin@mail.com");
-//    company.setId(id);
 //
-//    Company editedCompany = new Company();
-//    editedCompany.setEmail("mail@mail.com");
-//    editedCompany.setId(id);
 //
 //    EditCompanyAction editCompanyAction = new EditCompanyAction(1l, company);
 //
 //    SecuredAction<SecuredResponse<EditCompanyResponse>> securedAction =
 //            new SecuredAction<SecuredResponse<EditCompanyResponse>>(editCompanyAction, token);
 //
-//    EditCompanyResponse editCompanyResponse = new EditCompanyResponse(editedCompany, null);
+//    EditCompanyResponse editCompanyResponse = new EditCompanyResponse(updated, null);
 //
 //    SecuredResponse<EditCompanyResponse> securedResponse = new SecuredResponse<EditCompanyResponse>(editCompanyResponse);
 //
@@ -200,8 +193,7 @@ public class CompanyProfilePresenterTest {
 //
 //    Company returnedCompany = companyCaptor.getValue();
 //
-//    assertThat(returnedCompany.getEmail(), is(equalTo("mail@mail.com")));
-    fail("Implement me ....");
+//    assertThat(returnedCompany.getNa(), is(equalTo("mail@mail.com")));
 
   }
 

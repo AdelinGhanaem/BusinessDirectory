@@ -12,25 +12,25 @@
 
 
   <servlet>
-    <servlet-contactFace>uploader</servlet-contactFace>
+    <servlet-name>uploader</servlet-name>
     <servlet-class>com.businessdirecotory.server.comunication.ImageUploader</servlet-class>
   </servlet>
 
 
   <servlet-mapping>
-    <servlet-contactFace>uploader</servlet-contactFace>
+    <servlet-name>uploader</servlet-name>
     <url-pattern>/upload</url-pattern>
   </servlet-mapping>
 
 
 
   <filter>
-    <filter-contactFace>filter</filter-contactFace>
+    <filter-name>filter</filter-name>
     <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
   </filter>
   <!---->
   <filter-mapping>
-    <filter-contactFace>filter</filter-contactFace>
+    <filter-name>filter</filter-name>
     <url-pattern>/businessdirecotory/ActionDispatcherService</url-pattern>
   </filter-mapping>
 

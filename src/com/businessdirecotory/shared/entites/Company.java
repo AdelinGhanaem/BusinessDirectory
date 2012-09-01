@@ -83,4 +83,5 @@ public class Company implements Serializable {
   public void setUserId(Long userId) {
     this.userId = userId;
   }
+
 }

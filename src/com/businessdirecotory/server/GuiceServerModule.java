@@ -16,6 +16,8 @@ import com.evo.gad.dispatch.ActionHandlerMetadata;
 import com.evo.gad.dispatch.ActionHandlerRepository;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.code.twig.ObjectDatastore;
+import com.google.code.twig.annotation.AnnotationObjectDatastore;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
@@ -49,6 +51,7 @@ public class GuiceServerModule extends GuiceServletContextListener {
         bind(SessionIdProvider.class).to(SessionIdProviderImpl.class);
         bind(IdGenerator.class).to(IdGeneratorImpl.class);
         bind(CompanyValidator.class).to(CompanyValidatorImpl.class);
+        bind(ObjectDatastore.class).to(AnnotationObjectDatastore.class);
 
       }
 

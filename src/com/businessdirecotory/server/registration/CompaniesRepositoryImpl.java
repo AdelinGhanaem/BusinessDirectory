@@ -27,15 +27,14 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
   private CompanyEntityMapper companyEntityMapper;
   private ObjectDatastore datastore;
 
-  @Inject
-  public CompaniesRepositoryImpl(DatastoreService service, CompanyEntityMapper companyEntityMapper) {
-    this.service = service;
-    this.companyEntityMapper = companyEntityMapper;
-  }
+//  @Inject
+//  public CompaniesRepositoryImpl(DatastoreService service, CompanyEntityMapper companyEntityMapper) {
+//    this.service = service;
+//    this.companyEntityMapper = companyEntityMapper;                                           /
+//  }
 
   @Inject
-  CompaniesRepositoryImpl(ObjectDatastore datastore) {
-
+  public CompaniesRepositoryImpl(ObjectDatastore datastore) {
 
     this.datastore = datastore;
   }

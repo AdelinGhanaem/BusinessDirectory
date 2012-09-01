@@ -12,7 +12,6 @@ public class CompanyBuilder {
 
   private Address address;
   private CompanyInformation companyInformation;
-  private String name = "";
   private String imageURL = "";
   private Long id = 0l;
   private Long userId = 0l;
@@ -36,17 +35,12 @@ public class CompanyBuilder {
             "phoneNumber",
             "email",
             "activity","Description");
-    name = "CompanyName";
     imageURL = "image";
 //    id = 0l;
     userId = 0l;
   }
 
 
-  public CompanyBuilder withName(String name) {
-    this.name = name;
-    return this;
-  }
 
   public CompanyBuilder withAddress(Address address) {
     this.address = address;

@@ -21,6 +21,8 @@ import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
 import com.google.appengine.api.images.Transform;
+import com.google.code.twig.ObjectDatastore;
+import com.google.code.twig.annotation.AnnotationObjectDatastore;
 import com.google.inject.Singleton;
 
 import javax.servlet.ServletException;
@@ -45,7 +47,7 @@ public class ImageUploader extends HttpServlet {
 
   private ImagesRepository imagesRepository = new ImagesRepository(service);
 
-  private CompaniesRepository companiesRepository = new CompaniesRepositoryImpl(service, new CompanyEntityMapper());
+  private CompaniesRepository companiesRepository = new CompaniesRepositoryImpl(new AnnotationObjectDatastore());
 
   private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 
