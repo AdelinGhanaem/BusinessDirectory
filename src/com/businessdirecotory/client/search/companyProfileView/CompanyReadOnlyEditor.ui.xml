@@ -35,7 +35,6 @@
     }
 
     .companyName {
-
       padding-top: 20px;
       border-bottom: 1px solid #cccccc;
       height: 50px;
@@ -71,13 +70,13 @@
             <g:Label ui:field="name" addStyleNames="{style.companyName}"></g:Label>
           </g:HTMLPanel>
 
-          <g:HorizontalPanel addStyleNames="{style.companyField}">
+          <!--<g:HorizontalPanel addStyleNames="{style.companyField}">-->
             <!--<g:HTMLPanel>-->
             <g:Image resource="{res.map}"/>
             <!--</g:HTMLPanel>-->
             <g:Label>Град:</g:Label>
             <g:Label ui:field="location"></g:Label>
-          </g:HorizontalPanel>
+          <!--</g:HorizontalPanel>-->
 
           <g:HorizontalPanel addStyleNames="{style.companyField}">
             <g:Image resource="{res.map}"/>

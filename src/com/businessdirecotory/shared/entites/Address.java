@@ -1,7 +1,6 @@
 package com.businessdirecotory.shared.entites;
 
 import com.google.code.twig.annotation.Id;
-import com.google.code.twig.annotation.Parent;
 
 import java.io.Serializable;
 
@@ -10,8 +9,8 @@ import java.io.Serializable;
  */
 public class Address implements Serializable {
 
-//  @Child
-  private LatLong latLong;
+  @Id
+  private long id;
 
   private String county;
 
@@ -21,11 +20,8 @@ public class Address implements Serializable {
 
   private String description;
 
-  @Id
-  private long id;
+  private LatLong latLong;
 
-  @Parent
-  private Company company;
 
   public Address(LatLong latLong, String county, String city, String street, String description) {
     this.latLong = latLong;
@@ -85,7 +81,6 @@ public class Address implements Serializable {
 
   public long getId() {
     return id;
-
   }
 
 

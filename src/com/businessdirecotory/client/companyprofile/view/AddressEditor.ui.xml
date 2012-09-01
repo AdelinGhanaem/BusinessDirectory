@@ -1,9 +1,15 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'
+             xmlns:map='urn:import:com.google.gwt.maps.client'
         >
   <ui:style>
     .controlLabel {
+
+    }
+
+    .mapWrapper {
+               border: 1px solid black;
 
     }
   </ui:style>
@@ -38,6 +44,12 @@
         <b:TextBox placeholder="Допълнителна информация" ui:field="description"/>
       </b:Controls>
     </b:ControlGroup>
+
+    <g:HTMLPanel ui:field="mapWrapper" addStyleNames="{style.mapWrapper}"></g:HTMLPanel>
+
+    <!--<map:MapWidget ui:field="mapWidget" >-->
+    <!---->
+    <!--</map:MapWidget>-->
 
     <!--<b:ControlGroup type="NONE">-->
     <!--<b:ControlLabel for="contactFace" addStyleNames="{style.controlLabel}">Име на организацията</b:ControlLabel>-->

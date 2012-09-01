@@ -1,0 +1,29 @@
+.tabPanel {
+    border: 1px solid black;
+}
+
+.container {
+    border: 1px solid #cccccc;
+    width: 90%;
+    border-radius: 10px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.button {
+    text-align: left;
+    margin: 5px 0px 5px 0px;
+}
+
+.title {
+    font-style: tahoma;
+    color: black;
+    font-size: 18px;
+    font-stretch: bold;
+}
+
+.titleContainer {
+    margin: 10px 0px 10px 0px;
+    text-align: left;
+}

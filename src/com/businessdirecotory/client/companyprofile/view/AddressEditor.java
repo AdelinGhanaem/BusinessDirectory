@@ -29,6 +29,8 @@ public class AddressEditor extends Composite implements Editor<Address> {
 
   private static AddressEditorUiBinder ourUiBinder = GWT.create(AddressEditorUiBinder.class);
 
+
+
   @UiField
   TextBox city;
 
@@ -41,13 +43,22 @@ public class AddressEditor extends Composite implements Editor<Address> {
   @UiField
   TextBox description;
 
+  @Ignore
+  MapWidget mapWidget;
+
+  @UiField
+  HTMLPanel mapWrapper;
+
+  @Ignore
+  long id;
+
+  @Ignore
   private MapOptions mapOptions;
 
-  private MapWidget mapWidget;
-
+  @Ignore
   LatLong latAndLong = new LatLong(25.38191796875003d, 42.60635104185243d);
 
-  LeafValueEditor<LatLong> longLat = new LeafValueEditor<LatLong>() {
+  LeafValueEditor<LatLong> latLong = new LeafValueEditor<LatLong>() {
 
     @Override
     public void setValue(LatLong value) {
@@ -71,6 +82,7 @@ public class AddressEditor extends Composite implements Editor<Address> {
     mapOptions.setMapTypeControl(true);
     mapOptions.setMapTypeId(new MapTypeId().getHybrid());
     mapWidget = new MapWidget(mapOptions);
+    mapWidget.setSize("400px","400px");
     Event.addListener(mapWidget.getMap(), "click", new MouseEventCallback() {
       @Override
       public void callback(HasMouseEvent event) {
@@ -79,7 +91,10 @@ public class AddressEditor extends Composite implements Editor<Address> {
         latAndLong.setLongitude(hasLatLng.getLongitude());
       }
     });
+    mapWrapper.add(mapWidget);
     initWidget(rootElement);
 
   }
+
+
 }

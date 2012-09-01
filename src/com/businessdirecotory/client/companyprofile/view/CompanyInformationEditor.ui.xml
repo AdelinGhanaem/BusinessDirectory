@@ -41,9 +41,9 @@
 
 
     <b:ControlGroup type="NONE">
-      <b:ControlLabel for="activity" addStyleNames="{style.controlLabel}">E-mail</b:ControlLabel>
+      <b:ControlLabel for="activity" addStyleNames="{style.controlLabel}">Вид дейност</b:ControlLabel>
       <b:Controls>
-        <b:TextBox placeholder="E-mail" ui:field="activity"/>
+        <b:TextBox placeholder="Вид дейност" ui:field="activity"/>
       </b:Controls>
     </b:ControlGroup>
 

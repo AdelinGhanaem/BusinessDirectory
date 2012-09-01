@@ -15,7 +15,7 @@ public class Company implements Serializable {
 
   private CompanyInformation info;
 
-  private String logoURL;
+  private String logoURL ;
 
   private Long userId;
 

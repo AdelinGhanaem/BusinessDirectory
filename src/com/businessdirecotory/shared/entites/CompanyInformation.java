@@ -9,16 +9,18 @@ import java.io.Serializable;
  */
 public class CompanyInformation implements Serializable {
 
-  private String activity;
-  private String companyName;
-  private String contactFace;
-  private String phoneNumber;
-
   @Id
   private String email;
-  private String description;
 
-  private Company company;
+  private String activity;
+
+  private String companyName;
+
+  private String contactFace;
+
+  private String phoneNumber;
+
+  private String description;
 
 
   public CompanyInformation(String companyName,
@@ -48,10 +50,6 @@ public class CompanyInformation implements Serializable {
 
   public String getDescription() {
     return description;
-  }
-
-  public Company getCompany() {
-    return company;
   }
 
   public String getPhoneNumber() {
@@ -90,7 +88,4 @@ public class CompanyInformation implements Serializable {
     this.description = description;
   }
 
-  public void setCompany(Company company) {
-    this.company = company;
-  }
 }

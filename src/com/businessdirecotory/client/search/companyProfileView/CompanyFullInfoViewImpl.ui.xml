@@ -3,7 +3,7 @@
              xmlns:edito='urn:import:com.businessdirecotory.client.search.companyProfileView'>
   <g:HTMLPanel>
 
-    <edito:CompanyReadOnlyEditor ui:field="editor"/>
+    <!--<edito:CompanyReadOnlyEditor ui:field="editor"/>-->
 
   </g:HTMLPanel>
 </ui:UiBinder>

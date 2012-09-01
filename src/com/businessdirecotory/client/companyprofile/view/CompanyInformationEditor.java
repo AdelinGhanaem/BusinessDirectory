@@ -18,12 +18,16 @@ public class CompanyInformationEditor extends Composite implements Editor<Compan
   }
 
   private static CompanyInformationEditorUiBinder ourUiBinder = GWT.create(CompanyInformationEditorUiBinder.class);
+
   @UiField
   TextBox companyName;
+
   @UiField
   TextBox contactFace;
+
   @UiField
   TextBox phoneNumber;
+
   @UiField
   TextBox email;
 

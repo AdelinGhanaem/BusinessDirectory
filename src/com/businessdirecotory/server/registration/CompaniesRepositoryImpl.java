@@ -157,9 +157,7 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
 
   @Override
   public void update(Company company) {
-    datastore.update(company);
   }
-
 
   private List<String> getTextWords(String keyword) {
 
