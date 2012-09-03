@@ -8,6 +8,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.TextArea;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
@@ -35,7 +36,7 @@ public class CompanyInformationEditor extends Composite implements Editor<Compan
   com.google.gwt.user.client.ui.Label activity;
 
   @UiField
-  com.google.gwt.user.client.ui.Label description;
+  TextArea description;
 
   public CompanyInformationEditor() {
     HTMLPanel rootElement = ourUiBinder.createAndBindUi(this);

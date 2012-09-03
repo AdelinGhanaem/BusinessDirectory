@@ -18,6 +18,8 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.TextArea;
+import com.google.gwt.user.client.ui.TextBox;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
@@ -41,7 +43,7 @@ public class AddressEditor extends Composite implements Editor<Address> {
   com.google.gwt.user.client.ui.Label street;
 
   @UiField
-  com.google.gwt.user.client.ui.Label description;
+  TextArea description;
 
   @Ignore
   MapWidget mapWidget;

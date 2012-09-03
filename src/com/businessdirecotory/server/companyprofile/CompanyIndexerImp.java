@@ -31,7 +31,7 @@ public class CompanyIndexerImp implements CompanyIndexer{
 
   private void putInKeywordsSet(Set<String> keywordsList, List<String> keywords) {
     for (String string : keywords) {
-      keywordsList.add(string);
+      keywordsList.add(string.toLowerCase());
     }
   }
 

@@ -54,25 +54,56 @@
     }
 
     .address {
-      width: 80px;
+      border: 1px solid #cccccc;
+      border-radius: 10px;
+      width: 60%;
       margin: auto;
+    }
+
+    .tab {
+
+      text-align: center;
+      margin: auto;
+
+    }
+
+    .tabwrapper {
+
+    }
+
+    .title {
+      margin: 10px;
+      font: 25px bold;
     }
 
   </ui:style>
   <ui:with field="res" type="com.businessdirecotory.client.resources.ImagesResource"/>
   <g:HTMLPanel addStyleNames="{style.address}">
+
+    <g:HTMLPanel addStyleNames="{style.title}">
+      <p>
+        Адрес
+      </p>
+    </g:HTMLPanel>
+
     <g:HTMLPanel addStyleNames="{style.imageContainer}">
       <g:Image ui:field="image" addStyleNames="{style.controlGroup}"/>
     </g:HTMLPanel>
-    <b:TabPanel>
-      <b:TabPane active="true" heading="Основна Информация">
+    <b:TabPanel tabPosition="left" addStyleNames="{style.tabwrapper}">
+      <b:TabPane active="true" heading="Основна Информация" addStyleNames="{style.tab}">
         <g:HTMLPanel addStyleNames="{style.editorContainer}">
           <editors:CompanyInformationEditor ui:field="info"/>
-          <editors:AddressEditor ui:field="address"/>
           <div class="cleaner"></div>
         </g:HTMLPanel>
       </b:TabPane>
-      <b:TabPane heading="Изпраи съобщение">
+
+      <b:TabPane heading="Адрес" addStyleNames="{style.tab}">
+        <editors:AddressEditor ui:field="address"/>
+
+      </b:TabPane>
+
+      <b:TabPane heading="Изпрати Съобщение" addStyleNames="{style.tab}">
+
       </b:TabPane>
     </b:TabPanel>
   </g:HTMLPanel>

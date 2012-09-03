@@ -40,7 +40,7 @@
   <g:HTMLPanel addStyleNames="{style.containser}">
     <g:HTMLPanel addStyleNames="{style.title}">
       <p>
-        Адрес
+        Фирмен Профил
       </p>
     </g:HTMLPanel>
     <g:HorizontalPanel>
@@ -75,13 +75,13 @@
           <b:ControlLabel for="description" addStyleNames="{style.controlLabel}">Допълнителна информация
           </b:ControlLabel>
           <b:Controls>
-            <g:Label ui:field="description" addStyleNames="{style.label}"/>
+            <g:TextArea ui:field="description" addStyleNames="{style.label}" readOnly="true" width="400" height="200"/>
           </b:Controls>
         </b:ControlGroup>
 
       </g:HTMLPanel>
 
-      <g:SimplePanel ui:field="mapWrapper" addStyleNames="{style.mapWrapper} ">
+      <g:SimplePanel ui:field="mapWrapper" addStyleNames="{style.mapWrapper}">
 
       </g:SimplePanel>
 

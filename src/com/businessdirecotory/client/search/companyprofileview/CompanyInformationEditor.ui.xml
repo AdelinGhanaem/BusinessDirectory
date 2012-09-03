@@ -8,6 +8,7 @@
     }
 
     .wrapper {
+      width: 400px;
       text-align: center;
       text-align: left;
       padding: 5px;
@@ -89,7 +90,7 @@
 
       <b:ControlLabel for="description" addStyleNames="{style.controlLabel}">Допълнителна информация</b:ControlLabel>
       <b:Controls>
-        <g:Label ui:field="description" addStyleNames="{style.label}"/>
+        <g:TextArea ui:field="description" addStyleNames="{style.label}" readOnly="true" width="400" height="200"/>
       </b:Controls>
     </b:ControlGroup>
   </g:HTMLPanel>

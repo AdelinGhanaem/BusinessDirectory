@@ -11,8 +11,6 @@ import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,7 +45,7 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
     List<String> words = getTextWords(search.toLowerCase());
     FindCommand.RootFindCommand<Company> findCommand = datastore.find().type(Company.class);
     for (String word : words) {
-      findCommand.addFilter("index", Query.FilterOperator.EQUAL, search);
+      findCommand.addFilter("index", Query.FilterOperator.EQUAL, word);
     }
     return execute(findCommand);
   }
