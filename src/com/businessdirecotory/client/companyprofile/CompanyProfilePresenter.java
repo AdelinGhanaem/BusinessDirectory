@@ -56,12 +56,14 @@ public class CompanyProfilePresenter extends AbstractActivity {
               public void gotResponse(SecuredResponse<FetchCompanyResponse> result) {
                 if (result.getResponse() == null) {
                   view.goToLoginPlace();
+                }  else {
+                  if (result.getResponse().getCompany() == null) {
+                    view.showCreateProfileButton();
+                  } else {
+                    view.showCompanyProfile(result.getResponse().getCompany());
+                  }
                 }
-                if (result.getResponse().getCompany() == null) {
-                  view.showCreateProfileButton();
-                } else {
-                  view.showCompanyProfile(result.getResponse().getCompany());
-                }
+
               }
             };
     service.dispatch(action, response);

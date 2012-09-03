@@ -43,7 +43,6 @@
       font-size: 30px;
       font-weight: bold;
       background: url("resources/images/namebg.png");
-
     }
 
     .imageContainer {
@@ -54,9 +53,14 @@
       clean: both;
     }
 
+    .address {
+      width: 80px;
+      margin: auto;
+    }
+
   </ui:style>
   <ui:with field="res" type="com.businessdirecotory.client.resources.ImagesResource"/>
-  <g:HTMLPanel>
+  <g:HTMLPanel addStyleNames="{style.address}">
     <g:HTMLPanel addStyleNames="{style.imageContainer}">
       <g:Image ui:field="image" addStyleNames="{style.controlGroup}"/>
     </g:HTMLPanel>

@@ -23,8 +23,11 @@ public class FetchCompanyActionHandler implements ActionHandler<FetchCompanyActi
   @Override
   public FetchCompanyResponse handle(FetchCompanyAction action) {
     Company company = null;
-    Long userId = action.getId();
-    company = companiesRepository.getById(userId);
+    Long id = action.getId();
+    company = companiesRepository.getById(id);
+    if (company == null) {
+      company = companiesRepository.getByUserId(id);
+    }
     return new FetchCompanyResponse(company);
   }
 }

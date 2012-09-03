@@ -27,7 +27,6 @@
     .title {
       margin: 10px;
       font: 25px bold;
-
     }
 
   </ui:style>

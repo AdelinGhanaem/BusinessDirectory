@@ -21,9 +21,11 @@ public class Company implements Serializable {
 
   private String logoURL;
 
+
+  @Index
   private Long userId;
 
-  @Index(true)
+  @Index
   private Set<String> index;
 
   public Set<String> getIndex() {

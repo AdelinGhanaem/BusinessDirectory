@@ -52,8 +52,7 @@
             <g:Label ui:field="county" addStyleNames="{style.label}"/>
           </b:Controls>
         </b:ControlGroup>
-
-        <b:ControlGroup type="NONE">
+         <b:ControlGroup type="NONE">
           <g:Image resource="{res.map}"/>
           <b:ControlLabel for="city" addStyleNames="{style.controlLabel}">Град</b:ControlLabel>
           <b:Controls>
