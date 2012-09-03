@@ -1,4 +1,4 @@
-package com.businessdirecotory.client.search.companyProfileView;
+package com.businessdirecotory.client.search.companyprofileview;
 
 import com.businessdirecotory.client.companyprofile.view.CompanyEditor;
 import com.businessdirecotory.client.search.CompanyFullInfoView;
@@ -6,6 +6,7 @@ import com.businessdirecotory.shared.entites.Company;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 
@@ -27,12 +28,12 @@ public class CompanyFullInfoViewImpl extends Composite implements CompanyFullInf
 
   private static FullInfoViewImplUiBinder ourUiBinder = GWT.create(FullInfoViewImplUiBinder.class);
 
-//  @UiField
-//  CompanyReadOnlyEditor editor;
+  @UiField
+  CompanyReadOnlyEditor editor;
 
   public CompanyFullInfoViewImpl() {
     HTMLPanel rootElement = ourUiBinder.createAndBindUi(this);
-//    driver.initialize(editor);
+    driver.initialize(editor);
     initWidget(rootElement);
   }
 

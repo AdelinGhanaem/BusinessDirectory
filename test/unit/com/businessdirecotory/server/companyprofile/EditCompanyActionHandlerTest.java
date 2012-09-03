@@ -36,10 +36,13 @@ public class EditCompanyActionHandlerTest {
   @Mock
   private CompanyValidator validator;
 
+  @Mock
+  private CompanyIndexer indexer;
+
   @Before
   public void setUp() throws Exception {
     initMocks(this);
-    handler = new EditCompanyActionHandler(repository, userRepository, validator);
+    handler = new EditCompanyActionHandler(repository, userRepository, validator, indexer);
 
   }
 

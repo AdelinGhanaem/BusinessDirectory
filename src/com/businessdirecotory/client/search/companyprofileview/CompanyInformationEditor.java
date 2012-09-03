@@ -1,7 +1,7 @@
-package com.businessdirecotory.client.companyprofile.view;
+package com.businessdirecotory.client.search.companyprofileview;
 
 import com.businessdirecotory.shared.entites.CompanyInformation;
-import com.github.gwtbootstrap.client.ui.TextBox;
+import com.github.gwtbootstrap.client.ui.Label;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -20,22 +20,22 @@ public class CompanyInformationEditor extends Composite implements Editor<Compan
   private static CompanyInformationEditorUiBinder ourUiBinder = GWT.create(CompanyInformationEditorUiBinder.class);
 
   @UiField
-  TextBox companyName;
+  com.google.gwt.user.client.ui.Label companyName;
 
   @UiField
-  TextBox contactFace;
+  com.google.gwt.user.client.ui.Label contactFace;
 
   @UiField
-  TextBox phoneNumber;
+  com.google.gwt.user.client.ui.Label phoneNumber;
 
   @UiField
-  TextBox email;
+  com.google.gwt.user.client.ui.Label email;
 
   @UiField
-  TextBox activity;
+  com.google.gwt.user.client.ui.Label activity;
 
   @UiField
-  TextBox description;
+  com.google.gwt.user.client.ui.Label description;
 
   public CompanyInformationEditor() {
     HTMLPanel rootElement = ourUiBinder.createAndBindUi(this);

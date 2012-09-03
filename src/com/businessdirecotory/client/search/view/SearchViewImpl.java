@@ -13,6 +13,9 @@ import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -62,8 +65,10 @@ public class SearchViewImpl implements SearchView {
 
   @UiField(provided = true)
   SimplePager pager;
+
   @UiField
   HTMLPanel searchResult;
+
   @UiField
   HTMLPanel noResultsPanel;
 
@@ -92,6 +97,7 @@ public class SearchViewImpl implements SearchView {
         return "Подробна информация";
       }
     };
+
     viewProfileButton.setFieldUpdater(new FieldUpdater<Company, String>() {
       @Override
       public void update(int index, Company object, String value) {
@@ -111,6 +117,15 @@ public class SearchViewImpl implements SearchView {
     rootElement = ourUiBinder.createAndBindUi(this);
 
     loadingImage.setVisible(false);
+
+    searchTexBox.addKeyPressHandler(new KeyPressHandler() {
+      @Override
+      public void onKeyPress(KeyPressEvent event) {
+        if (event.getCharCode() == KeyCodes.KEY_ENTER) {
+          presenter.search(searchTexBox.getText());
+        }
+      }
+    });
 
   }
 

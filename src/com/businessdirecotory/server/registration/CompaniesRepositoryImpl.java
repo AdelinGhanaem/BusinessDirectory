@@ -26,12 +26,6 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
   private CompanyEntityMapper companyEntityMapper;
   private ObjectDatastore datastore;
 
-//  @Inject
-//  public CompaniesRepositoryImpl(DatastoreService service, CompanyEntityMapper companyEntityMapper) {
-//    this.service = service;
-//    this.companyEntityMapper = companyEntityMapper;                                           /
-//  }
-
   @Inject
   public CompaniesRepositoryImpl(ObjectDatastore datastore) {
 
@@ -40,27 +34,12 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
 
   @Override
   public Long add(Company company) {
-
-    company.setKeyWords(getKeywords(company));
     Key key = datastore.store(company);
     return key.getId();
 
   }
 
-  private Set<String> getKeywords(Company company) {
-    Set<String> keyword = new TreeSet<String>();
-    putInKeywordsSet(keyword, getTextWords(company.getAddress().getCity()));
-    putInKeywordsSet(keyword, getTextWords(company.getAddress().getCounty()));
-    putInKeywordsSet(keyword, getTextWords(company.getAddress().getStreet()));
-    putInKeywordsSet(keyword, getTextWords(company.getAddress().getDescription()));
-    putInKeywordsSet(keyword, getTextWords(company.getAddress().getCity()));
-    putInKeywordsSet(keyword, getTextWords(company.getInfo().getActivity()));
-    putInKeywordsSet(keyword, getTextWords(company.getInfo().getCompanyName()));
-    putInKeywordsSet(keyword, getTextWords(company.getInfo().getEmail()));
-    putInKeywordsSet(keyword, getTextWords(company.getInfo().getContactFace()));
-    putInKeywordsSet(keyword, getTextWords(company.getInfo().getDescription()));
-    return keyword;
-  }
+
 
 
   @Override
@@ -113,10 +92,5 @@ public class CompaniesRepositoryImpl implements CompaniesRepository {
     return words;
   }
 
-  private void putInKeywordsSet(Set<String> keywordsList, List<String> keywords) {
-    for (String string : keywords) {
-      keywordsList.add(string);
-    }
-  }
 
 }

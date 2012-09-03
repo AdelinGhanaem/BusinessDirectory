@@ -2,7 +2,7 @@ package com.businessdirecotory.client.search;
 
 import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
 import com.businessdirecotory.client.comunication.GotResponse;
-import com.businessdirecotory.client.search.companyProfileView.CompanyFullInfoViewImpl;
+import com.businessdirecotory.client.search.companyprofileview.CompanyFullInfoViewImpl;
 import com.businessdirecotory.shared.entites.actions.FetchCompanyAction;
 import com.businessdirecotory.shared.entites.reponses.FetchCompanyResponse;
 import com.google.gwt.activity.shared.AbstractActivity;

@@ -22,7 +22,7 @@ import com.businessdirecotory.client.registration.view.UserRegistrationView;
 import com.businessdirecotory.client.registration.view.UserRegistrationViewImpl;
 import com.businessdirecotory.client.search.CompanyFullInfoView;
 import com.businessdirecotory.client.search.SearchView;
-import com.businessdirecotory.client.search.companyProfileView.CompanyFullInfoViewImpl;
+import com.businessdirecotory.client.search.companyprofileview.CompanyFullInfoViewImpl;
 import com.businessdirecotory.client.search.view.SearchViewImpl;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.GWT;

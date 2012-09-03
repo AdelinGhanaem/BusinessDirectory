@@ -1,11 +1,10 @@
-package com.businessdirecotory.client.search.companyProfileView;
+package com.businessdirecotory.client.search.companyprofileview;
 
 import com.businessdirecotory.shared.entites.Company;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.Editor;
-import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
@@ -18,66 +17,43 @@ public class CompanyReadOnlyEditor extends Composite implements Editor<Company> 
   interface CompanyReadOnlyEditorUiBinder extends UiBinder<HTMLPanel, CompanyReadOnlyEditor> {
   }
 
-//  private static CompanyReadOnlyEditorUiBinder ourUiBinder = GWT.create(CompanyReadOnlyEditorUiBinder.class);
+  private static CompanyReadOnlyEditorUiBinder ourUiBinder = GWT.create(CompanyReadOnlyEditorUiBinder.class);
 
-//  @UiField
-//  Label name;
-//
-//  @UiField
-//  Label location;
-//
-//  @UiField
-//  Label activity;
-//
-//  @UiField
-//  Label description;
-//
-//  @UiField
-//  Label phoneNumber;
-//
-//  @UiField
-//  Label contactFace;
-//
-//  @UiField
-//  Label address;
-//
-//  @Editor.Ignore
-//  Long id;
-//
+
+  @Ignore
+  Long id;
+
   @UiField
   Image image;
+
+  @UiField
+  AddressEditor address;
+
+  @UiField
+  CompanyInformationEditor info;
+
+
+//  LeafValueEditor<String> logoURL = new LeafValueEditor<String>() {
+//    @Override
+//    public void setValue(String value) {
+//      image.setUrl(value);
+//    }
 //
-//  @UiField
-//  Image facebookImage;
+//    @Override
+//    public String getValue() {
+//      return image.getUrl();
+//    }
+//  };
+
+//  private String facebook;
 //
-//  @UiField
-//  Image plusImage;
+//  private String googlePlus;
 //
-//  @UiField
-//  Image twitterImage;
-
-  Anchor anchor;
-  LeafValueEditor<String> logoURL = new LeafValueEditor<String>() {
-    @Override
-    public void setValue(String value) {
-      image.setUrl(value);
-    }
-
-    @Override
-    public String getValue() {
-      return image.getUrl();
-    }
-  };
-
-  private String facebook;
-
-  private String googlePlus;
-
-  private String twitter;
+//  private String twitter;
 
   public CompanyReadOnlyEditor() {
-//    HTMLPanel rootElement = ourUiBinder.createAndBindUi(this);
-//    initWidget(rootElement);
+    HTMLPanel rootElement = ourUiBinder.createAndBindUi(this);
+    initWidget(rootElement);
 
 //    facebookImage.addClickHandler(new ClickHandler() {
 //      @Override
@@ -101,6 +77,4 @@ public class CompanyReadOnlyEditor extends Composite implements Editor<Company> 
 //    });
 
   }
-
-
 }

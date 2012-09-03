@@ -48,7 +48,6 @@ public class CompanyEditor extends Composite implements Editor<Company> {
 
   public CompanyEditor() {
     Fieldset rootElement = ourUiBinder.createAndBindUi(this);
-
     initWidget(rootElement);
   }
 

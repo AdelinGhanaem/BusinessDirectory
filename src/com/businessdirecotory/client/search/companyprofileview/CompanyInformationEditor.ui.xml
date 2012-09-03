@@ -8,60 +8,90 @@
     }
 
     .wrapper {
+      text-align: center;
       text-align: left;
-      padding:10px;
-      margin: 10px;
+      padding: 5px;
+      margin: 5px;
       border: 1px #cccccc solid;
       border-radius: 10px;
       float: left;
     }
 
+    .label {
+      border: 1px solid #dddddd;
+      border-radius: 3px;
+      padding: 5px;
+      margin: 5px;
+    }
+
+    .title {
+      margin: 10px;
+      font: 25px bold;
+
+    }
+
   </ui:style>
+  <ui:with field="res" type="com.businessdirecotory.client.resources.ImagesResource"/>
 
   <g:HTMLPanel addStyleNames="{style.wrapper}">
-
+    <g:HTMLPanel addStyleNames="{style.title}">
+      <p>
+        Основно информация
+      </p>
+    </g:HTMLPanel>
     <b:ControlGroup type="NONE">
+      <g:Image resource="{res.map}"/>
+
       <b:ControlLabel for="companyName" addStyleNames="{style.controlLabel}">Юридическо лице</b:ControlLabel>
       <b:Controls>
-        <b:TextBox placeholder="Юридическо лице" ui:field="companyName"/>
+        <g:Label ui:field="companyName" addStyleNames="{style.label}"/>
       </b:Controls>
     </b:ControlGroup>
 
     <b:ControlGroup type="NONE">
+      <g:Image resource="{res.contactFace}"/>
+
       <b:ControlLabel for="contactFace" addStyleNames="{style.controlLabel}">Физическо лице за контакт</b:ControlLabel>
       <b:Controls>
-        <b:TextBox placeholder="Физическо лице за контакт" ui:field="contactFace"/>
+        <g:Label ui:field="contactFace" addStyleNames="{style.label}"/>
       </b:Controls>
     </b:ControlGroup>
 
     <b:ControlGroup type="NONE">
+      <g:Image resource="{res.phoneNumber}"/>
+
       <b:ControlLabel for="phoneNumber" addStyleNames="{style.controlLabel}">телефон за връзка</b:ControlLabel>
       <b:Controls>
-        <b:TextBox placeholder="Телегон за връзка" ui:field="phoneNumber"/>
+        <g:Label ui:field="phoneNumber" addStyleNames="{style.label}"/>
       </b:Controls>
     </b:ControlGroup>
 
     <b:ControlGroup type="NONE">
+      <g:Image resource="{res.email}"/>
+
       <b:ControlLabel for="email" addStyleNames="{style.controlLabel}">E-mail</b:ControlLabel>
       <b:Controls>
-        <b:TextBox placeholder="E-mail" ui:field="email"/>
+        <g:Label ui:field="email" addStyleNames="{style.label}"/>
       </b:Controls>
     </b:ControlGroup>
 
 
     <b:ControlGroup type="NONE">
+      <g:Image resource="{res.activity}"/>
+
       <b:ControlLabel for="activity" addStyleNames="{style.controlLabel}">Вид дейност</b:ControlLabel>
       <b:Controls>
-        <b:TextBox placeholder="Вид дейност" ui:field="activity"/>
+        <g:Label ui:field="activity" addStyleNames="{style.label}"/>
       </b:Controls>
     </b:ControlGroup>
 
     <b:ControlGroup type="NONE">
+      <g:Image resource="{res.description}"/>
+
       <b:ControlLabel for="description" addStyleNames="{style.controlLabel}">Допълнителна информация</b:ControlLabel>
       <b:Controls>
-        <b:TextBox placeholder="Допълнителна информация" ui:field="description"/>
+        <g:Label ui:field="description" addStyleNames="{style.label}"/>
       </b:Controls>
     </b:ControlGroup>
-
   </g:HTMLPanel>
 </ui:UiBinder>

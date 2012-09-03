@@ -23,4 +23,5 @@ public interface CompanyProfileView extends IsWidget {
 
   void setURL(String imageURL);
 
+  void goToLoginPlace();
 }

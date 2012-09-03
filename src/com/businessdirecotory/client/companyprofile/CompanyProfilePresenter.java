@@ -52,15 +52,18 @@ public class CompanyProfilePresenter extends AbstractActivity {
             securedActionBuilder.build(new FetchCompanyAction(provider.getToken().getUserId()));
     GotResponse<SecuredResponse<FetchCompanyResponse>> response =
             new GotResponse<SecuredResponse<FetchCompanyResponse>>() {
-      @Override
-      public void gotResponse(SecuredResponse<FetchCompanyResponse> result) {
-        if (result.getResponse().getCompany() == null) {
-          view.showCreateProfileButton();
-        } else {
-          view.showCompanyProfile(result.getResponse().getCompany());
-        }
-      }
-    };
+              @Override
+              public void gotResponse(SecuredResponse<FetchCompanyResponse> result) {
+                if (result.getResponse() == null) {
+                  view.goToLoginPlace();
+                }
+                if (result.getResponse().getCompany() == null) {
+                  view.showCreateProfileButton();
+                } else {
+                  view.showCompanyProfile(result.getResponse().getCompany());
+                }
+              }
+            };
     service.dispatch(action, response);
   }
 

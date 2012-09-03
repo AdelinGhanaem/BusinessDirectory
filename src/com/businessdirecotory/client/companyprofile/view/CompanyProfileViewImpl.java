@@ -2,6 +2,8 @@ package com.businessdirecotory.client.companyprofile.view;
 
 import com.businessdirecotory.client.authorization.SecurityTokenProvider;
 import com.businessdirecotory.client.companyprofile.CompanyProfilePresenter;
+import com.businessdirecotory.client.navigation.InjectablePlaceController;
+import com.businessdirecotory.client.navigation.places.AuthorizationPlace;
 import com.businessdirecotory.shared.entites.Company;
 import com.businessdirecotory.shared.entites.actions.CompanyBuilder;
 import com.github.gwtbootstrap.client.ui.Button;
@@ -53,7 +55,7 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
 
   @UiField
   Tab logoTab;
-  //
+
   @UiField
   TextBox username;
 
@@ -68,7 +70,7 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
 
   @UiField
   Button edit;
-  //
+
   @UiField
   Image loadingImage;
 
@@ -81,6 +83,10 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
 
   @Inject
   private SecurityTokenProvider provider;
+
+
+  @Inject
+  InjectablePlaceController controller;
 
 
   public CompanyProfileViewImpl() {
@@ -149,6 +155,11 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
     logo.setUrl(imageURL);
   }
 
+  @Override
+  public void goToLoginPlace() {
+    controller.goTo(new AuthorizationPlace());
+  }
+
   @UiHandler("logoTab")
   public void onClick(ClickEvent event) {
     presenter.fetchUploadURL();
@@ -157,7 +168,6 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
 
   @UiHandler("submit")
   public void clickOnSubmit(ClickEvent event) {
-//    Window.alert("UserId:" + userId.getText() + "Username:" + username.getText() + "TokenID:" + tokenId.getText());
     uploadFormPanel.submit();
   }
 
@@ -169,7 +179,7 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
     tabPanel.setVisible(true);
 
     Company company = new CompanyBuilder().buildEmpty();
-
+    company.setUserId(provider.getToken().getUserId());
     driver.edit(company);
   }
 

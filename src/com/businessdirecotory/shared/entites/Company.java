@@ -2,6 +2,7 @@ package com.businessdirecotory.shared.entites;
 
 
 import com.google.code.twig.annotation.Id;
+import com.google.code.twig.annotation.Index;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -22,6 +23,7 @@ public class Company implements Serializable {
 
   private Long userId;
 
+  @Index(true)
   private Set<String> index;
 
   public Set<String> getIndex() {

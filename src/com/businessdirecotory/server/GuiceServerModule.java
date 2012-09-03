@@ -2,6 +2,8 @@ package com.businessdirecotory.server;
 
 import com.businessdirecotory.client.comunication.FetchURLActionHandler;
 import com.businessdirecotory.server.authorization.*;
+import com.businessdirecotory.server.companyprofile.CompanyIndexer;
+import com.businessdirecotory.server.companyprofile.CompanyIndexerImp;
 import com.businessdirecotory.server.companyprofile.CompanyValidator;
 import com.businessdirecotory.server.companyprofile.CompanyValidatorImpl;
 import com.businessdirecotory.server.companyprofile.EditCompanyActionHandler;
@@ -52,7 +54,7 @@ public class GuiceServerModule extends GuiceServletContextListener {
         bind(IdGenerator.class).to(IdGeneratorImpl.class);
         bind(CompanyValidator.class).to(CompanyValidatorImpl.class);
         bind(ObjectDatastore.class).to(AnnotationObjectDatastore.class);
-
+        bind(CompanyIndexer.class).to(CompanyIndexerImp.class);
       }
 
       @Provides

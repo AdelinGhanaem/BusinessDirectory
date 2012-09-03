@@ -29,10 +29,10 @@ public class CompanyCell extends AbstractCell<Company> {
       return;
     }
     String email = AbstractImagePrototype.create(instance.email()).getHTML();
-//    String activity = AbstractImagePrototype.create(instance.activity()).getHTML();
-//    String contactFace = AbstractImagePrototype.create(instance.contactFace()).getHTML();
-//    String address = AbstractImagePrototype.create(instance.map()).getHTML();
-//    String phoneNumber = AbstractImagePrototype.create(instance.phoneNumber()).getHTML();
+    String activity = AbstractImagePrototype.create(instance.activity()).getHTML();
+    String contactFace = AbstractImagePrototype.create(instance.contactFace()).getHTML();
+    String address = AbstractImagePrototype.create(instance.map()).getHTML();
+    String phoneNumber = AbstractImagePrototype.create(instance.phoneNumber()).getHTML();
 //    String facebook = AbstractImagePrototype.create(instance.faceBook()).getHTML();
 //    String googlePlus = AbstractImagePrototype.create(instance.plus()).getHTML();
 //    String twitter = AbstractImagePrototype.create(instance.twitter()).getHTML();
@@ -42,12 +42,12 @@ public class CompanyCell extends AbstractCell<Company> {
             "                    <tr><td rowspan=\"20\"><img src=\"" + value.getLogoURL() + "\"/></td></tr>\n" +
             "                    <tr><td colspan=\"2\" class=\"nameCell\">" + value.getInfo().getCompanyName() + "</td></tr>\n" +
             "                    <tr><td colspan=\"2\">" + value.getInfo().getActivity() + "</td></tr>\n" +
-//            "                    <tr><td>" + phoneNumber + " Телефон</td><td>" + value.getPhoneNumber() + "</td></tr>\n" +
-//            "                    <tr><td>" + address + " Град</td><td>" + value.getLocation() + "</td></tr>\n" +
+            "                    <tr><td>" + phoneNumber + " Телефон</td><td>" + value.getInfo().getPhoneNumber() + "</td></tr>\n" +
+            "                    <tr><td>" + address + " Град</td><td>" + value.getAddress().getCity()             + "</td></tr>\n" +
             "                    <tr><td>" + email + " e-mail</td><td>" + value.getInfo().getEmail() + "</td></tr>\n" +
 //            "                    <tr><td>" + address + " Адрес:</td><td>" + value.getAddress() + "</td></tr>\n" +
-//            "                    <tr><td>" + contactFace + "лице за контакт:</td><td>" + value.getContactFace() + "</td></tr>\n" +
-//            "                    <tr><td>" + activity + " Дейност :</td><td>" + value.getActivity() + "</td></tr>\n" +
+            "                    <tr><td>" + contactFace + "лице за контакт:</td><td>" + value.getInfo().getContactFace() + "</td></tr>\n" +
+            "                    <tr><td>" + activity + " Дейност :</td><td>" + value.getInfo().getActivity() + "</td></tr>\n" +
 //            "                    <tr><td><a href=\""+value.getFacebook()+"\" target =\"_blank\"   >"+facebook+"</a></td>" +
 //                                    "<td><a href=\""+value.getGooglePlus()+"\" target =\"_blank\"   >"+googlePlus+"</a></td>\n" +
 //                                    "<td><a href=\""+value.getTwitter()+"\" target =\"_blank\"   >"+twitter+"</a></td>\n" +

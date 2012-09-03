@@ -1,9 +1,7 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:edito='urn:import:com.businessdirecotory.client.search.companyProfileView'>
+             xmlns:edito='urn:import:com.businessdirecotory.client.search.companyprofileview'>
   <g:HTMLPanel>
-
-    <!--<edito:CompanyReadOnlyEditor ui:field="editor"/>-->
-
+    <edito:CompanyReadOnlyEditor ui:field="editor"/>
   </g:HTMLPanel>
 </ui:UiBinder>

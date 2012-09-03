@@ -21,24 +21,34 @@ public class EditCompanyActionHandler implements ActionHandler<EditCompanyAction
 
   private CompanyValidator validator;
 
+  private final CompanyIndexer indexer;
+
   @Inject
   public EditCompanyActionHandler(CompaniesRepository repository,
                                   UserRepository userRepository,
-                                  CompanyValidator validator) {
+                                  CompanyValidator validator,
+                                  CompanyIndexer indexer) {
     this.repository = repository;
     this.userRepository = userRepository;
     this.validator = validator;
+    this.indexer = indexer;
   }
 
   @Override
   public EditCompanyResponse handle(EditCompanyAction action) {
+
+    Company newCompany = action.getCompany();
+
+    newCompany.setKeyWords(indexer.getKeywords(newCompany));
+
     Company current = repository.getByUserId(action.getUserId());
+
     if (current == null) {
-      repository.add(action.getCompany());
+      repository.add(newCompany);
     } else {
-      repository.update(action.getCompany());
-      current = repository.getByUserId(action.getUserId());
+      repository.update(newCompany);
     }
+    current = repository.getByUserId(newCompany.getUserId());
     return new EditCompanyResponse(current, new ArrayList<String>());
   }
 }

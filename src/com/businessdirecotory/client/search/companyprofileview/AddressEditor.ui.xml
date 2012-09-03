@@ -1,0 +1,93 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'
+        >
+  <ui:with field="res" type="com.businessdirecotory.client.resources.ImagesResource"/>
+  <ui:style>
+    .controlLabel {
+
+    }
+
+    .mapWrapper {
+      border: 1px solid #dddddd;
+      border-radius: 3px;
+      padding: 5px;
+      margin: 5px;
+    }
+
+    .containser {
+      text-align: left;
+      padding: 5px;
+      margin: 5px;
+      border: 1px #cccccc solid;
+      border-radius: 10px;
+      float: left;
+    }
+
+    .label {
+      border: 1px solid #dddddd;
+      border-radius: 3px;
+      padding: 5px;
+      margin: 5px;
+    }
+
+    .title {
+      margin: 10px;
+      font: 25px bold;
+    }
+  </ui:style>
+
+  <g:HTMLPanel addStyleNames="{style.containser}">
+    <g:HTMLPanel addStyleNames="{style.title}">
+      <p>
+        Адрес
+      </p>
+    </g:HTMLPanel>
+    <g:HorizontalPanel>
+      <g:HTMLPanel>
+        <b:ControlGroup type="NONE">
+          <g:Image resource="{res.map}"/>
+          <b:ControlLabel for="county" addStyleNames="{style.controlLabel}">Държава</b:ControlLabel>
+          <b:Controls>
+            <g:Label ui:field="county" addStyleNames="{style.label}"/>
+          </b:Controls>
+        </b:ControlGroup>
+
+        <b:ControlGroup type="NONE">
+          <g:Image resource="{res.map}"/>
+          <b:ControlLabel for="city" addStyleNames="{style.controlLabel}">Град</b:ControlLabel>
+          <b:Controls>
+            <g:Label ui:field="city" addStyleNames="{style.label}"/>
+          </b:Controls>
+        </b:ControlGroup>
+
+
+        <b:ControlGroup type="NONE">
+          <g:Image resource="{res.map}"/>
+          <b:ControlLabel for="street" addStyleNames="{style.controlLabel}">Улица</b:ControlLabel>
+          <b:Controls>
+            <g:Label ui:field="street" addStyleNames="{style.label}"/>
+          </b:Controls>
+        </b:ControlGroup>
+
+
+        <b:ControlGroup type="NONE">
+          <g:Image resource="{res.description}"/>
+          <b:ControlLabel for="description" addStyleNames="{style.controlLabel}">Допълнителна информация
+          </b:ControlLabel>
+          <b:Controls>
+            <g:Label ui:field="description" addStyleNames="{style.label}"/>
+          </b:Controls>
+        </b:ControlGroup>
+
+      </g:HTMLPanel>
+
+      <g:SimplePanel ui:field="mapWrapper" addStyleNames="{style.mapWrapper} ">
+
+      </g:SimplePanel>
+
+    </g:HorizontalPanel>
+
+
+  </g:HTMLPanel>
+</ui:UiBinder>

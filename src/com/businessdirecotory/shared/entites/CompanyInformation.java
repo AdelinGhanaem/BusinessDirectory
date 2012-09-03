@@ -88,4 +88,6 @@ public class CompanyInformation implements Serializable {
     this.description = description;
   }
 
+
+
 }
