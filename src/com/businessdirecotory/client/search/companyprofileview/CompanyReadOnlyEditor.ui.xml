@@ -4,14 +4,17 @@
              xmlns:base="urn:import:com.github.gwtbootstrap.client.ui.base"
              xmlns:editors="urn:import:com.businessdirecotory.client.search.companyprofileview">
 
+  <ui:with field="res" type="com.businessdirecotory.client.resources.ImagesResource"/>
+
   <ui:style>
     .controlGroup {
       margin: 5px;
     }
 
     .editorContainer {
-      padding: 30px;
-      float: left;
+      padding: 5px;
+      margin: auto;
+      text-align: center;
     }
 
     .companyField {
@@ -77,28 +80,27 @@
     }
 
   </ui:style>
-  <ui:with field="res" type="com.businessdirecotory.client.resources.ImagesResource"/>
   <g:HTMLPanel addStyleNames="{style.address}">
 
-    <g:HTMLPanel addStyleNames="{style.title}">
-      <p>
-        Адрес
-      </p>
-    </g:HTMLPanel>
 
     <g:HTMLPanel addStyleNames="{style.imageContainer}">
       <g:Image ui:field="image" addStyleNames="{style.controlGroup}"/>
     </g:HTMLPanel>
     <b:TabPanel tabPosition="left" addStyleNames="{style.tabwrapper}">
       <b:TabPane active="true" heading="Основна Информация" addStyleNames="{style.tab}">
+
         <g:HTMLPanel addStyleNames="{style.editorContainer}">
+          <legend>Основна Информация</legend>
           <editors:CompanyInformationEditor ui:field="info"/>
           <div class="cleaner"></div>
         </g:HTMLPanel>
       </b:TabPane>
 
       <b:TabPane heading="Адрес" addStyleNames="{style.tab}">
-        <editors:AddressEditor ui:field="address"/>
+        <g:HTMLPanel addStyleNames="{style.editorContainer}">
+          <legend>Адрес</legend>
+          <editors:AddressEditor ui:field="address"/>
+        </g:HTMLPanel>
 
       </b:TabPane>
 

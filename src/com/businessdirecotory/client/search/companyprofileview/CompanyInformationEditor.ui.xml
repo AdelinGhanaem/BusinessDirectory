@@ -8,14 +8,10 @@
     }
 
     .wrapper {
-      width: 400px;
-      text-align: center;
       text-align: left;
       padding: 5px;
-      margin: 5px;
-      border: 1px #cccccc solid;
-      border-radius: 10px;
-      float: left;
+      margin: auto;
+
     }
 
     .label {
@@ -34,11 +30,7 @@
   <ui:with field="res" type="com.businessdirecotory.client.resources.ImagesResource"/>
 
   <g:HTMLPanel addStyleNames="{style.wrapper}">
-    <g:HTMLPanel addStyleNames="{style.title}">
-      <p>
-        Основно информация
-      </p>
-    </g:HTMLPanel>
+
     <b:ControlGroup type="NONE">
       <g:Image resource="{res.map}"/>
 

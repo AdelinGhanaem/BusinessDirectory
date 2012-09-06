@@ -17,9 +17,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
@@ -49,7 +47,7 @@ public class AddressEditor extends Composite implements Editor<Address> {
   MapWidget mapWidget;
 
   @UiField
-  SimplePanel mapWrapper;
+  HTMLPanel mapWrapper;
 
   @Ignore
   long id;
@@ -84,7 +82,7 @@ public class AddressEditor extends Composite implements Editor<Address> {
     mapOptions.setMapTypeControl(true);
     mapOptions.setMapTypeId(new MapTypeId().getHybrid());
     mapWidget = new MapWidget(mapOptions);
-    mapWidget.setSize("400px","460px");
+    mapWidget.setSize("300px","300px");
     Event.addListener(mapWidget.getMap(), "click", new MouseEventCallback() {
       @Override
       public void callback(HasMouseEvent event) {

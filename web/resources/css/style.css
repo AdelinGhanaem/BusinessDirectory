@@ -1,11 +1,11 @@
 
 
 body {
+
     overflow-x: hidden;
     padding: 0px;
     margin: 0px;
     font: 9pt Arial, Verdana, Sans-Serif;
-    background: #fff;
 }
 
 a {
@@ -34,6 +34,7 @@ h3 {
 }
 
 #body {
+    background: #f0f0f0;
     padding: 0;
 }
 
