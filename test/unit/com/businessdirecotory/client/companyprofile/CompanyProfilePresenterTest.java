@@ -9,10 +9,10 @@ import com.businessdirecotory.client.companyprofile.view.CompanyProfileView;
 import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
 import com.businessdirecotory.client.comunication.GotResponse;
 import com.businessdirecotory.shared.entites.Company;
-import com.businessdirecotory.shared.entites.actions.FetchCompanyAction;
+import com.businessdirecotory.shared.entites.actions.FetchCompanyByUserIdAction;
 import com.businessdirecotory.shared.entites.actions.FetchLogoAction;
 import com.businessdirecotory.shared.entites.reponses.EditCompanyResponse;
-import com.businessdirecotory.shared.entites.reponses.FetchCompanyResponse;
+import com.businessdirecotory.shared.entites.reponses.FetchCompanyByUserIdResponse;
 import com.businessdirecotory.shared.entites.reponses.FetchLogoResponse;
 import com.evo.gad.shared.Action;
 import org.junit.Before;
@@ -25,7 +25,6 @@ import java.util.Date;
 
 import static com.businessdirecotory.client.search.TestingAsyncCallbacksHelper.doOnSuccess;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.isA;
@@ -55,7 +54,7 @@ public class CompanyProfilePresenterTest {
   CompanyProfilePresenter presenter;
 
   @Captor
-  ArgumentCaptor<SecuredAction<SecuredResponse<FetchCompanyResponse>>> captor;
+  ArgumentCaptor<SecuredAction<SecuredResponse<FetchCompanyByUserIdResponse>>> captor;
 
   @Captor
   ArgumentCaptor<SecuredAction<SecuredResponse<EditCompanyResponse>>> securedActionArgumentCaptor;
@@ -75,34 +74,33 @@ public class CompanyProfilePresenterTest {
   @Test
   public void fetchCompanyProfile() {
 
-    String mail = "mail@mail.com";
 
-    Token token = new Token(2l, 2l, mail, new Date());
+    Token token = new Token(2l, 2l, "mail@mail.com", new Date());
 
-    Company companyProfile = new Company();
+    Company company = new Company();
 
-    FetchCompanyResponse response = new FetchCompanyResponse(companyProfile);
+    FetchCompanyByUserIdResponse response = new FetchCompanyByUserIdResponse(company);
 
     SecuredResponse securedResponse = new SecuredResponse(response);
 
-    FetchCompanyAction fetchCompanyAction = new FetchCompanyAction(2l);
+    FetchCompanyByUserIdAction action = new  FetchCompanyByUserIdAction(2l);
 
-    SecuredAction<SecuredResponse<FetchCompanyResponse>> securedAction =
-            new SecuredAction<SecuredResponse<FetchCompanyResponse>>(fetchCompanyAction, token);
+    SecuredAction<SecuredResponse<FetchCompanyByUserIdResponse>> securedAction =
+            new SecuredAction<SecuredResponse<FetchCompanyByUserIdResponse>>(action, token);
 
     when(provider.getToken()).thenReturn(token);
 
-    when(securedActionBuilder.build(isA(FetchCompanyAction.class))).thenReturn(securedAction);
+    when(securedActionBuilder.build(isA(FetchCompanyByUserIdAction.class))).thenReturn(securedAction);
 
     doOnSuccess(securedResponse).when(service).dispatch(isA(SecuredAction.class), isA(GotResponse.class));
 
     presenter.fetchCompanyProfile();
 
-    verify(securedActionBuilder).build(isA(FetchCompanyAction.class));
+    verify(securedActionBuilder).build(isA(FetchCompanyByUserIdAction.class));
 
     verify(service).dispatch(captor.capture(), isA(GotResponse.class));
 
-    SecuredAction<SecuredResponse<FetchCompanyResponse>> capturedSecuredAction = captor.getValue();
+    SecuredAction<SecuredResponse<FetchCompanyByUserIdResponse>> capturedSecuredAction = captor.getValue();
 
     assertThat(capturedSecuredAction, is(notNullValue()));
 
@@ -110,8 +108,7 @@ public class CompanyProfilePresenterTest {
 
     verify(provider).getToken();
 
-    verify(view).showCompanyProfile(companyProfile);
-
+    verify(view).showCompanyProfile(company);
   }
 
   @Test
@@ -125,28 +122,28 @@ public class CompanyProfilePresenterTest {
 
     Company companyProfile = null;
 
-    FetchCompanyResponse response = new FetchCompanyResponse(companyProfile, null);
+    FetchCompanyByUserIdResponse byIdResponse = new FetchCompanyByUserIdResponse(companyProfile);
 
-    SecuredResponse securedResponse = new SecuredResponse(response);
+    SecuredResponse securedResponse = new SecuredResponse(byIdResponse);
 
-    FetchCompanyAction fetchCompanyAction = new FetchCompanyAction(usernameId);
+    FetchCompanyByUserIdAction fetchCompanyByIdAction = new FetchCompanyByUserIdAction(usernameId);
 
-    SecuredAction<SecuredResponse<FetchCompanyResponse>> securedAction =
-            new SecuredAction<SecuredResponse<FetchCompanyResponse>>(fetchCompanyAction, token);
+    SecuredAction<SecuredResponse<FetchCompanyByUserIdResponse>> securedAction =
+            new SecuredAction<SecuredResponse<FetchCompanyByUserIdResponse>>(fetchCompanyByIdAction, token);
 
     when(provider.getToken()).thenReturn(token);
 
-    when(securedActionBuilder.build(isA(FetchCompanyAction.class))).thenReturn(securedAction);
+    when(securedActionBuilder.build(isA(FetchCompanyByUserIdAction.class))).thenReturn(securedAction);
 
     doOnSuccess(securedResponse).when(service).dispatch(isA(SecuredAction.class), isA(GotResponse.class));
 
     presenter.fetchCompanyProfile();
 
-    verify(securedActionBuilder).build(isA(FetchCompanyAction.class));
+    verify(securedActionBuilder).build(isA(FetchCompanyByUserIdAction.class));
 
     verify(service).dispatch(captor.capture(), isA(GotResponse.class));
 
-    SecuredAction<SecuredResponse<FetchCompanyResponse>> capturedSecuredAction = captor.getValue();
+    SecuredAction<SecuredResponse<FetchCompanyByUserIdResponse>> capturedSecuredAction = captor.getValue();
 
     assertThat(capturedSecuredAction, is(notNullValue()));
 
@@ -154,49 +151,12 @@ public class CompanyProfilePresenterTest {
 
     assertThat(capturedSecuredAction.getAction(), is(notNullValue()));
 
-    assertThat(((FetchCompanyAction) action).getId(), is(equalTo(usernameId)));
-
     verify(provider).getToken();
 
     verify(view).showCreateProfileButton();
 
     verify(view, never()).showCompanyProfile(companyProfile);
-
   }
-
-  @Test
-  public void editsCompanyInformation() {
-//    Long id = 1l;
-//    Token token = new Token(2l, 5l, "username", new Date());
-//
-//
-//    EditCompanyAction editCompanyAction = new EditCompanyAction(1l, company);
-//
-//    SecuredAction<SecuredResponse<EditCompanyResponse>> securedAction =
-//            new SecuredAction<SecuredResponse<EditCompanyResponse>>(editCompanyAction, token);
-//
-//    EditCompanyResponse editCompanyResponse = new EditCompanyResponse(updated, null);
-//
-//    SecuredResponse<EditCompanyResponse> securedResponse = new SecuredResponse<EditCompanyResponse>(editCompanyResponse);
-//
-//    when(securedActionBuilder.build(isA(EditCompanyAction.class))).thenReturn(securedAction);
-//    when(provider.getToken()).thenReturn(token);
-//    doOnSuccess(securedResponse).when(service).dispatch(isA(SecuredAction.class), isA(GotResponse.class));
-//
-//    presenter.updateCompany(company);
-//
-//    verify(service).dispatch(securedActionArgumentCaptor.capture(), isA(GotResponse.class));
-//
-//    verify(view).showCompanyProfile(companyCaptor.capture());
-//
-//    verify(view).enableEditButton();
-//
-//    Company returnedCompany = companyCaptor.getValue();
-//
-//    assertThat(returnedCompany.getNa(), is(equalTo("mail@mail.com")));
-
-  }
-
 
   @Test
   public void fetchesCompanyImage() {
@@ -214,9 +174,10 @@ public class CompanyProfilePresenterTest {
 
     Token token = new Token(1l, 1l, "username", new Date());
 
-    SecuredAction<SecuredResponse<FetchLogoResponse>> securedAction =
-            new SecuredAction<SecuredResponse<FetchLogoResponse>>(fetchLogoAction, token);
+    SecuredAction<SecuredResponse<FetchLogoResponse>> securedAction = new SecuredAction<SecuredResponse<FetchLogoResponse>>(fetchLogoAction, token);
+
     when(provider.getToken()).thenReturn(token);
+
     when(securedActionBuilder.build(isA(FetchLogoAction.class))).thenReturn(securedAction);
 
     doOnSuccess(fetchLogoResponseSecuredResponse).when(service).dispatch(isA(SecuredAction.class), isA(GotResponse.class));

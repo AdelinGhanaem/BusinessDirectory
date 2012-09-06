@@ -52,4 +52,9 @@ public interface ImagesResource extends ClientBundle {
 
   @Source("Alert.png")
   ImageResource alert();
+
+
+  @Source("bingLoading.gif")
+  ImageResource bigLoading();
+
 }

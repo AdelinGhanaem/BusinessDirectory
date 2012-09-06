@@ -46,47 +46,6 @@ public class AuthorizationPresenterTest {
     presenter = new AuthorizationPresenter(service, eventBus, view);
   }
 
-
-//  @Test
-//  public void dispatchesAuthorizationAction() {
-//
-//    Account account = new Account();
-//
-//    presenter.authorize(account);
-//
-//    verify(service).dispatch(isA(AuthorizationAction.class), isA(GotResponse.class));
-//  }
-
-//  @Test
-//  public void setsTokenWhenAuthorizationSucceed() {
-
-
-//    verify(securityTokenProvider).setToken(token);
-//
-//    verify(view).hide();
-//  }
-
-  @Test
-  public void firesUserAuthorizedEventAndHidesLogInViewWhenUserIsAuthorized() {
-
-    Token token = new Token(1l, 1l, "username", new Date());
-
-    AuthorizationResponse response = new AuthorizationResponse(token);
-
-    doOnSuccess(response).when(service).dispatch(isA(AuthorizationAction.class), isA(GotResponse.class));
-
-    presenter.authorize(new User());
-
-    verify(service).dispatch(isA(AuthorizationAction.class), isA(GotResponse.class));
-
-    verify(eventBus).fireEvent(isA(UserAuthorizedEvent.class));
-
-    verify(view).hide();
-
-//    fail();
-  }
-
-
   @Test
   public void notifiesUserWhenUsernameOrPasswordAreWrong() {
 
@@ -105,6 +64,22 @@ public class AuthorizationPresenterTest {
     verify(view).notifyUserOfWrongUsernameOrPassword();
 
     verify(view, never()).hide();
+  }
+
+
+  @Test
+  public void saveCredentialsWhenUserIsAuthorized() {
+    Token token = new Token(1l, 1l, "username", new Date());
+
+    AuthorizationResponse response = new AuthorizationResponse(token);
+
+    doOnSuccess(response).when(service).dispatch(isA(AuthorizationAction.class), isA(GotResponse.class));
+
+    presenter.authorize(new User("username", "123"));
+
+    verify(service).dispatch(isA(AuthorizationAction.class), isA(GotResponse.class));
+
+    verify(eventBus).fireEvent(isA(UserAuthorizedEvent.class));
   }
 
 

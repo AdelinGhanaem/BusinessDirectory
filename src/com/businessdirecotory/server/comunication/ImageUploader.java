@@ -7,7 +7,6 @@ import com.businessdirecotory.server.companyprofile.ImageData;
 import com.businessdirecotory.server.companyprofile.ImagesRepository;
 import com.businessdirecotory.server.registration.CompaniesRepository;
 import com.businessdirecotory.server.registration.CompaniesRepositoryImpl;
-import com.businessdirecotory.server.registration.CompanyEntityMapper;
 import com.businessdirecotory.server.registration.UserRepository;
 import com.businessdirecotory.server.registration.UserRepositoryImpl;
 import com.businessdirecotory.shared.entites.Company;
@@ -21,7 +20,6 @@ import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
 import com.google.appengine.api.images.Transform;
-import com.google.code.twig.ObjectDatastore;
 import com.google.code.twig.annotation.AnnotationObjectDatastore;
 import com.google.inject.Singleton;
 
@@ -80,7 +78,6 @@ public class ImageUploader extends HttpServlet {
         System.out.println("somethingWentWrong !!");
       } else {
         BlobKey blobKey = blobKeys.get(0);
-//        String url = getImageURL(blobKey);
         String imageURL = resizeImage(blobKey);
         saveImageInDataStore(userId, imageURL);
       }

@@ -7,9 +7,12 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
  */
-public class PlaceNotFoundActivity extends AbstractActivity{
+public class PlaceNotFoundActivity extends AbstractActivity {
+
+
   @Override
   public void start(AcceptsOneWidget panel, EventBus eventBus) {
-
+    PlaceNotFoundView view = new PlaceNotFoundView();
+    panel.setWidget(view);
   }
 }

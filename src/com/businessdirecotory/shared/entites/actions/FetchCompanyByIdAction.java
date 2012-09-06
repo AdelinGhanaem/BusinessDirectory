@@ -1,18 +1,18 @@
 package com.businessdirecotory.shared.entites.actions;
 
-import com.businessdirecotory.shared.entites.reponses.FetchCompanyResponse;
+import com.businessdirecotory.shared.entites.reponses.FetchCompanyByIdResponse;
 import com.evo.gad.shared.Action;
 
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
  */
-public class FetchCompanyAction implements Action<FetchCompanyResponse> {
+public class FetchCompanyByIdAction implements Action<FetchCompanyByIdResponse> {
 
   private String companyEmail;
 
   private Long ownerId;
 
-  public FetchCompanyAction(Long ownerId) {
+  public FetchCompanyByIdAction(Long ownerId) {
     this.ownerId = ownerId;
   }
 
@@ -20,7 +20,7 @@ public class FetchCompanyAction implements Action<FetchCompanyResponse> {
     return ownerId;
   }
 
-  public FetchCompanyAction() {
+  public FetchCompanyByIdAction() {
   }
 
 

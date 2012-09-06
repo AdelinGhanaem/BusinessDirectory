@@ -3,8 +3,8 @@ package com.businessdirecotory.client.search;
 import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
 import com.businessdirecotory.client.comunication.GotResponse;
 import com.businessdirecotory.shared.entites.Company;
-import com.businessdirecotory.shared.entites.actions.FetchCompanyAction;
-import com.businessdirecotory.shared.entites.reponses.FetchCompanyResponse;
+import com.businessdirecotory.shared.entites.actions.FetchCompanyByIdAction;
+import com.businessdirecotory.shared.entites.reponses.FetchCompanyByIdResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -42,10 +42,10 @@ public class CompanyFullInfoPresenterTest {
   @Test
   public void fetchCompany() {
 
-    FetchCompanyResponse response = new FetchCompanyResponse(new Company());
+    FetchCompanyByIdResponse byIdResponse = new FetchCompanyByIdResponse(new Company());
 
-    doOnSuccess(response).when(service).dispatch(ArgumentCaptor.
-            forClass(FetchCompanyAction.class).capture(), isA(GotResponse.class));
+    doOnSuccess(byIdResponse).when(service).dispatch(ArgumentCaptor.
+            forClass(FetchCompanyByIdAction.class).capture(), isA(GotResponse.class));
 
     presenter.fetchFullInfo(1l);
 
@@ -56,10 +56,10 @@ public class CompanyFullInfoPresenterTest {
   @Test
   public void notifiesUseIfCompanyIsNull() {
 
-    FetchCompanyResponse response = new FetchCompanyResponse();
+    FetchCompanyByIdResponse byIdResponse = new FetchCompanyByIdResponse();
 
-    doOnSuccess(response).when(service).dispatch(ArgumentCaptor.
-            forClass(FetchCompanyAction.class).capture(), isA(GotResponse.class));
+    doOnSuccess(byIdResponse).when(service).dispatch(ArgumentCaptor.
+            forClass(FetchCompanyByIdAction.class).capture(), isA(GotResponse.class));
 
     presenter.fetchFullInfo(1l);
 

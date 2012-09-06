@@ -80,17 +80,14 @@ public class Businessdirecotory implements EntryPoint {
 
     PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
 
-    historyHandler.register(placeController, eventBus, new SearchPlace());
+    historyHandler.register(placeController, eventBus,new SearchPlace());
 
 
     RootPanel.get("mainContainer").add(widgets);
 
+
     historyHandler.handleCurrentHistory();
 
-//    CompanyProfileViewImpl view = new CompanyProfileViewImpl();
-//    NavigationBarViewImpl view = new NavigationBarViewImpl();
-//    CompanyProfileViewImpl view = new CompanyProfileViewImpl();
-//    RootPanel.get().add(view);
   }
 
 

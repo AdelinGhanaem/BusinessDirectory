@@ -50,7 +50,7 @@
 
     <b:ModalFooter addStyleNames="{style.footer}">
       <g:Image resource="{res.buttonLoading}" visible="false" ui:field="loadingImage"/>
-      <b:Button type="SUCCESS" ui:field="register" text="Регистрирай"/>
+      <b:Button type="SUCCESS" ui:field="registerButton" text="Регистрирай"/>
       <b:Button type="SUCCESS" ui:field="close" text="Затвори"/>
     </b:ModalFooter>
 

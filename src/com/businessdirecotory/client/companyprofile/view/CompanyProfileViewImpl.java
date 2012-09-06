@@ -80,6 +80,11 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
   @UiField
   Image logo;
 
+  @UiField
+  Image loading;
+  @UiField
+  HTMLPanel container;
+
 
   @Inject
   private SecurityTokenProvider provider;
@@ -111,6 +116,8 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
 
   @Override
   public void showCompanyProfile(Company company) {
+    loading.setVisible(false);
+    container.setVisible(true);
     tabPanel.setVisible(true);
     driver.edit(company);
     submit.setEnabled(true);
@@ -134,20 +141,22 @@ public class CompanyProfileViewImpl extends Composite implements CompanyProfileV
   @Override
   public void disableEditButton() {
     edit.setEnabled(false);
+    edit.setEnabled(false);
     loadingImage.setVisible(true);
   }
 
   @Override
   public void enableEditButton() {
     edit.setEnabled(true);
+    edit.setVisible(true);
     loadingImage.setVisible(false);
   }
 
   @Override
   public void showCreateProfileButton() {
+    loading.setVisible(false);
     createProfile.setVisible(true);
     tabPanel.setVisible(false);
-
   }
 
   @Override

@@ -9,11 +9,11 @@ import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
 import com.businessdirecotory.client.comunication.GotResponse;
 import com.businessdirecotory.shared.entites.Company;
 import com.businessdirecotory.shared.entites.actions.EditCompanyAction;
-import com.businessdirecotory.shared.entites.actions.FetchCompanyAction;
+import com.businessdirecotory.shared.entites.actions.FetchCompanyByUserIdAction;
 import com.businessdirecotory.shared.entites.actions.FetchLogoAction;
 import com.businessdirecotory.shared.entites.actions.FetchURLAction;
 import com.businessdirecotory.shared.entites.reponses.EditCompanyResponse;
-import com.businessdirecotory.shared.entites.reponses.FetchCompanyResponse;
+import com.businessdirecotory.shared.entites.reponses.FetchCompanyByUserIdResponse;
 import com.businessdirecotory.shared.entites.reponses.FetchLogoResponse;
 import com.businessdirecotory.shared.entites.reponses.FetchURLResponse;
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -48,12 +48,13 @@ public class CompanyProfilePresenter extends AbstractActivity {
   }
 
   public void fetchCompanyProfile() {
-    SecuredAction<SecuredResponse<FetchCompanyResponse>> action =
-            securedActionBuilder.build(new FetchCompanyAction(provider.getToken().getUserId()));
-    GotResponse<SecuredResponse<FetchCompanyResponse>> response =
-            new GotResponse<SecuredResponse<FetchCompanyResponse>>() {
+
+    SecuredAction<SecuredResponse<FetchCompanyByUserIdResponse>> action =
+            securedActionBuilder.build(new FetchCompanyByUserIdAction(provider.getToken().getUserId()));
+    GotResponse<SecuredResponse<FetchCompanyByUserIdResponse>> response =
+            new GotResponse<SecuredResponse<FetchCompanyByUserIdResponse>>() {
               @Override
-              public void gotResponse(SecuredResponse<FetchCompanyResponse> result) {
+              public void gotResponse(SecuredResponse<FetchCompanyByUserIdResponse> result) {
                 if (result.getResponse() == null) {
                   view.goToLoginPlace();
                 }  else {
@@ -66,6 +67,7 @@ public class CompanyProfilePresenter extends AbstractActivity {
 
               }
             };
+
     service.dispatch(action, response);
   }
 

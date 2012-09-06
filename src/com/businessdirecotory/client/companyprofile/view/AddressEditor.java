@@ -14,6 +14,7 @@ import com.google.gwt.maps.client.base.LatLng;
 import com.google.gwt.maps.client.event.Event;
 import com.google.gwt.maps.client.event.HasMouseEvent;
 import com.google.gwt.maps.client.event.MouseEventCallback;
+import com.google.gwt.maps.client.overlay.Marker;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
@@ -29,7 +30,6 @@ public class AddressEditor extends Composite implements Editor<Address> {
   }
 
   private static AddressEditorUiBinder ourUiBinder = GWT.create(AddressEditorUiBinder.class);
-
 
 
   @UiField
@@ -56,6 +56,8 @@ public class AddressEditor extends Composite implements Editor<Address> {
   @Ignore
   private MapOptions mapOptions;
 
+  final Marker marker = new Marker();
+
   @Ignore
   LatLong latAndLong = new LatLong(25.38191796875003d, 42.60635104185243d);
 
@@ -63,6 +65,7 @@ public class AddressEditor extends Composite implements Editor<Address> {
 
     @Override
     public void setValue(LatLong value) {
+      marker.setPosition(new LatLng(value.getLatitude(),value.getLongitude()));
       latAndLong = value;
     }
 
@@ -76,18 +79,22 @@ public class AddressEditor extends Composite implements Editor<Address> {
     HTMLPanel rootElement = ourUiBinder.createAndBindUi(this);
     mapOptions = new MapOptions();
     mapOptions.setCenter(new LatLng(42.60635104185243d, 25.38191796875003d));
-    mapOptions.setZoom(4);
+    mapOptions.setZoom(8);
+    mapOptions.setMapTypeId(new MapTypeId().getHybrid());
     mapOptions.setDraggable(true);
     mapOptions.setDisableDoubleClickZoom(true);
     mapOptions.setNavigationControl(true);
     mapOptions.setMapTypeControl(true);
     mapOptions.setMapTypeId(new MapTypeId().getHybrid());
+    mapOptions.setScaleControl(true);
     mapWidget = new MapWidget(mapOptions);
-    mapWidget.setSize("300px","300px");
+    mapWidget.setSize("400px", "400px");
     Event.addListener(mapWidget.getMap(), "click", new MouseEventCallback() {
       @Override
       public void callback(HasMouseEvent event) {
         HasLatLng hasLatLng = event.getLatLng();
+        marker.setPosition(hasLatLng);
+        marker.setMap(mapWidget.getMap());
         latAndLong.setLatitude(hasLatLng.getLatitude());
         latAndLong.setLongitude(hasLatLng.getLongitude());
       }

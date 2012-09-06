@@ -25,9 +25,6 @@ public interface NavigationBarView extends IsWidget {
 
   void gotToMainPage();
 
-  interface NavigationBarUiBinder extends UiBinder<FlowPanel, NavigationBarViewImpl> {
-  }
-
   public Widget asWidget();
 
   public void setUsernameBrand(String username);

@@ -7,7 +7,8 @@ import com.businessdirecotory.server.companyprofile.CompanyIndexerImp;
 import com.businessdirecotory.server.companyprofile.CompanyValidator;
 import com.businessdirecotory.server.companyprofile.CompanyValidatorImpl;
 import com.businessdirecotory.server.companyprofile.EditCompanyActionHandler;
-import com.businessdirecotory.server.companyprofile.FetchCompanyActionHandler;
+import com.businessdirecotory.server.companyprofile.FetchCompanyByUserIdActionHandler;
+import com.businessdirecotory.server.search.FetchCompanyByIdActionHandler;
 import com.businessdirecotory.server.companyprofile.FetchLogoActionHandler;
 import com.businessdirecotory.server.comunication.ActionDispatcherServiceImpl;
 import com.businessdirecotory.server.comunication.ImageUploader;
@@ -65,11 +66,12 @@ public class GuiceServerModule extends GuiceServletContextListener {
         metadatas.add(new ActionHandlerMetadata(SearchAction.class, SearchActionHandler.class));
         metadatas.add(new ActionHandlerMetadata(AuthorizationAction.class, AuthorizationActionHandler.class));
         metadatas.add(new ActionHandlerMetadata(LogoutAction.class, LogoutActionHandler.class));
-        metadatas.add(new ActionHandlerMetadata(FetchCompanyAction.class, FetchCompanyActionHandler.class));
+        metadatas.add(new ActionHandlerMetadata(FetchCompanyByIdAction.class, FetchCompanyByIdActionHandler.class));
         metadatas.add(new ActionHandlerMetadata(FetchURLAction.class, FetchURLActionHandler.class));
         metadatas.add(new ActionHandlerMetadata(EditCompanyAction.class, EditCompanyActionHandler.class));
         metadatas.add(new ActionHandlerMetadata(FetchLogoAction.class, FetchLogoActionHandler.class));
         metadatas.add(new ActionHandlerMetadata(CheckAuthorizationAction.class, CheckAuthorizationActionHandler.class));
+        metadatas.add(new ActionHandlerMetadata(FetchCompanyByUserIdAction.class, FetchCompanyByUserIdActionHandler.class));
         return metadatas;
       }
 

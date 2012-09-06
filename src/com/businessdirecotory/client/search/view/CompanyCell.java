@@ -14,6 +14,7 @@ import java.util.Map;
 public class CompanyCell extends AbstractCell<Company> {
 
   private Map<String, String> iconsMap;
+
   private ImagesResource instance;
 
   public CompanyCell(ImagesResource instance) {
@@ -39,7 +40,7 @@ public class CompanyCell extends AbstractCell<Company> {
 
     sb.appendHtmlConstant(" <div class=\"companyDivCell\">\n" +
             "                <table class=\"companyTable\">\n" +
-            "                    <tr><td rowspan=\"20\"><img src=\"" + value.getLogoURL() + "\"/></td></tr>\n" +
+//            "                    <tr><td rowspan=\"20\"><img src=\"" + value.getLogoURL() + "\"/></td></tr>\n" +
             "                    <tr><td colspan=\"2\" class=\"nameCell\">" + value.getInfo().getCompanyName() + "</td></tr>\n" +
             "                    <tr><td colspan=\"2\">" + value.getInfo().getActivity() + "</td></tr>\n" +
             "                    <tr><td>" + phoneNumber + " Телефон</td><td>" + value.getInfo().getPhoneNumber() + "</td></tr>\n" +

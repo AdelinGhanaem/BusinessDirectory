@@ -8,54 +8,65 @@
 
     }
 
-    .mapWrapper {
+    .containser {
+      margin: auto;
+      text-align: center;
 
     }
 
-    .containser {
-      text-align: left;
-      padding: 10px;
-      margin: 10px;
-      border: 1px #cccccc solid;
-      border-radius: 10px;
-      float: left;
+    .panel {
+
+      margin: 5px;
+      text-align: center;
+
     }
   </ui:style>
 
   <g:HTMLPanel addStyleNames="{style.containser}">
-    <b:ControlGroup type="NONE">
-      <b:ControlLabel for="county" addStyleNames="{style.controlLabel}">Държава</b:ControlLabel>
-      <b:Controls>
-        <b:TextBox placeholder="Държава" ui:field="county"/>
-      </b:Controls>
-    </b:ControlGroup>
+    <legend>Адрес</legend>
 
-    <b:ControlGroup type="NONE">
-      <b:ControlLabel for="city" addStyleNames="{style.controlLabel}">Град</b:ControlLabel>
-      <b:Controls>
-        <b:TextBox placeholder="Град" ui:field="city"/>
-      </b:Controls>
-    </b:ControlGroup>
+    <g:HorizontalPanel>
 
+      <g:HTMLPanel addStyleNames="{style.panel}">
+        <b:ControlGroup type="NONE">
+          <b:ControlLabel for="county" addStyleNames="{style.controlLabel}">Държава</b:ControlLabel>
+          <b:Controls>
+            <b:TextBox placeholder="Държава" ui:field="county"/>
+          </b:Controls>
+        </b:ControlGroup>
 
-    <b:ControlGroup type="NONE">
-      <b:ControlLabel for="street" addStyleNames="{style.controlLabel}">Улица</b:ControlLabel>
-      <b:Controls>
-        <b:TextBox placeholder="Улица" ui:field="street"/>
-      </b:Controls>
-    </b:ControlGroup>
+        <b:ControlGroup type="NONE">
+          <b:ControlLabel for="city" addStyleNames="{style.controlLabel}">Град</b:ControlLabel>
+          <b:Controls>
+            <b:TextBox placeholder="Град" ui:field="city"/>
+          </b:Controls>
+        </b:ControlGroup>
 
 
-    <b:ControlGroup type="NONE">
-      <b:ControlLabel for="description" addStyleNames="{style.controlLabel}">Допълнителна информация</b:ControlLabel>
-      <b:Controls>
-        <b:TextBox placeholder="Допълнителна информация" ui:field="description"/>
-      </b:Controls>
-    </b:ControlGroup>
+        <b:ControlGroup type="NONE">
+          <b:ControlLabel for="street" addStyleNames="{style.controlLabel}">Улица</b:ControlLabel>
+          <b:Controls>
+            <b:TextBox placeholder="Улица" ui:field="street"/>
+          </b:Controls>
+        </b:ControlGroup>
 
-    <g:SimplePanel ui:field="mapWrapper" addStyleNames="{style.mapWrapper}">
 
-    </g:SimplePanel>
+        <b:ControlGroup type="NONE">
+          <b:ControlLabel for="description" addStyleNames="{style.controlLabel}">Допълнителна информация
+          </b:ControlLabel>
+          <b:Controls>
+            <b:TextBox placeholder="Допълнителна информация" ui:field="description"/>
+          </b:Controls>
+        </b:ControlGroup>
+      </g:HTMLPanel>
+
+      <g:HTMLPanel addStyleNames="{style.panel}">
+        <g:SimplePanel ui:field="mapWrapper">
+
+        </g:SimplePanel>
+      </g:HTMLPanel>
+    </g:HorizontalPanel>
+
 
     <!--<map:MapWidget ui:field="mapWidget" >-->
     <!---->

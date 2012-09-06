@@ -67,19 +67,23 @@ public class NavigationBarPresenterTest {
 
   @Test
   public void showAuthorizedUserMenuWhenUserIsAuthorized() {
+
     Token token = new Token(2l, 3l, "user", new Date());
+
     presenter.onUserAuthorized(new UserAuthorizedEvent(token));
+
     verify(securityTokenProvider).setToken(token);
+
     verify(view).setUsernameBrand("user");
+
     verify(view).showAuthorizedMenuBar();
   }
 
 
   @Test
-  public void setsSecurityToken() {
+  public void setsSecurityTokenWneUserIsAuthorized() {
 
     Token token = new Token(2l, 12l, "user", new Date());
-
 
     presenter.onUserAuthorized(new UserAuthorizedEvent(token));
 

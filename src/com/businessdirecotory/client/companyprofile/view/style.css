@@ -12,7 +12,7 @@
 }
 
 .button {
-    text-align: left;
+    text-align: center;
     margin: 5px 0px 5px 0px;
 }
 
@@ -26,4 +26,9 @@
 .titleContainer {
     margin: 10px 0px 10px 0px;
     text-align: left;
+}
+
+.tabSylePanel {
+    text-align: center;
+    margin: auto;
 }

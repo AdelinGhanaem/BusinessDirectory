@@ -3,8 +3,8 @@ package com.businessdirecotory.client.search;
 import com.businessdirecotory.client.comunication.ActionDispatcherServiceAsync;
 import com.businessdirecotory.client.comunication.GotResponse;
 import com.businessdirecotory.client.search.companyprofileview.CompanyFullInfoViewImpl;
-import com.businessdirecotory.shared.entites.actions.FetchCompanyAction;
-import com.businessdirecotory.shared.entites.reponses.FetchCompanyResponse;
+import com.businessdirecotory.shared.entites.actions.FetchCompanyByIdAction;
+import com.businessdirecotory.shared.entites.reponses.FetchCompanyByIdResponse;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -27,9 +27,9 @@ public class CompanyFullInfoPresenter extends AbstractActivity {
   }
 
   public void fetchFullInfo(long companyId) {
-    service.dispatch(new FetchCompanyAction(companyId), new GotResponse<FetchCompanyResponse>() {
+    service.dispatch(new FetchCompanyByIdAction(companyId), new GotResponse<FetchCompanyByIdResponse>() {
       @Override
-      public void gotResponse(FetchCompanyResponse result) {
+      public void gotResponse(FetchCompanyByIdResponse result) {
         if (result.getCompany() != null) {
           view.viewCompany(result.getCompany());
         } else {

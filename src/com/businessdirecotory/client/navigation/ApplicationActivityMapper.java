@@ -19,6 +19,7 @@ public class ApplicationActivityMapper implements ActivityMapper {
   private ActionDispatcherServiceAsync service;
 
   private SecurityTokenProvider provider;
+
   private HashMap<Class<? extends Place>, ActivityPlaceMeta> placesActivitiesMap;
 
   @Inject
@@ -46,16 +47,6 @@ public class ApplicationActivityMapper implements ActivityMapper {
       if (token == null) {
         return placesActivitiesMap.get(SearchPlace.class).getActivity(new SearchPlace());
       }
-//      Token token = provider.getToken();
-//      service.dispatch(new CheckAuthorizationAction(token), new GotResponse<CheckAuthorizationResponse>() {
-//        @Override
-//        public void gotResponse(CheckAuthorizationResponse result) {
-//          if (result.isAuthorized()) {
-//            //here comes tht problem .... !!!
-//            //how to return the place ???
-//          }
-//        }
-//      });
     }
 
     ActivityPlaceMeta returnedActivity = placesActivitiesMap.get(place.getClass());

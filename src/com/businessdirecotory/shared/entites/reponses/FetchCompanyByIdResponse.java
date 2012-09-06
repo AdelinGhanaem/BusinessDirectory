@@ -7,26 +7,26 @@ import com.evo.gad.shared.Response;
 /**
  * @author Adelin Ghanayem <adelin.ghanaem@clouway.com>
  */
-public class FetchCompanyResponse implements Response {
+public class FetchCompanyByIdResponse implements Response {
 
 
   private Company companyProfile;
 
   private CompanyImage image;
 
-  public FetchCompanyResponse(Company companyProfile, CompanyImage image) {
+  public FetchCompanyByIdResponse(Company companyProfile, CompanyImage image) {
 
     this.companyProfile = companyProfile;
     this.image = image;
   }
 
-  public FetchCompanyResponse(Company companyProfile) {
+  public FetchCompanyByIdResponse(Company companyProfile) {
 
     this.companyProfile = companyProfile;
     this.image = image;
   }
 
-  public FetchCompanyResponse() {
+  public FetchCompanyByIdResponse() {
   }
 
   public Company getCompany() {

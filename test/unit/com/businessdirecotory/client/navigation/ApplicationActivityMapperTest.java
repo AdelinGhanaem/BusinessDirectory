@@ -66,12 +66,16 @@ public class ApplicationActivityMapperTest {
         return new MySecuredActivity();
       }
     });
+
+
     mapper = new ApplicationActivityMapper(service,provider, placesActivitiesMap);
+
+
   }
 
 
   @Test
-  public void returnActivity() {
+  public void shouldReturnActivity() {
     Activity testActivity = mapper.getActivity(new TestPlace());
     assertThat(testActivity, is(notNullValue()));
     assertEquals(testActivity.getClass(), TestActivity.class);
@@ -80,7 +84,6 @@ public class ApplicationActivityMapperTest {
 
   @Test
   public void returnsPageNotFoundActivityIfPlaceIsNotFound() {
-
     Activity placeNotFoundActivity = mapper.getActivity(new Place() {
     });
     assertEquals(placeNotFoundActivity.getClass(), PlaceNotFoundActivity.class);

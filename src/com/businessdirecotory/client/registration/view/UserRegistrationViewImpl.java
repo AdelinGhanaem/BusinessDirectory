@@ -42,7 +42,7 @@ public class UserRegistrationViewImpl extends PopupImpl implements UserRegistrat
   Modal dialogBox;
 
   @UiField
-  Button register;
+  Button registerButton;
 
   @UiField
   HTMLPanel info;
@@ -99,7 +99,7 @@ public class UserRegistrationViewImpl extends PopupImpl implements UserRegistrat
     info.setVisible(false);
     password.setVisible(false);
     email.setVisible(false);
-    register.setVisible(false);
+    registerButton.setVisible(false);
     success.setVisible(true);
     close.setVisible(true);
     errorsList.setVisible(false);
@@ -107,14 +107,15 @@ public class UserRegistrationViewImpl extends PopupImpl implements UserRegistrat
 
   @Override
   public void disableRegistrationButton() {
-
-    register.setEnabled(false);
+    registerButton.setVisible(false);
+    registerButton.setEnabled(false);
     loadingImage.setVisible(true);
   }
 
   @Override
   public void enableRegistrationButton() {
-    register.setEnabled(true);
+    registerButton.setVisible(true  );
+    registerButton.setEnabled(true);
     loadingImage.setVisible(false);
 
   }
@@ -124,7 +125,7 @@ public class UserRegistrationViewImpl extends PopupImpl implements UserRegistrat
   }
 
 
-  @UiHandler("register")
+  @UiHandler("registerButton")
   public void onRegisterClick(ClickEvent event) {
     User user = new User(0l, email.getText(), password.getText());
     presenter.register(user);

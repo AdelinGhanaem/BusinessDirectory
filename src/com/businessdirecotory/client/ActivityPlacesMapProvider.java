@@ -3,11 +3,13 @@ package com.businessdirecotory.client;
 import com.businessdirecotory.client.authorization.AuthorizationPresenter;
 import com.businessdirecotory.client.companyprofile.CompanyProfilePresenter;
 import com.businessdirecotory.client.navigation.ActivityPlaceMeta;
+import com.businessdirecotory.client.navigation.PlaceNotFoundActivity;
+import com.businessdirecotory.client.navigation.PlaceNotFoundPlace;
 import com.businessdirecotory.client.navigation.places.AuthorizationPlace;
 import com.businessdirecotory.client.navigation.places.CompanyProfilePlace;
-import com.businessdirecotory.client.navigation.places.UserRegistrationPlace;
 import com.businessdirecotory.client.navigation.places.FullInfoPlace;
 import com.businessdirecotory.client.navigation.places.SearchPlace;
+import com.businessdirecotory.client.navigation.places.UserRegistrationPlace;
 import com.businessdirecotory.client.registration.UserRegistrationPresenterImpl;
 import com.businessdirecotory.client.search.CompanyFullInfoPresenter;
 import com.businessdirecotory.client.search.SearchPresenter;
@@ -41,9 +43,13 @@ public class ActivityPlacesMapProvider implements Provider<HashMap<Class<? exten
   public HashMap<Class<? extends Place>, ActivityPlaceMeta> get() {
 
     HashMap<Class<? extends Place>, ActivityPlaceMeta> hashMap = new HashMap<Class<? extends Place>, ActivityPlaceMeta>();
+
     hashMap.put(UserRegistrationPlace.class, new ActivityPlaceMeta() {
       @Override
-      public Activity getActivity(Place place) {return companyRegistrationActivity;}});
+      public Activity getActivity(Place place) {
+        return companyRegistrationActivity;
+      }
+    });
     hashMap.put(SearchPlace.class, new ActivityPlaceMeta() {
       @Override
       public Activity getActivity(Place place) {
@@ -63,11 +69,17 @@ public class ActivityPlacesMapProvider implements Provider<HashMap<Class<? exten
       }
     });
     hashMap.put(FullInfoPlace.class, new ActivityPlaceMeta<FullInfoPlace, CompanyFullInfoPresenter>() {
-
       @Override
       public CompanyFullInfoPresenter getActivity(FullInfoPlace fullInfoPlace) {
         companyFullInfoPresenter.fetchFullInfo(fullInfoPlace.getId());
         return companyFullInfoPresenter;
+      }
+    });
+    hashMap.put(PlaceNotFoundPlace.class, new ActivityPlaceMeta<PlaceNotFoundPlace, PlaceNotFoundActivity>() {
+
+      @Override
+      public PlaceNotFoundActivity getActivity(PlaceNotFoundPlace placeNotFoundPlace) {
+        return new PlaceNotFoundActivity();
       }
     });
     return hashMap;
