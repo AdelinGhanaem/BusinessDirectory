@@ -50,7 +50,7 @@
       <!--<g:Image ui:field="image" addStyleNames="{style.controlGroup}" url=""/>-->
       <!--</g:HTMLPanel>-->
       <g:HTMLPanel addStyleNames="{style.info}">
-        <b:Button ui:field="showInfo" text="Основна Информация"/>
+        <b:Button ui:field="showInfo" text="Основна Информация" block="true"/>
         <g:DisclosurePanel animationEnabled="true" ui:field="disclosureInfoPanel" addStyleNames="{style.info}" open="true">
           <editors:CompanyInformationEditor ui:field="info"/>
         </g:DisclosurePanel>
@@ -58,7 +58,7 @@
 
 
       <g:HTMLPanel addStyleNames="{style.address}">
-        <b:Button ui:field="showAddress" text="Адрес"/>
+        <b:Button ui:field="showAddress" text="Адрес" block="true"/>
         <g:DisclosurePanel animationEnabled="true" ui:field="disclosureAddressPanel" addStyleNames="{style.info}">
           <editors:AddressEditor ui:field="address"/>
         </g:DisclosurePanel>

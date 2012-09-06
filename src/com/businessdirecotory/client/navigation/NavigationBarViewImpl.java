@@ -59,7 +59,6 @@ public class NavigationBarViewImpl extends Composite implements NavigationBarVie
   @Inject
   SecurityTokenProvider provider;
 
-
   @Inject
   EventBus eventBus;
 
